@@ -14,9 +14,9 @@ spring:
   application:
     name: carbon-provider-core    # 服务名称
   datasource:
-    url: jdbc:mysql://119.23.242.226:3306/carbon_provider_core?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/carbon_provider_core?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
     username: root
-    password: AM1gOS5zqdQi5Sh1
+    password: root
     driver-class: com.mysql.jdbc.Driver
   redis:
     host: 119.23.242.226
