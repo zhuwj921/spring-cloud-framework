@@ -1,0 +1,15 @@
+server:
+  port: 9000                    # 指定该Eureka实例的端口
+
+eureka:
+  instance:
+    hostname: 127.0.0.1       # 指定该Eureka实例的主机名
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+security:
+  basic:
+    enabled: false
+
