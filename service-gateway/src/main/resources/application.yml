@@ -1,0 +1,44 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka/    # 注册服务地址
+    instance:
+      instance-id: API网关  #在信息列表中显示主机名称
+      prefer-ip-address: true   #访问的路径变为IP地址
+      lease-renewal-interval-in-seconds: 2  #设置心跳的时间间隔（默认是30秒）
+      lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔（默认90秒）
+server:
+  port: 9005                    # 指定该Eureka实例的端口
+spring:
+  application:
+    name: service-gateway
+zuul:
+  routes:
+    core:
+       path: /**
+       sensitiveHeaders:
+       serviceId: service-authorization
+#    bank:
+#       path: /bank/**
+#       sensitiveHeaders:
+#       serviceId: carbon-provider-bank
+  add-proxy-headers: true
+  host:
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 60000
+hystrix:
+    command:
+        default:
+            execution:
+                isolation:
+                    thread:
+                        timeoutInMilliseconds: 60000
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:9500/oauth/token
+      user-authorization-uri: http://localhost:9500/oauth/authorize
+      client-id: service-gateway
+    resource:
+      user-info-uri: http://localhost:9500/userinfo
+      prefer-token-info: false

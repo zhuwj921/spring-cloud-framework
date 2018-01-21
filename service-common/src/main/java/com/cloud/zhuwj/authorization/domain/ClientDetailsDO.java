@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.authorization;
+package com.cloud.zhuwj.authorization.domain;
 
 
 import com.cloud.zhuwj.common.base.BaseDO;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cloud.zhuwj.authorization.dao.IClientDetailsDAO">
-    <resultMap id="clientDetails" type="com.cloud.zhuwj.authorization.ClientDetailsDO">
+    <resultMap id="clientDetails" type="com.cloud.zhuwj.authorization.domain.ClientDetailsDO">
         <result column="client_id" property="clientId"/>
         <result column="resource_ids" property="resourceIds"/>
         <result column="client_secret" property="clientSecret"/>

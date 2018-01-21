@@ -17,8 +17,12 @@ import java.security.Principal;
 public class UserController extends BaseController {
 
 
-
-    @GetMapping("/user")
+    /**
+     * 各个服务获取验证授权用户信息的接口
+     * @param user
+     * @return
+     */
+    @GetMapping("/userinfo")
     public Principal user(Principal user){
         return user;
     }

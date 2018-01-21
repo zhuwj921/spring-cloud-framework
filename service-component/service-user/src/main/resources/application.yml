@@ -1,0 +1,31 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka/    # 注册服务地址
+    instance:
+      instance-id: 用户服务  #在信息列表中显示主机名称
+      prefer-ip-address: true   #访问的路径变为IP地址
+      lease-renewal-interval-in-seconds: 2  #设置心跳的时间间隔（默认是30秒）
+      lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔（默认90秒）
+
+server:
+  port: 9501
+spring:
+  application:
+    name: service-user    # 服务名称
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/spring_cloud?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: root
+    driver-class: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:9005/userinfo
+      prefer-token-info: false
+management:
+  security:
+    enabled: false
+
