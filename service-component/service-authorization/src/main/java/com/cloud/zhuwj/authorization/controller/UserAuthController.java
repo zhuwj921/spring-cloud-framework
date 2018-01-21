@@ -1,5 +1,6 @@
 package com.cloud.zhuwj.authorization.controller;
 
+import com.cloud.zhuwj.authorization.fegin.IUserFeginService;
 import com.cloud.zhuwj.common.base.BaseController;
 import com.cloud.zhuwj.common.exception.BuessionException;
 import com.cloud.zhuwj.common.reponse.ResponseResult;
@@ -14,8 +15,10 @@ import java.security.Principal;
  * 服务之间调用验证用户信息接口
  */
 @RestController
-public class UserController extends BaseController {
+public class UserAuthController extends BaseController {
 
+    @Autowired
+    private IUserFeginService userFeginService;
 
     /**
      * 各个服务获取验证授权用户信息的接口
@@ -29,7 +32,7 @@ public class UserController extends BaseController {
 
     @GetMapping("/test")
     public ResponseResult<String> test(){
-        return ResponseResult.error("");
+        return userFeginService.test();
     }
 
     @GetMapping("/noAuth")

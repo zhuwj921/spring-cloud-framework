@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: 用户服务验证
  * @date 2018/1/21.
  */
-@RequestMapping(value = "/userinfo", produces = {"application/json;charset=UTF-8"})
+@RequestMapping(value = "/user", produces = {"application/json;charset=UTF-8"})
 @RestController
 public class UserController extends BaseController {
     @GetMapping("/test")

@@ -18,10 +18,10 @@ zuul:
        path: /**
        sensitiveHeaders:
        serviceId: service-authorization
-#    bank:
-#       path: /bank/**
-#       sensitiveHeaders:
-#       serviceId: carbon-provider-bank
+    bank:
+       path: /user/**
+       sensitiveHeaders:
+       serviceId: service-user
   add-proxy-headers: true
   host:
     connect-timeout-millis: 10000
@@ -36,9 +36,9 @@ hystrix:
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:9500/oauth/token
-      user-authorization-uri: http://localhost:9500/oauth/authorize
+      access-token-uri: http://localhost:9005/oauth/token
+      user-authorization-uri: http://localhost:9005/oauth/authorize
       client-id: service-gateway
     resource:
-      user-info-uri: http://localhost:9500/userinfo
+      user-info-uri: http://localhost:9005/userinfo
       prefer-token-info: false
