@@ -1,6 +1,6 @@
 package com.cloud.zhuwj.authorization.service.impl;
 
-import com.cloud.zhuwj.authorization.ClientDetailsDO;
+import com.cloud.zhuwj.authorization.domain.ClientDetailsDO;
 import com.cloud.zhuwj.authorization.dao.IClientDetailsDAO;
 import com.cloud.zhuwj.authorization.service.IClientDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;

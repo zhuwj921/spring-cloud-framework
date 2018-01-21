@@ -2,7 +2,7 @@ package com.cloud.zhuwj.authorization.dao;
 
 
 
-import com.cloud.zhuwj.authorization.ClientDetailsDO;
+import com.cloud.zhuwj.authorization.domain.ClientDetailsDO;
 import com.cloud.zhuwj.common.base.BaseDAO;
 
 import java.util.List;

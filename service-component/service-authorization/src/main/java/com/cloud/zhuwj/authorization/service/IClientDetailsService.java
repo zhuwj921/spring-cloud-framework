@@ -2,7 +2,7 @@ package com.cloud.zhuwj.authorization.service;
 
 
 
-import com.cloud.zhuwj.authorization.ClientDetailsDO;
+import com.cloud.zhuwj.authorization.domain.ClientDetailsDO;
 
 import java.util.List;
 

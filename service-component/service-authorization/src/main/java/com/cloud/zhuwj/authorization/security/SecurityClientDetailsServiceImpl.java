@@ -1,6 +1,6 @@
 package com.cloud.zhuwj.authorization.security;
 
-import com.cloud.zhuwj.authorization.ClientDetailsDO;
+import com.cloud.zhuwj.authorization.domain.ClientDetailsDO;
 import com.cloud.zhuwj.authorization.service.IClientDetailsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

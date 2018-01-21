@@ -14,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
@@ -52,7 +53,8 @@ public class AuthorizationServerConfiguration  extends AuthorizationServerConfig
         endpoints
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService())//若无，refresh_token会有UserDetailsService is required错误
-                .tokenStore(tokenStore());
+             //   .tokenStore(tokenStore());
+        .tokenStore(new InMemoryTokenStore());
     }
 
     @Override
