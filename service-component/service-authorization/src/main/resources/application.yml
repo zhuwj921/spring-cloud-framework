@@ -3,7 +3,7 @@ eureka:
     serviceUrl:
       defaultZone: http://127.0.0.1:9000/eureka/    # 注册服务地址
     instance:
-      instance-id: 碳账户核心服务  #在信息列表中显示主机名称
+      instance-id: 授权服务  #在信息列表中显示主机名称
       prefer-ip-address: true   #访问的路径变为IP地址
       lease-renewal-interval-in-seconds: 2  #设置心跳的时间间隔（默认是30秒）
       lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔（默认90秒）
@@ -12,16 +12,16 @@ server:
   port: 9500
 spring:
   application:
-    name: carbon-provider-core    # 服务名称
+    name: service-authorization    # 服务名称
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/carbon_provider_core?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    url: jdbc:mysql://127.0.0.1:3306/spring_cloud?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
     username: root
     password: root
     driver-class: com.mysql.jdbc.Driver
-  redis:
-    host: 119.23.242.226
-    port: 6379
-    password: scdf1234
+#  redis:
+#    host: 127.0.0.1
+#    port: root
+#    password: root
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
 security:
