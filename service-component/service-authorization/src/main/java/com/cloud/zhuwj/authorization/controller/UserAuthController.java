@@ -5,8 +5,7 @@ import com.cloud.zhuwj.common.base.BaseController;
 import com.cloud.zhuwj.common.exception.BuessionException;
 import com.cloud.zhuwj.common.reponse.ResponseResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -36,8 +35,10 @@ public class UserAuthController extends BaseController {
     }
 
     @GetMapping("/noAuth")
+    @ResponseBody
     public ResponseResult<String> noAuth(){
-        int x = 1/0;
-        throw  new BuessionException(1,"测试统一异常处理");
+        return ResponseResult.error("sadasdasd");
+       // int x = 1/0;
+     //   throw  new BuessionException(1,"测试统一异常处理");
     }
 }
