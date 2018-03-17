@@ -6,5 +6,5 @@
 
 * service-component 服务组件 里面包含各种基础服务
   1. service-authorization 授权服务
-  2.
+  2. service-user 用户服务
  

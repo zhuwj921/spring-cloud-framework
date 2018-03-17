@@ -10,7 +10,7 @@ import java.io.Serializable;
  * Created by zhuwj on 2017/11/12.
  */
 @ApiModel(description = "响应结果")
-public class ResponseResult<T> implements Serializable {
+public class Result<T> implements Serializable {
 
     private static final long serialVersionUID = 8992436576262574064L;
 
@@ -60,7 +60,7 @@ public class ResponseResult<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> ResponseResult<T> error() {
+    public static <T> Result<T> error() {
         return error(ErrorCodeEnum.BUSINESS_FAIL.getCode(), ErrorCodeEnum.BUSINESS_FAIL.getMsg());
     }
     /**
@@ -69,7 +69,7 @@ public class ResponseResult<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> ResponseResult<T> error(String message) {
+    public static <T> Result<T> error(String message) {
         return error(ErrorCodeEnum.BUSINESS_FAIL.getCode(), message);
     }
 
@@ -79,7 +79,7 @@ public class ResponseResult<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> ResponseResult<T> error(Integer code) {
+    public static <T> Result<T> error(Integer code) {
         return error(code, ErrorCodeEnum.getMsg(code));
     }
 
@@ -90,8 +90,8 @@ public class ResponseResult<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> ResponseResult<T> error(Integer code, String message) {
-        ResponseResult<T> msg = new ResponseResult<>();
+    public static <T> Result<T> error(Integer code, String message) {
+        Result<T> msg = new Result<>();
         msg.msg=message;
         msg.code= code;
         return msg.putTimeStamp();
@@ -103,8 +103,8 @@ public class ResponseResult<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> ResponseResult<T> errorResult( T result) {
-        return new ResponseResult<T>()
+    public static <T> Result<T> errorResult(T result) {
+        return new Result<T>()
                 .result(result)
                 .putTimeStamp()
                 .code(ErrorCodeEnum.BUSINESS_FAIL.getCode()).msg(ErrorCodeEnum.BUSINESS_FAIL.getMsg());
@@ -115,30 +115,30 @@ public class ResponseResult<T> implements Serializable {
      * @param <T>
      * @return
      */
-    public static <T> ResponseResult<T> ok(T result) {
-        return new ResponseResult<T>()
+    public static <T> Result<T> ok(T result) {
+        return new Result<T>()
                 .result(result)
                 .putTimeStamp()
                 .code(ErrorCodeEnum.RESULT_SUCCESS.getCode()).msg(ErrorCodeEnum.RESULT_SUCCESS.getMsg());
     }
-    private ResponseResult<T> putTimeStamp() {
+    private Result<T> putTimeStamp() {
         this.timestamp = System.currentTimeMillis();
         return this;
     }
 
-    public ResponseResult() {
+    public Result() {
 
     }
-    public ResponseResult<T> result(T result) {
+    public Result<T> result(T result) {
         this.result = result;
         return this;
     }
 
-    public ResponseResult<T> code(Integer code) {
+    public Result<T> code(Integer code) {
         this.code = code;
         return this;
     }
-    public ResponseResult<T> msg(String msg) {
+    public Result<T> msg(String msg) {
         this.msg = msg;
         return this;
     }

@@ -2,8 +2,7 @@ package com.cloud.zhuwj.authorization.controller;
 
 import com.cloud.zhuwj.authorization.fegin.IUserFeginService;
 import com.cloud.zhuwj.common.base.BaseController;
-import com.cloud.zhuwj.common.exception.BuessionException;
-import com.cloud.zhuwj.common.reponse.ResponseResult;
+import com.cloud.zhuwj.common.reponse.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,14 +29,14 @@ public class UserAuthController extends BaseController {
     }
 
     @GetMapping("/test")
-    public ResponseResult<String> test(){
+    public Result<String> test(){
         return userFeginService.test();
     }
 
     @GetMapping("/noAuth")
     @ResponseBody
-    public ResponseResult<String> noAuth(){
-        return ResponseResult.error("sadasdasd");
+    public Result<String> noAuth(){
+        return Result.error("sadasdasd");
        // int x = 1/0;
      //   throw  new BuessionException(1,"测试统一异常处理");
     }

@@ -1,6 +1,6 @@
 package com.cloud.zhuwj.authorization.fegin;
 
-import com.cloud.zhuwj.common.reponse.ResponseResult;
+import com.cloud.zhuwj.common.reponse.Result;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -11,5 +11,5 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @FeignClient(value = "service-user")
 public interface IUserFeginService {
     @RequestMapping(value = "/test",method = RequestMethod.GET)
-    ResponseResult<String> test();
+    Result<String> test();
 }

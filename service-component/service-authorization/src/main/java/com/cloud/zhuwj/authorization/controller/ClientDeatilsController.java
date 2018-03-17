@@ -2,7 +2,7 @@ package com.cloud.zhuwj.authorization.controller;
 
 import com.cloud.zhuwj.authorization.service.IClientDetailsService;
 import com.cloud.zhuwj.common.base.BaseController;
-import com.cloud.zhuwj.common.reponse.ResponseResult;
+import com.cloud.zhuwj.common.reponse.Result;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -29,12 +29,12 @@ public class ClientDeatilsController extends BaseController {
 
     @ApiOperation(value = "获取第三方客户端信息", notes = "获取第三方客户端信息")
     @GetMapping("/findAll/{curr}/{pageSize}")
-    public ResponseResult<String> findAll(@PathVariable("curr") int curr, @PathVariable("pageSize") int pageSize) {
+    public Result<String> findAll(@PathVariable("curr") int curr, @PathVariable("pageSize") int pageSize) {
         try {
-            return ResponseResult.ok("查询成功");
+            return Result.ok("查询成功");
         } catch (Exception e) {
             logger.error("账号信息 分页查询失败", e);
-            return ResponseResult.error("账号信息 分页查询失败");
+            return Result.error("账号信息 分页查询失败");
         }
     }
 }

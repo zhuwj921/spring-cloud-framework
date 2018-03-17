@@ -1,7 +1,7 @@
 package com.cloud.zhuwj.user.controller;
 
 import com.cloud.zhuwj.common.base.BaseController;
-import com.cloud.zhuwj.common.reponse.ResponseResult;
+import com.cloud.zhuwj.common.reponse.Result;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,12 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UserController extends BaseController {
     @GetMapping("/test")
-    public ResponseResult<String> test() {
+    public Result<String> test() {
         try {
             String username= getUsername();
-            return ResponseResult.ok("hello world"+username);
+            return Result.ok("hello world"+username);
         } catch (Exception e) {
-            return ResponseResult.error("账号信息 分页查询失败");
+            return Result.error("账号信息 分页查询失败");
         }
     }
 }

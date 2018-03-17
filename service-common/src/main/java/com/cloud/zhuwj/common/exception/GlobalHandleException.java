@@ -31,9 +31,9 @@ public class GlobalHandleException {
      *//*
 
     @ExceptionHandler(value = Exception.class)
-    public ResponseResult<String> errorHandler(Exception ex) {
+    public Result<String> errorHandler(Exception ex) {
         logger.info("GlobalControllerAdvice errorHandler  Exception...",ex);
-        return ResponseResult.error(ex.getMessage().toString());
+        return Result.error(ex.getMessage().toString());
     }
 
     */
@@ -44,9 +44,9 @@ public class GlobalHandleException {
      *//*
 
     @ExceptionHandler(value = BuessionException.class)
-    public  ResponseResult<String> errorHandler(BuessionException ex) {
+    public  Result<String> errorHandler(BuessionException ex) {
         logger.info("GlobalControllerAdvice errorHandler BuessionException ...",ex);
-        return ResponseResult.error(ex.getCode(),ex.getMessage());
+        return Result.error(ex.getCode(),ex.getMessage());
     }
 
 }
