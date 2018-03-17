@@ -2,6 +2,7 @@ package com.cloud.zhuwj.user.controller;
 
 import com.cloud.zhuwj.common.base.BaseController;
 import com.cloud.zhuwj.common.reponse.Result;
+import com.cloud.zhuwj.user.domain.UserDO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,5 +24,13 @@ public class UserController extends BaseController {
         } catch (Exception e) {
             return Result.error("账号信息 分页查询失败");
         }
+    }
+
+    @GetMapping("/findByUsername")
+    public Result<UserDO> test(String username) {
+            UserDO userDO =new UserDO();
+            userDO.setUsername("sysadmin");
+            userDO.setEnabled(true);
+            return Result.ok(userDO);
     }
 }
