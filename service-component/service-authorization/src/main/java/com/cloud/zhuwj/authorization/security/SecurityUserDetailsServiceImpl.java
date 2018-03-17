@@ -1,5 +1,6 @@
 package com.cloud.zhuwj.authorization.security;
 
+import com.cloud.zhuwj.authorization.domain.UserDO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -25,7 +26,7 @@ public class SecurityUserDetailsServiceImpl implements UserDetailsService {
         String lowcaseUsername = username.toLowerCase();
         Collection<GrantedAuthority> grantedAuthorities = new HashSet<>();
         grantedAuthorities.add(new SimpleGrantedAuthority("findclient"));
-        UserDetails user = new User("system","123456",grantedAuthorities);
-        return user;
+        UserDO userDO = new UserDO(1,"system","123456",grantedAuthorities,true);
+        return userDO;
     }
 }

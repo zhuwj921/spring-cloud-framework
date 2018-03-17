@@ -39,6 +39,8 @@ public class SecurityClientDetailsServiceImpl implements ClientDetailsService {
         baseClientDetails.setRefreshTokenValiditySeconds(refreshTokenValiditySeconds);
         baseClientDetails.setAccessTokenValiditySeconds(accessTokenValiditySeconds);
         baseClientDetails.setClientSecret(clientSecret);
+        baseClientDetails.setClientId("webapp");
+        baseClientDetails.setClientSecret("webapp");
         return baseClientDetails;
     }
 }

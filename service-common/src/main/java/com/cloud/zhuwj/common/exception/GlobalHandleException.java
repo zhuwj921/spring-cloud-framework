@@ -38,14 +38,14 @@ public class GlobalHandleException {
 
     */
 /**
-     * 拦截捕捉自定义异常 BuessionException.class
+     * 拦截捕捉自定义异常 BusinessException.class
      * @param ex
      * @return
      *//*
 
-    @ExceptionHandler(value = BuessionException.class)
-    public  Result<String> errorHandler(BuessionException ex) {
-        logger.info("GlobalControllerAdvice errorHandler BuessionException ...",ex);
+    @ExceptionHandler(value = BusinessException.class)
+    public  Result<String> errorHandler(BusinessException ex) {
+        logger.info("GlobalControllerAdvice errorHandler BusinessException ...",ex);
         return Result.error(ex.getCode(),ex.getMessage());
     }
 

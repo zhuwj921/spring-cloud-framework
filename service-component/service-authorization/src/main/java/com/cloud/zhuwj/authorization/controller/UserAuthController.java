@@ -28,16 +28,4 @@ public class UserAuthController extends BaseController {
         return user;
     }
 
-    @GetMapping("/test")
-    public Result<String> test(){
-        return userFeginService.test();
-    }
-
-    @GetMapping("/noAuth")
-    @ResponseBody
-    public Result<String> noAuth(){
-        return Result.error("sadasdasd");
-       // int x = 1/0;
-     //   throw  new BuessionException(1,"测试统一异常处理");
-    }
 }

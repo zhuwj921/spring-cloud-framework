@@ -3,7 +3,7 @@ package com.cloud.zhuwj.common.exception;
 /**
  * Created by zhuw on 2018/1/11.
  */
-public class BuessionException extends RuntimeException {
+public class BusinessException extends RuntimeException {
 
     /**
      * 错误码
@@ -52,7 +52,7 @@ public class BuessionException extends RuntimeException {
      * @param message 错误消息
      * @param exception 异常
      */
-    public BuessionException(Integer code, String message, Exception exception) {
+    public BusinessException(Integer code, String message, Exception exception) {
         this.code = code;
         this.message = message;
         this.exception = exception;
@@ -63,11 +63,11 @@ public class BuessionException extends RuntimeException {
      * @param code  错误码
      * @param message 错误消息
      */
-    public BuessionException(Integer code, String message) {
+    public BusinessException(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public BuessionException() {
+    public BusinessException() {
     }
 }
