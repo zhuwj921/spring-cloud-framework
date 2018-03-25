@@ -9,3 +9,7 @@
   2. service-user 用户服务 启动端口 9030
   3. service-web 后台管理服务 启动端口 9040
  
+
+
+
+*增加任务调度quartz集成
