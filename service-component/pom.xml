@@ -14,6 +14,7 @@
     <modules>
         <module>service-authorization</module>
         <module>service-user</module>
+        <module>service-web</module>
     </modules>
     <dependencies>
         <dependency>

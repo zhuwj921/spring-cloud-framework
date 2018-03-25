@@ -2,14 +2,15 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://127.0.0.1:9000/eureka/    # 注册服务地址
-    instance:
-      instance-id: 用户服务  #在信息列表中显示主机名称
-      prefer-ip-address: true   #访问的路径变为IP地址
-      lease-renewal-interval-in-seconds: 2  #设置心跳的时间间隔（默认是30秒）
-      lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔（默认90秒）
+  instance:
+  appname: 用户服务    #服务名，默认取 spring.application.name 配置值，如果没有则为 unknown
+  hostname: 127.0.0.1  #当前实例的主机名称
+  instance-id: service-user  # 指定该Eureka实例的id
+  prefer-ip-address: true #不使用主机名来定义注册中心的地址，而使用IP地址的形式
+  ip-address:  127.0.0.1  #ip地址配置
 
 server:
-  port: 9501
+  port: 9030
 spring:
   application:
     name: service-user    # 服务名称
@@ -18,12 +19,13 @@ spring:
     username: root
     password: root
     driver-class: com.mysql.jdbc.Driver
+    name: datasource
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
 security:
   oauth2:
     resource:
-      user-info-uri: http://localhost:9005/userinfo
+      user-info-uri: http://localhost:9020/userinfo
       prefer-token-info: false
 management:
   security:

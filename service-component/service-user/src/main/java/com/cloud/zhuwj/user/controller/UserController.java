@@ -2,9 +2,15 @@ package com.cloud.zhuwj.user.controller;
 
 import com.cloud.zhuwj.common.base.BaseController;
 import com.cloud.zhuwj.common.reponse.Result;
-import com.cloud.zhuwj.user.domain.UserDO;
+import com.cloud.zhuwj.user.domain.MenuDO;
+import com.cloud.zhuwj.user.service.IMenuService;
+import com.cloud.zhuwj.user.vo.UserInfoVO;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,24 +19,18 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description: 用户服务验证
  * @date 2018/1/21.
  */
-@RequestMapping(value = "/user", produces = {"application/json;charset=UTF-8"})
+@Api(description = "用户信息接口")
 @RestController
 public class UserController extends BaseController {
-    @GetMapping("/test")
-    public Result<String> test() {
-        try {
-            String username= getUsername();
-            return Result.ok("hello world"+username);
-        } catch (Exception e) {
-            return Result.error("账号信息 分页查询失败");
-        }
-    }
-
-    @GetMapping("/findByUsername")
-    public Result<UserDO> test(String username) {
-            UserDO userDO =new UserDO();
-            userDO.setUsername("sysadmin");
-            userDO.setEnabled(true);
-            return Result.ok(userDO);
+    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+    @Autowired
+    private IMenuService menuService;
+    @ApiOperation(value = "当前登入用户的信息", notes = "获取当前登入用户的信息")
+    @GetMapping("/findInfo")
+    public Result<UserInfoVO> findInfo(){
+        UserInfoVO userInfo = new UserInfoVO();
+        userInfo.setUsername(getUsername());
+        userInfo.setNavMenuList(menuService.findTreeList(new MenuDO()));
+        return Result.ok(userInfo);
     }
 }

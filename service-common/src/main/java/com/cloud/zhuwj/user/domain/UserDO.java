@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.authorization.domain;
+package com.cloud.zhuwj.user.domain;
 
 import com.cloud.zhuwj.common.base.BaseDO;
 import com.fasterxml.jackson.annotation.JsonIgnore;

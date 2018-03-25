@@ -8,17 +8,17 @@ eureka:
       lease-renewal-interval-in-seconds: 2  #设置心跳的时间间隔（默认是30秒）
       lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔（默认90秒）
 server:
-  port: 9005                    # 指定该Eureka实例的端口
+  port: 9010                    # 指定该Eureka实例的端口
 spring:
   application:
     name: service-gateway
 zuul:
   routes:
-    core:
-       path: /**
+    authorization:
+       path: /authorization/**
        sensitiveHeaders:
        serviceId: service-authorization
-    bank:
+    user:
        path: /user/**
        sensitiveHeaders:
        serviceId: service-user
@@ -36,9 +36,9 @@ hystrix:
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:9005/oauth/token
-      user-authorization-uri: http://localhost:9005/oauth/authorize
+      access-token-uri: http://localhost:9020/oauth/token
+      user-authorization-uri: http://localhost:9020/oauth/authorize
       client-id: service-gateway
     resource:
-      user-info-uri: http://localhost:9005/userinfo
+      user-info-uri: http://localhost:9020/userinfo
       prefer-token-info: false

@@ -1,8 +1,11 @@
 package com.cloud.zhuwj.user;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.feign.EnableFeignClients;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,7 +16,10 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableEurekaClient
+@EnableFeignClients
 @SpringBootApplication
+@ComponentScan(basePackages={"com.cloud.zhuwj"})
+@MapperScan("com.cloud.zhuwj.user.dao")
 public class UserAppication {
     public static void main(String[] args) {
         SpringApplication.run(UserAppication.class, args);

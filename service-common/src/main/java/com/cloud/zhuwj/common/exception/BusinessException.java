@@ -1,5 +1,7 @@
 package com.cloud.zhuwj.common.exception;
 
+import com.cloud.zhuwj.common.enums.ErrorCodeEnum;
+
 /**
  * Created by zhuw on 2018/1/11.
  */
@@ -65,6 +67,15 @@ public class BusinessException extends RuntimeException {
      */
     public BusinessException(Integer code, String message) {
         this.code = code;
+        this.message = message;
+    }
+
+    /**
+     * 错误消息
+     * @param message
+     */
+    public BusinessException( String message) {
+        this.code = ErrorCodeEnum.BUSINESS_FAIL.getCode();
         this.message = message;
     }
 

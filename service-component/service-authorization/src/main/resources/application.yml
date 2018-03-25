@@ -9,7 +9,7 @@ eureka:
       lease-expiration-duration-in-seconds: 5 #如果现在超过了5秒的间隔（默认90秒）
 
 server:
-  port: 9500
+  port: 9020
 spring:
   application:
     name: service-authorization    # 服务名称

@@ -1,0 +1,30 @@
+#app {
+    // 主体区域
+    .main-container {
+        min-height: 100%;
+        transition: margin-left 0.28s;
+        margin-left: 220px;
+    } // 侧边栏
+    .sidebar-container {
+        width: 220px!important;
+        height: 100%;
+        position: fixed;
+        top: 60px;
+        background-color: #F0F1F3
+        ;
+        bottom: 0;
+        left: 0;
+        z-index: 1001;
+        a {
+            display: inline-block;
+            width: 100%;
+        }
+        .svg-icon {
+            margin-right: 16px;
+        }
+        .el-menu {
+            border: none;
+            width: 100%;
+        }
+    }
+}

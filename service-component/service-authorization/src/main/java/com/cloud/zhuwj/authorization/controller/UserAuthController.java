@@ -15,9 +15,6 @@ import java.security.Principal;
 @RestController
 public class UserAuthController extends BaseController {
 
-    @Autowired
-    private IUserFeginService userFeginService;
-
     /**
      * 各个服务获取验证授权用户信息的接口
      * @param user
