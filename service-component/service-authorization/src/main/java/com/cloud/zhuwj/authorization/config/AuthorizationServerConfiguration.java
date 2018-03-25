@@ -1,7 +1,10 @@
 package com.cloud.zhuwj.authorization.config;
 
+import com.cloud.zhuwj.authorization.controller.ClientDeatilsController;
 import com.cloud.zhuwj.authorization.security.SecurityClientDetailsServiceImpl;
 import com.cloud.zhuwj.authorization.security.SecurityUserDetailsServiceImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +27,7 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfiguration  extends AuthorizationServerConfigurerAdapter {
-
+    private static final Logger logger = LoggerFactory.getLogger(ClientDeatilsController.class);
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -50,6 +53,7 @@ public class AuthorizationServerConfiguration  extends AuthorizationServerConfig
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+        logger.debug("授权配置");
         endpoints
                 .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService())//若无，refresh_token会有UserDetailsService is required错误
