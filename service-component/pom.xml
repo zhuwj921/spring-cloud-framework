@@ -15,6 +15,7 @@
         <module>service-authorization</module>
         <module>service-user</module>
         <module>service-web</module>
+        <module>service-quartz</module>
     </modules>
     <dependencies>
         <dependency>

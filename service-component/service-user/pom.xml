@@ -10,17 +10,5 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service-user</artifactId>
-    <!-- 任务定时调度 -->
-    <dependencies>
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz</artifactId>
-            <version>2.2.3</version>
-        </dependency>
-        <dependency>
-            <groupId>org.quartz-scheduler</groupId>
-            <artifactId>quartz-jobs</artifactId>
-            <version>2.2.3</version>
-        </dependency>
-    </dependencies>
+
 </project>

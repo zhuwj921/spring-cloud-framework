@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.user.dao;
+package com.cloud.zhuwj.quartz.dao;
 
 
 import com.cloud.zhuwj.common.base.BaseDAO;

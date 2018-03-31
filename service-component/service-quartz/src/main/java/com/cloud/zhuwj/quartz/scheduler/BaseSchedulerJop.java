@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.user.scheduler;
+package com.cloud.zhuwj.quartz.scheduler;
 
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;

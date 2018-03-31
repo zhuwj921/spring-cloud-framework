@@ -1,8 +1,8 @@
-package com.cloud.zhuwj.user.service.impl;
+package com.cloud.zhuwj.quartz.service.impl;
 
-import com.cloud.zhuwj.user.dao.IJobAndTriggerDAO;
+import com.cloud.zhuwj.quartz.dao.IJobAndTriggerDAO;
+import com.cloud.zhuwj.quartz.service.IJobAndTriggerService;
 import com.cloud.zhuwj.quartz.domain.JobAndTrigger;
-import com.cloud.zhuwj.user.service.IJobAndTriggerService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

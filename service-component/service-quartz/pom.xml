@@ -3,21 +3,30 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>spring-cloud-framework</artifactId>
+        <artifactId>service-component</artifactId>
         <groupId>com.cloud.zhuwj</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-discovery</artifactId>
+    <artifactId>service-quartz</artifactId>
+
+    <!-- 任务定时调度 -->
     <dependencies>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-eureka-server</artifactId>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>2.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz-jobs</artifactId>
+            <version>2.2.3</version>
         </dependency>
     </dependencies>
+
     <build>
-        <finalName>service-discovery</finalName>
+        <finalName>service-quartz</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

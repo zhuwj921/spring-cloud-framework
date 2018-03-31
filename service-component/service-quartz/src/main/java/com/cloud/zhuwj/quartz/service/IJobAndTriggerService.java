@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.user.service;
+package com.cloud.zhuwj.quartz.service;
 
 
 import com.cloud.zhuwj.quartz.domain.JobAndTrigger;

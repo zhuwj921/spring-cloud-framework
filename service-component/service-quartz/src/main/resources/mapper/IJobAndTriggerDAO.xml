@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >  
 <mapper namespace="com.cloud.zhuwj.user.dao.IJobAndTriggerDAO">
     
-    <select id="getJobAndTriggerDetails" resultType="com.cloud.zhuwj.user.domain.JobAndTrigger">
+    <select id="getJobAndTriggerDetails" resultType="com.cloud.zhuwj.quartz.domain.JobAndTrigger">
 			SELECT
 				qrtz_job_details.JOB_NAME,
 				qrtz_job_details.JOB_GROUP,

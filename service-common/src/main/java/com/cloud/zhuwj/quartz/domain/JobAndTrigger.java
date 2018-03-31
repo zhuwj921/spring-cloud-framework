@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.user.domain;
+package com.cloud.zhuwj.quartz.domain;
 
 import com.cloud.zhuwj.common.base.BaseDO;
 

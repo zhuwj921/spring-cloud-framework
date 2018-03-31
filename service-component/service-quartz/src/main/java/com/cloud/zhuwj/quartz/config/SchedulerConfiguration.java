@@ -1,6 +1,6 @@
-package com.cloud.zhuwj.user.config;
+package com.cloud.zhuwj.quartz.config;
 
-import com.cloud.zhuwj.user.scheduler.JobFactory.JobFactory;
+import com.cloud.zhuwj.quartz.scheduler.JobFactory.JobFactory;
 import org.quartz.Scheduler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;

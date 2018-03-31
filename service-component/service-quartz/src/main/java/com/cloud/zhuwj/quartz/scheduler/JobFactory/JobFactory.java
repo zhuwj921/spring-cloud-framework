@@ -1,4 +1,4 @@
-package com.cloud.zhuwj.user.scheduler.JobFactory;
+package com.cloud.zhuwj.quartz.scheduler.JobFactory;
 
 import org.quartz.spi.TriggerFiredBundle;
 import org.springframework.beans.factory.annotation.Autowired;

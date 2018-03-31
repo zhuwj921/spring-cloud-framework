@@ -1,9 +1,9 @@
-package com.cloud.zhuwj.user.controller;
+package com.cloud.zhuwj.quartz.controller;
 
 import com.cloud.zhuwj.common.reponse.Result;
-import com.cloud.zhuwj.user.domain.JobAndTrigger;
-import com.cloud.zhuwj.user.scheduler.BaseSchedulerJop;
-import com.cloud.zhuwj.user.service.IJobAndTriggerService;
+import com.cloud.zhuwj.quartz.scheduler.BaseSchedulerJop;
+import com.cloud.zhuwj.quartz.service.IJobAndTriggerService;
+import com.cloud.zhuwj.quartz.domain.JobAndTrigger;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,7 +29,7 @@ public class JobController {
 	private Scheduler scheduler;
 
 	@ApiOperation(value = "增加任务调度", notes = "增加任务调度接口")
-	@PostMapping(value="/addjob")
+	@PostMapping(value="/save")
 	public Result<String> addjob(@RequestParam(value="jobClassName")String jobClassName,
 						 @RequestParam(value="jobGroupName")String jobGroupName,
 						 @RequestParam(value="cronExpression")String cronExpression){
@@ -60,7 +60,7 @@ public class JobController {
 	}
 
 	@ApiOperation(value = "停止任务调度", notes = "停止任务调度")
-	@PostMapping(value="/pausejob")
+	@PostMapping(value="/pause")
 	public Result<String> pausejob(@RequestParam(value="jobClassName")String jobClassName, @RequestParam(value="jobGroupName")String jobGroupName)
 
 	{
@@ -74,7 +74,7 @@ public class JobController {
 	}
 
 	@ApiOperation(value = "恢复任务调度", notes = "恢复任务调度")
-	@PostMapping(value="/resumejob")
+	@PostMapping(value="/resume")
 	public  Result<String> resumejob(@RequestParam(value="jobClassName")String jobClassName, @RequestParam(value="jobGroupName")String jobGroupName) throws Exception
 	{
 		try {
@@ -89,7 +89,7 @@ public class JobController {
 
 
 	@ApiOperation(value = "更新任务调度", notes = "更新任务调度")
-	@PostMapping(value="/reschedulejob")
+	@PostMapping(value="/reschedule")
 	public Result<String> rescheduleJob(@RequestParam(value="jobClassName")String jobClassName,
 			@RequestParam(value="jobGroupName")String jobGroupName,
 			@RequestParam(value="cronExpression")String cronExpression) throws Exception
@@ -120,7 +120,7 @@ public class JobController {
 	}
 
 	@ApiOperation(value = "删除任务调度", notes = "删除任务调度")
-	@PostMapping(value="/deletejob")
+	@PostMapping(value="/delete")
 	public  Result<String> deletejob(@RequestParam(value="jobClassName")String jobClassName, @RequestParam(value="jobGroupName")String jobGroupName) throws Exception
 	{			
 		try {
@@ -140,8 +140,8 @@ public class JobController {
 	}
 	
 	
-	@GetMapping(value="/queryjob")
-	public  Result<PageInfo<JobAndTrigger>> queryjob(@RequestParam(value="pageNum")Integer pageNum, @RequestParam(value="pageSize")Integer pageSize)
+	@GetMapping(value="/findAll")
+	public  Result<PageInfo<JobAndTrigger>> findAll(@RequestParam(value="pageNum")Integer pageNum, @RequestParam(value="pageSize")Integer pageSize)
 	{
 		PageInfo<JobAndTrigger> jobAndTrigger = jobAndTriggerService.getJobAndTriggerDetails(pageNum, pageSize);
 		return Result.ok(jobAndTrigger);
