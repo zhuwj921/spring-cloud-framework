@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
  * @Description: 短信配置属性
  * @date 2018/3/28 18:10
  */
-@ConfigurationProperties(
-        prefix = "ccp"
-)
-@Component
+//@ConfigurationProperties(
+//        prefix = "ccp"
+//)
+//@Component
 public class CcpProberties {
 
     private static String serverIp;
