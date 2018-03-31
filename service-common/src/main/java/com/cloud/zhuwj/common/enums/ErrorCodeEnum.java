@@ -58,7 +58,11 @@ public enum ErrorCodeEnum {
     /**
      * 不合法的用户
      */
-    INVALID_USER(10011,"不合法的用户");
+    INVALID_USER(10011,"不合法的用户"),
+    /**
+     * 消息处理异常
+     */
+    MESSAGE_ERROR(10012, "消息处理异常");
     private Integer code;
 
     private String  msg;

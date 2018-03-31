@@ -1,73 +1,109 @@
 package com.cloud.zhuwj.quartz.domain;
 
+
+
 import com.cloud.zhuwj.common.base.BaseDO;
 
 import java.math.BigInteger;
 
-public class JobAndTrigger extends BaseDO{
-	private String JOB_NAME;
-	private String JOB_GROUP;
-	private String JOB_CLASS_NAME;
-	private String TRIGGER_NAME;
-	private String TRIGGER_GROUP;
-	private BigInteger REPEAT_INTERVAL;
-	private BigInteger TIMES_TRIGGERED;
-	private String CRON_EXPRESSION;
-	private String TIME_ZONE_ID;
-	
-	public String getJOB_NAME() {
-		return JOB_NAME;
+public class JobAndTrigger extends BaseDO {
+	private String jobName;
+	private String jobroup;
+	private String jobClassName;
+	private String jobGroupName;
+	private String triggerName;
+	private String triggerGroup;
+	private BigInteger repeatInterval;
+	private BigInteger timesTriggered;
+	private String cronExpression;
+	private String timeZoneId;
+
+	private boolean running;
+	public String getJobName() {
+		return jobName;
 	}
-	public void setJOB_NAME(String jOB_NAME) {
-		JOB_NAME = jOB_NAME;
+
+	public void setJobName(String jobName) {
+		this.jobName = jobName;
 	}
-	public String getJOB_GROUP() {
-		return JOB_GROUP;
+
+	public String getJobroup() {
+		return jobroup;
 	}
-	public void setJOB_GROUP(String jOB_GROUP) {
-		JOB_GROUP = jOB_GROUP;
+
+	public void setJobroup(String jobroup) {
+		this.jobroup = jobroup;
 	}
-	public String getJOB_CLASS_NAME() {
-		return JOB_CLASS_NAME;
+
+	public String getJobClassName() {
+		return jobClassName;
 	}
-	public void setJOB_CLASS_NAME(String jOB_CLASS_NAME) {
-		JOB_CLASS_NAME = jOB_CLASS_NAME;
+
+	public void setJobClassName(String jobClassName) {
+		this.jobClassName = jobClassName;
 	}
-	public String getTRIGGER_NAME() {
-		return TRIGGER_NAME;
+
+	public String getTriggerName() {
+		return triggerName;
 	}
-	public void setTRIGGER_NAME(String tRIGGER_NAME) {
-		TRIGGER_NAME = tRIGGER_NAME;
+
+	public void setTriggerName(String triggerName) {
+		this.triggerName = triggerName;
 	}
-	public String getTRIGGER_GROUP() {
-		return TRIGGER_GROUP;
+
+	public String getTriggerGroup() {
+		return triggerGroup;
 	}
-	public void setTRIGGER_GROUP(String tRIGGER_GROUP) {
-		TRIGGER_GROUP = tRIGGER_GROUP;
+
+	public void setTriggerGroup(String triggerGroup) {
+		this.triggerGroup = triggerGroup;
 	}
-	public BigInteger getREPEAT_INTERVAL() {
-		return REPEAT_INTERVAL;
+
+	public BigInteger getRepeatInterval() {
+		return repeatInterval;
 	}
-	public void setREPEAT_INTERVAL(BigInteger rEPEAT_INTERVAL) {
-		REPEAT_INTERVAL = rEPEAT_INTERVAL;
+
+	public void setRepeatInterval(BigInteger repeatInterval) {
+		this.repeatInterval = repeatInterval;
 	}
-	public BigInteger getTIMES_TRIGGERED() {
-		return TIMES_TRIGGERED;
+
+	public BigInteger getTimesTriggered() {
+		return timesTriggered;
 	}
-	public void setTIMES_TRIGGERED(BigInteger tIMES_TRIGGERED) {
-		TIMES_TRIGGERED = tIMES_TRIGGERED;
+
+	public void setTimesTriggered(BigInteger timesTriggered) {
+		this.timesTriggered = timesTriggered;
 	}
-	public String getCRON_EXPRESSION() {
-		return CRON_EXPRESSION;
+
+	public String getCronExpression() {
+		return cronExpression;
 	}
-	public void setCRON_EXPRESSION(String cRON_EXPRESSION) {
-		CRON_EXPRESSION = cRON_EXPRESSION;
+
+	public void setCronExpression(String cronExpression) {
+		this.cronExpression = cronExpression;
 	}
-	public String getTIME_ZONE_ID() {
-		return TIME_ZONE_ID;
+
+	public String getTimeZoneId() {
+		return timeZoneId;
 	}
-	public void setTIME_ZONE_ID(String tIME_ZONE_ID) {
-		TIME_ZONE_ID = tIME_ZONE_ID;
+
+	public void setTimeZoneId(String timeZoneId) {
+		this.timeZoneId = timeZoneId;
 	}
-	
+
+	public String getJobGroupName() {
+		return jobGroupName;
+	}
+
+	public void setJobGroupName(String jobGroupName) {
+		this.jobGroupName = jobGroupName;
+	}
+
+	public boolean getRunning() {
+		return running;
+	}
+
+	public void setRunning(boolean running) {
+		this.running = running;
+	}
 }

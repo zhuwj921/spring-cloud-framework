@@ -16,6 +16,7 @@
         <module>service-user</module>
         <module>service-web</module>
         <module>service-quartz</module>
+        <module>service-message</module>
     </modules>
     <dependencies>
         <dependency>

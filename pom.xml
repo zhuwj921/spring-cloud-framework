@@ -32,6 +32,7 @@
         <druid.version>1.0.29</druid.version>
         <springfox-swagger2.version>2.6.1</springfox-swagger2.version>
         <fastjson.version>1.2.40</fastjson.version>
+        <commons-lang3.vsersion>3.7</commons-lang3.vsersion>
     </properties>
 
     <dependencyManagement>
@@ -135,6 +136,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons-lang3.vsersion}</version>
         </dependency>
     </dependencies>
 

@@ -3,14 +3,15 @@
 <mapper namespace="com.cloud.zhuwj.user.dao.IJobAndTriggerDAO">
     
     <select id="getJobAndTriggerDetails" resultType="com.cloud.zhuwj.quartz.domain.JobAndTrigger">
-			SELECT
-				qrtz_job_details.JOB_NAME,
-				qrtz_job_details.JOB_GROUP,
-				qrtz_job_details.JOB_CLASS_NAME,
-				qrtz_triggers.TRIGGER_NAME,
-				qrtz_triggers.TRIGGER_GROUP,
-				qrtz_cron_triggers.CRON_EXPRESSION,
-				qrtz_cron_triggers.TIME_ZONE_ID
+				SELECT
+				qrtz_job_details.JOB_NAME AS jobName,
+				qrtz_job_details.JOB_GROUP AS jobGroup,
+				qrtz_job_details.JOB_CLASS_NAME AS jobClassName,
+				qrtz_triggers.TRIGGER_GROUP AS jobGroupName ,
+				qrtz_triggers.TRIGGER_NAME AS triggerName,
+				qrtz_triggers.TRIGGER_GROUP AS triggerGroup ,
+				qrtz_cron_triggers.CRON_EXPRESSION AS cronExpression,
+				qrtz_cron_triggers.TIME_ZONE_ID AS  timeZoneId
 			FROM
 				qrtz_job_details
 			JOIN qrtz_triggers

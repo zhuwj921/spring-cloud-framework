@@ -20,4 +20,13 @@ public interface GlobalContanst {
      * 全局默认父级节点 -1
      */
     Integer DEFAULT_PID = -1;
+
+    /**
+     * 文件
+     */
+    String PROTOCOL_FILE = "file";
+    /**
+     * jar包
+     */
+    String PROTOCOL_JAR = "jar";
 }
