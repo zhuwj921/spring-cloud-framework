@@ -15,6 +15,7 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
@@ -57,7 +58,11 @@ public class LogAspect {
 				+ joinPoint.getSignature().getName());
 		logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
 		try {
-			logger.info(getMethodDescription(joinPoint));
+			String desc = getMethodDescription(joinPoint);
+			if(StringUtils.isNotBlank(desc)){
+				logger.info(desc);
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -81,13 +86,17 @@ public class LogAspect {
 		Object[] arguments = joinPoint.getArgs();
 		Class targetClass = Class.forName(targetName);
 		Method[] methods = targetClass.getMethods();
-		String description = "";
+		String description = null;
 		for (Method method : methods) {
 			if (method.getName().equals(methodName)) {
 				Class[] clazzs = method.getParameterTypes();
 				if (clazzs.length == arguments.length) {
-					description = method.getAnnotation(CloudLog.class).description();
-					break;
+					CloudLog cloudLog = method.getAnnotation(CloudLog.class);
+					if( cloudLog != null){
+						description = cloudLog.description();
+						break;
+					}
+
 				}
 			}
 		}

@@ -1,5 +1,3 @@
-
-
 eureka:
   client:
     serviceUrl:
@@ -8,15 +6,15 @@ eureka:
     prefer-ip-address: true   #访问的路径变为IP地址
     lease-renewal-interval-in-seconds: 2  #设置心跳的时间间隔（默认是30秒）
     lease-expiration-duration-in-seconds: 5
-    appname: 授权服务 #如果现在超过了5秒的间隔（默认90秒）
+    appname: web服务 #如果现在超过了5秒的间隔（默认90秒）
 
 server:
-  port: 9020
+  port: 9040
 spring:
   profiles:
     active: dev
   application:
-    name: service-authorization    # 服务名称
+    name: service-web    # 服务名称
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
     username: root
@@ -29,12 +27,3 @@ spring:
 #    password: root
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
-security:
-    oauth2:
-      resource:
-        filter-order: 3
-    client:
-      client-id: webapp
-      client-secret: webapp
-      access-token-uri: http://localhost:9020/oauth/access_token
-      user-authorizationUri: http://localhost:9020/oauth/authorize

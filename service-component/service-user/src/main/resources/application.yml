@@ -29,4 +29,9 @@ security:
 management:
   security:
     enabled: false
+feign:
+  httpclient:
+    enabled: false
+  okhttp:
+    enabled: true
 

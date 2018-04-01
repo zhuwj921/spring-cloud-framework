@@ -57,4 +57,14 @@ public class MenuDO extends DefaultTree {
     public void setIcon(String icon) {
         this.icon = icon;
     }
+
+    @Override
+    public String toString() {
+        return "MenuDO{" +
+                "redirect='" + redirect + '\'' +
+                ", hidden=" + hidden +
+                ", key='" + key + '\'' +
+                ", icon='" + icon + '\'' +
+                '}';
+    }
 }

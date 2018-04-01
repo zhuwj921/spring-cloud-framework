@@ -79,5 +79,10 @@ public class LoginController extends BaseController {
         }
     }
 
+    @ApiOperation(value = "登出接口", notes = "登出接口")
+    @GetMapping("/test")
+    public Result<String> test(){
 
+        return Result.ok("String");
+    }
 }

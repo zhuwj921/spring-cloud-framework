@@ -30,6 +30,9 @@ public final class WebContextUtil {
      */
     public static OAuth2AuthenticationDetails getDetails(){
         Authentication authentication = getAuthentication();
+        if(authentication == null){
+            return null;
+        }
         OAuth2AuthenticationDetails details = (OAuth2AuthenticationDetails) authentication.getDetails();
        return details;
     }
@@ -47,6 +50,9 @@ public final class WebContextUtil {
      * @return
      */
     public static String getAccessToken(){
+        if(getDetails() == null){
+            return null;
+        }
         return getDetails().getTokenValue();
     }
 }

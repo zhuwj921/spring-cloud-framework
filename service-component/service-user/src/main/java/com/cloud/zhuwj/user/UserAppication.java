@@ -7,6 +7,7 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * @author zhuwj
@@ -15,8 +16,9 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018/1/21.
  */
 @Configuration
-//@EnableEurekaClient
-//@EnableFeignClients
+@EnableEurekaClient
+@EnableFeignClients
+@EnableScheduling
 @SpringBootApplication
 @ComponentScan(basePackages={"com.cloud.zhuwj"})
 @MapperScan("com.cloud.zhuwj.user.dao")

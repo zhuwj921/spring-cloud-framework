@@ -142,6 +142,11 @@
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.vsersion}</version>
         </dependency>
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>3.3.0</version>
+        </dependency>
     </dependencies>
 
 
