@@ -1,6 +1,7 @@
 package com.cloud.zhuwj.message;
 
-import com.gdf.carbon.common.message.sms.TextSmsMessage;
+
+import com.cloud.zhuwj.message.sms.TextSmsMessage;
 
 /**
  * @author zhuwj

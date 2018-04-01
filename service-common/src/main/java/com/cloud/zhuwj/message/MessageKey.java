@@ -1,6 +1,6 @@
 package com.cloud.zhuwj.message;
 
-import com.gdf.carbon.common.message.enums.AccountTypeEnum;
+import com.cloud.zhuwj.message.enums.AccountTypeEnum;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.Serializable;
