@@ -15,8 +15,8 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018/1/21.
  */
 @Configuration
-@EnableEurekaClient
-@EnableFeignClients
+//@EnableEurekaClient
+//@EnableFeignClients
 @SpringBootApplication
 @ComponentScan(basePackages={"com.cloud.zhuwj"})
 @MapperScan("com.cloud.zhuwj.user.dao")

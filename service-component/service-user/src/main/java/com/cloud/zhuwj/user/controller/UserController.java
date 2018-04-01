@@ -33,4 +33,9 @@ public class UserController extends BaseController {
         userInfo.setNavMenuList(menuService.findTreeList(new MenuDO()));
         return Result.ok(userInfo);
     }
+
+    @GetMapping("/test")
+    public Result<String> tets(String test){
+        return Result.ok("ssss"+test);
+    }
 }
