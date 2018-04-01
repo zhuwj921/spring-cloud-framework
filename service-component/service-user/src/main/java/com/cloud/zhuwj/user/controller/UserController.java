@@ -35,7 +35,7 @@ public class UserController extends BaseController {
         return Result.ok(userInfo);
     }
 
-    @CloudLog(value = "测试操作")
+    @CloudLog(description = "测试操作")
     @GetMapping("/test")
     public Result<String> tets(String test){
         return Result.ok("ssss"+test);
