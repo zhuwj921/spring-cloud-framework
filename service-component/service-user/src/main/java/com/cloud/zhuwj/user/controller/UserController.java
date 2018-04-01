@@ -2,6 +2,7 @@ package com.cloud.zhuwj.user.controller;
 
 import com.cloud.zhuwj.common.base.BaseController;
 import com.cloud.zhuwj.common.reponse.Result;
+import com.cloud.zhuwj.user.aspect.CloudLog;
 import com.cloud.zhuwj.user.domain.MenuDO;
 import com.cloud.zhuwj.user.service.IMenuService;
 import com.cloud.zhuwj.user.vo.UserInfoVO;
@@ -34,6 +35,7 @@ public class UserController extends BaseController {
         return Result.ok(userInfo);
     }
 
+    @CloudLog(value = "测试操作")
     @GetMapping("/test")
     public Result<String> tets(String test){
         return Result.ok("ssss"+test);

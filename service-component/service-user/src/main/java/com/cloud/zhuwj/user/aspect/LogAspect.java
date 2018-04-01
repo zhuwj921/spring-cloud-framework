@@ -9,6 +9,7 @@
 
 package com.cloud.zhuwj.user.aspect;
 
+import java.lang.reflect.Method;
 import java.util.Arrays;
 import java.util.Enumeration;
 
@@ -43,6 +44,8 @@ public class LogAspect {
 
 	@Before("log()")
 	public void doBefore(JoinPoint joinPoint) {
+
+
 		logger.info("WebLogAspect.doBefore()");
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
 		HttpServletRequest request = attributes.getRequest();
@@ -53,6 +56,11 @@ public class LogAspect {
 		logger.info("CLASS_METHOD : " + joinPoint.getSignature().getDeclaringTypeName() + "."
 				+ joinPoint.getSignature().getName());
 		logger.info("ARGS : " + Arrays.toString(joinPoint.getArgs()));
+		try {
+			logger.info(getMethodDescription(joinPoint));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		// 获取所有参数方法一：
 		Enumeration<String> enu = request.getParameterNames();
 		while (enu.hasMoreElements()) {
@@ -66,4 +74,24 @@ public class LogAspect {
 		// 处理完请求，返回内容
 		logger.info("WebLogAspect.doAfterReturning()");
 	}
+
+	private  static String getMethodDescription(JoinPoint joinPoint)  throws Exception {
+		String targetName = joinPoint.getTarget().getClass().getName();
+		String methodName = joinPoint.getSignature().getName();
+		Object[] arguments = joinPoint.getArgs();
+		Class targetClass = Class.forName(targetName);
+		Method[] methods = targetClass.getMethods();
+		String description = "";
+		for (Method method : methods) {
+			if (method.getName().equals(methodName)) {
+				Class[] clazzs = method.getParameterTypes();
+				if (clazzs.length == arguments.length) {
+					description = method.getAnnotation(CloudLog.class).description();
+					break;
+				}
+			}
+		}
+		return description;
+	}
+
 }
