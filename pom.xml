@@ -14,6 +14,7 @@
         <module>service-common</module>
         <module>service-gateway</module>
         <module>service-component</module>
+        <module>service-config</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -132,6 +133,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
