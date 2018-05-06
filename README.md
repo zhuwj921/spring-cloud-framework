@@ -1,6 +1,7 @@
 # spring-cloud-framework  
 # [https://blog.csdn.net/u010176542]    博客地址
 * spring cloud 微服务架构集成
+* service-config 配置服务  启动端口 8888
 * service-discovery 发现服务  启动端口 9000
 * service-gateway   网关服务  启动端口 9010
 * service-common    提供公共的工具方法和实体对象
