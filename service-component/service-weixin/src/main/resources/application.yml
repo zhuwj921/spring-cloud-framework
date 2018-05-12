@@ -1,0 +1,33 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9000/eureka/    # 注册服务地址
+  instance:
+    appname: 微信服务    #服务名，默认取 spring.application.name 配置值，如果没有则为 unknown
+    hostname: 127.0.0.1  #当前实例的主机名称
+    prefer-ip-address: true #不使用主机名来定义注册中心的地址，而使用IP地址的形式
+    ip-address:  127.0.0.1  #ip地址配置
+
+server:
+  port: 80
+spring:
+  application:
+    name: service-weixin    # 服务名称
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/spring_cloud?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true
+    username: root
+    password: root
+    driver-class: com.mysql.jdbc.Driver
+    name: datasource
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:9020/userinfo
+      prefer-token-info: false
+management:
+  security:
+    enabled: false
+
+
