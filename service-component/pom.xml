@@ -17,6 +17,7 @@
         <module>service-web</module>
         <module>service-quartz</module>
         <module>service-message</module>
+        <module>service-weixin</module>
     </modules>
     <dependencies>
         <dependency>
