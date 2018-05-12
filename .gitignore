@@ -1,2 +1,14 @@
-.idea
-.iml
+# eclipse ignore
+*.settings/*
+/.project
+/.classpath
+/.tomcatplugin
+
+# idea ignore
+/.idea
+*.iml
+
+# maven ignore
+target/*
+
+node_modules
