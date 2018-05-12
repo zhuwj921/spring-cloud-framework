@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
  * @date 2018/3/08.
  */
 @Configuration
-//@EnableEurekaClient
+@EnableEurekaClient
 @EnableFeignClients
 @SpringBootApplication
 @ServletComponentScan
