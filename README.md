@@ -13,3 +13,6 @@
   4. service-quartz 任务调度服务 启动端口 9050
   5. service-message 消息服务 启动端口 9060
   6. service-weixin 微信服务 启动端口 80 可以使用nginx进行转发
+  
+  
+  # [https://github.com/zhuwj921/spring-cloud-framework2]   spring cloud2.0 框架学习
