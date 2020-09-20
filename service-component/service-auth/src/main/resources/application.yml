@@ -1,16 +1,11 @@
 server:
-  port: 8900
+  port: 8910
 spring:
   application:
-    name: service-gateway
+    name: service-auth
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framwork?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root

@@ -12,13 +12,9 @@
     <artifactId>service-component</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>service-authorization</module>
-        <module>service-user</module>
-        <module>service-web</module>
-        <module>service-quartz</module>
-        <module>service-message</module>
-        <module>service-weixin</module>
+        <module>service-auth</module>
     </modules>
+
     <dependencies>
         <dependency>
             <groupId>com.cloud.zhuwj</groupId>
@@ -26,12 +22,4 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 </project>

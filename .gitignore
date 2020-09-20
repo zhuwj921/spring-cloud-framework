@@ -1,14 +1,5 @@
-# eclipse ignore
-*.settings/*
-/.project
-/.classpath
-/.tomcatplugin
-
-# idea ignore
-/.idea
+### IntelliJ IDEA ###
+.idea
+*.iws
 *.iml
-
-# maven ignore
-target/*
-
-node_modules
+*.ipr
