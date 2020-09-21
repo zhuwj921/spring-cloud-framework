@@ -33,3 +33,7 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
 
+auth:
+  header: Authorization
+  token-prefix: Bearer
+  token-name: accessToken
