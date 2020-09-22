@@ -32,8 +32,9 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  redis:
+    database: 0
+    host: 103.39.210.10
+    password: cXLtoAfE85WkUi5R
 
 auth:
-  header: Authorization
-  token-prefix: Bearer
-  token-name: accessToken

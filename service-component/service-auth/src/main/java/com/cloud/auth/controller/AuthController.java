@@ -13,7 +13,6 @@ public class AuthController {
 
     @GetMapping("test")
     public String test(){
-        log.info("sss");
         return WebContext.getUserInfo().getUsername();
     }
 }

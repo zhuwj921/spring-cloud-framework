@@ -15,18 +15,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "auth")
 public class AuthProperties {
 
-    /**
-     * 请求授权头部信息
-     */
-    private String header;
-    /**
-     * 请求token前缀
-     */
-    private String tokenPrefix;
-    /**
-     *  token 名称
-     */
-    private String tokenName;
+
 
 
 }
