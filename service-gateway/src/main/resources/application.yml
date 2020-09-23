@@ -7,6 +7,7 @@ spring:
     nacos:
       server-addr: 127.0.0.1:8848
       discovery:
+        #是否关闭服务注册
         enabled: false
     gateway:
       discovery:
