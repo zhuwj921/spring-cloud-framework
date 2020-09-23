@@ -58,7 +58,7 @@ public class TokenProvider {
      */
     private String resolveToken(String bearerToken) {
         if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith(GlobalConstant.TOKEN_PREFIX)) {
-            return bearerToken.replace(GlobalConstant.TOKEN_PREFIX, "").trim();
+            return StrUtil.removePrefix(bearerToken, GlobalConstant.TOKEN_PREFIX).trim();
         }
         return null;
     }
