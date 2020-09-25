@@ -2,6 +2,7 @@ package com.cloud.common.auth;
 
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import com.cloud.common.constant.GlobalConstant;
 import org.springframework.http.HttpHeaders;
@@ -47,7 +48,7 @@ public class TokenProvider {
      * @return
      */
     public String createToken() {
-        return IdUtil.simpleUUID();
+        return SecureUtil.md5(IdUtil.randomUUID());
     }
 
     /**

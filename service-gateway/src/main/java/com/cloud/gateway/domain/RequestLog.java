@@ -23,19 +23,15 @@ public class RequestLog extends BaseEntity {
     /**
      *请求路径
      */
-    @Column(name = "request_path")
-    private String requestPath;
+    @Column(name = "request_url")
+    private String requestUrl;
     /**
      * 请求用户
      */
     @Column(name = "request_username")
     private String requestUsername;
 
-    /**
-     * 请求参数
-     */
-    @Column(name = "request_params")
-    private String requestParams;
+
 
 
 }

@@ -10,8 +10,8 @@ import org.springframework.data.jpa.domain.Specification;
 import java.util.List;
 
 /**
- * @desc
  * @author zhuwj
+ * @desc
  */
 public interface BaseService<T extends BaseEntity> {
 
@@ -28,4 +28,6 @@ public interface BaseService<T extends BaseEntity> {
     List<T> findAll(Example<T> example, Sort sort);
 
     Page<T> page(Pageable pageable, Example<T> example);
+
+
 }

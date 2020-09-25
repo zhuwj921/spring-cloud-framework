@@ -8,7 +8,7 @@ spring:
       server-addr: 127.0.0.1:8848
       discovery:
         #是否关闭服务注册
-        enabled: false
+        enabled: true
     gateway:
       discovery:
         locator:
@@ -17,7 +17,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
-    password: 123456789
+    password: root
     driver-class: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -38,7 +38,7 @@ spring:
   jpa:
     hibernate:
       #create 重新生成全部表 update更新表
-      ddl-auto: create
+      ddl-auto: update
   redis:
     database: 0
     host: 103.39.210.10

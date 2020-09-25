@@ -17,4 +17,24 @@ public class WebContext {
     public static void removeUserInfo() {
         threadLocal.remove();
     }
+
+    /**
+     * 获取用户名称
+     *
+     * @return
+     */
+    public static String getUsername() {
+        UserInfo userInfo = getUserInfo();
+        return userInfo == null ? null : userInfo.getUsername();
+    }
+
+    /**
+     * 获取用户id
+     *
+     * @return
+     */
+    public static Long getUserId() {
+        UserInfo userInfo = getUserInfo();
+        return userInfo == null ? null : userInfo.getUserId();
+    }
 }

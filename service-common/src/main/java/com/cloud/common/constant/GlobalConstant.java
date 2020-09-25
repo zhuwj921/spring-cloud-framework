@@ -22,4 +22,9 @@ public interface GlobalConstant {
      * 匿名用户
      */
     String ANONYMOUS_USER = "anonymousUser";
+
+    /**
+     * 匿名用户id
+     */
+    long ANONYMOUS_USER_id = -1L;
 }

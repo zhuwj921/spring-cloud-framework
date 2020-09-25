@@ -20,17 +20,17 @@ import java.util.List;
 public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     @Autowired
-    private  BaseRepository<T> baseRepository;
+    private BaseRepository<T> baseRepository;
 
 
     @Override
     public void create(T t) {
-        baseRepository.save(t);
+        baseRepository.saveAndFlush(t);
     }
 
     @Override
     public void update(T t) {
-        baseRepository.save(t);
+        baseRepository.saveAndFlush(t);
     }
 
     @Override

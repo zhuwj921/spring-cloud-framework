@@ -7,11 +7,16 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 /**
- * @desc 用户信息
  * @author zhuwj
+ * @desc 用户信息
  */
 @Data
 public class UserInfo implements Serializable {
+
+    /**
+     * 用户id
+     */
+    private Long userId;
 
     /**
      * 用户名

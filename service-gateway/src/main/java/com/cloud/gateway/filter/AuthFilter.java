@@ -3,6 +3,7 @@ package com.cloud.gateway.filter;
 import cn.hutool.core.util.StrUtil;
 import com.cloud.common.auth.TokenProvider;
 import com.cloud.common.auth.UserInfo;
+import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.utils.RedisUtil;
 import com.cloud.gateway.config.AuthProperties;
 import com.cloud.gateway.domain.RequestLog;
@@ -44,6 +45,7 @@ public class AuthFilter implements WebFilter, Ordered {
         //权限认证豁免验证
         for (String urlPatterns : ignoreUrlPatterns) {
             if (new AntPathMatcher().match(urlPatterns, requestUrl)) {
+                log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
                 return chain.filter(exchange);
             }
         }
@@ -51,12 +53,16 @@ public class AuthFilter implements WebFilter, Ordered {
         String accessToken = tokenProvider.getToken(exchange);
         if (StrUtil.isBlank(accessToken)) {
             log.warn("AuthFilter accessToken is blank");
+            log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
+
         }
         UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
         if (userInfo == null) {
             log.info("AuthFilter userInfo is null ");
-        }
+            log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
 
+        }
+        log(requestUrl, userInfo.getUsername(), GlobalConstant.ANONYMOUS_USER_id);
         log.info("AuthFilter request end ");
         return chain.filter(exchange);
     }
@@ -67,7 +73,13 @@ public class AuthFilter implements WebFilter, Ordered {
     }
 
 
-    private void log(){
+    private void log(String requestUrl, String username, long userId) {
         RequestLog requestLog = new RequestLog();
+        requestLog.init();
+        requestLog.setCreateBy(userId);
+        requestLog.setModifiedBy(userId);
+        requestLog.setRequestUrl(requestUrl);
+        requestLog.setRequestUsername(username);
+        requestLogService.create(requestLog);
     }
 }
