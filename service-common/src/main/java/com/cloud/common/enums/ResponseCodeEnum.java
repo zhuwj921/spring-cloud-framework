@@ -2,7 +2,6 @@ package com.cloud.common.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 /**
  * Description: 响应code枚举

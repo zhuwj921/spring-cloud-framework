@@ -15,7 +15,7 @@ spring:
           enabled: true
           lower-case-service-id: true
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framwork?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
+    url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
     password: 123456789
     driver-class: com.mysql.cj.jdbc.Driver
@@ -35,10 +35,17 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  jpa:
+    hibernate:
+      #create 重新生成全部表 update更新表
+      ddl-auto: create
   redis:
     database: 0
     host: 103.39.210.10
     password: cXLtoAfE85WkUi5R
 
+
+
 auth:
   ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/test/**
+

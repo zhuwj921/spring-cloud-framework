@@ -18,4 +18,8 @@ public interface GlobalConstant {
      * token 名称
      */
     String TOKEN_NAME = "accessToken";
+    /**
+     * 匿名用户
+     */
+    String ANONYMOUS_USER = "anonymousUser";
 }

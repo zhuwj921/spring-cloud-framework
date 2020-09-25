@@ -3,7 +3,6 @@ package com.cloud.gateway;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 /**
  * @description: 网关应用启动
  * @author: zhuwj
