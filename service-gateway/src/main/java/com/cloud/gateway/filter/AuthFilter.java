@@ -5,6 +5,8 @@ import com.cloud.common.auth.TokenProvider;
 import com.cloud.common.auth.UserInfo;
 import com.cloud.common.utils.RedisUtil;
 import com.cloud.gateway.config.AuthProperties;
+import com.cloud.gateway.domain.RequestLog;
+import com.cloud.gateway.service.RequestLogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -30,6 +32,8 @@ public class AuthFilter implements WebFilter, Ordered {
     private final TokenProvider tokenProvider;
 
     private final AuthProperties authProperties;
+
+    private final RequestLogService requestLogService;
 
 
     @Override
@@ -63,4 +67,7 @@ public class AuthFilter implements WebFilter, Ordered {
     }
 
 
+    private void log(){
+        RequestLog requestLog = new RequestLog();
+    }
 }
