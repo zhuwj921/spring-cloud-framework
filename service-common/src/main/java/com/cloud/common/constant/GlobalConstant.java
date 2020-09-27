@@ -27,4 +27,8 @@ public interface GlobalConstant {
      * 匿名用户id
      */
     long ANONYMOUS_USER_id = -1L;
+    /**
+     * redis 中用户缓存时间
+     */
+    long redis_user_time = 3600 * 2L;
 }

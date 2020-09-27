@@ -23,9 +23,25 @@ public class UserInfo implements Serializable {
      */
     private String username;
     /**
-     * 用户密码
+     * 昵称
      */
-    private String password;
+    private String nickName;
+    /**
+     * 电话号码
+     */
+    private String phone;
+    /**
+     * 邮箱
+     */
+    private String email;
+    /**
+     * 性别
+     */
+    private Integer gender;
+    /**
+     * 最后登入时间
+     */
+    private LocalDateTime lastLoginTime;
     /**
      * 角色列表
      */
@@ -34,9 +50,6 @@ public class UserInfo implements Serializable {
      * 资源列表
      */
     private Set<String> resources;
-    /**
-     * 最后登入时间
-     */
-    private LocalDateTime lastLoginTime;
+
 
 }

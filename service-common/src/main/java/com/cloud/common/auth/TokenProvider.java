@@ -1,5 +1,6 @@
 package com.cloud.common.auth;
 
+import cn.hutool.core.codec.Base64;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -43,12 +44,13 @@ public class TokenProvider {
     }
 
     /**
-     * 创建token
+     * 创建token 自定义创建方式
      *
      * @return
      */
     public String createToken() {
-        return SecureUtil.md5(IdUtil.randomUUID());
+        String md5 = SecureUtil.md5(IdUtil.randomUUID());
+        return Base64.encode(md5);
     }
 
     /**

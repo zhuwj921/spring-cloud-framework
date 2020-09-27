@@ -15,8 +15,8 @@ import java.time.LocalDateTime;
  */
 @Data
 @Entity
-@Table(name = "auth_account")
-public class Account extends BaseEntity {
+@Table(name = "auth_user")
+public class User extends BaseEntity {
     /**
      * 用户账号
      */
@@ -32,6 +32,27 @@ public class Account extends BaseEntity {
     /**
      * 最后登入时间
      */
-    @Column(name = "last_login_time", nullable = false)
+    @Column(name = "last_login_time")
     private LocalDateTime lastLoginTime;
+
+    /**
+     * 昵称
+     */
+    @Column(name = "nick_name")
+    private String nickName;
+    /**
+     * 电话
+     */
+    @Column(name = "phone")
+    private String phone;
+    /**
+     * 邮箱
+     */
+    @Column(name = "email")
+    private String email;
+    /**
+     * 性别 (1: 男 2: 女)
+     */
+    @Column(name = "gender")
+    private Integer gender;
 }
