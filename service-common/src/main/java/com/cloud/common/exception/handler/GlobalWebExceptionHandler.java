@@ -1,16 +1,18 @@
 package com.cloud.common.exception.handler;
 
-import com.google.common.collect.ImmutableMap;
+import cn.hutool.json.JSONUtil;
+import com.cloud.common.response.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.boot.autoconfigure.web.ResourceProperties;
-import org.springframework.boot.autoconfigure.web.reactive.error.AbstractErrorWebExceptionHandler;
-import org.springframework.boot.web.reactive.error.ErrorAttributes;
-import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.Order;
+import org.springframework.core.io.buffer.DataBuffer;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.reactive.function.server.*;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.WebExceptionHandler;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * Description: TODO
@@ -20,30 +22,18 @@ import reactor.core.publisher.Mono;
  * @date 2020-09-27
  */
 
+@Component
+@Order(-2)
 @Slf4j
-public class GlobalWebExceptionHandler extends AbstractErrorWebExceptionHandler {
-
-
-    public GlobalWebExceptionHandler(ErrorAttributes errorAttributes, ResourceProperties resourceProperties, ApplicationContext applicationContext) {
-        super(errorAttributes, resourceProperties, applicationContext);
-    }
-
+public class GlobalWebExceptionHandler implements WebExceptionHandler {
     @Override
-    protected RouterFunction<ServerResponse> getRoutingFunction(ErrorAttributes errorAttributes) {
-        return RouterFunctions.route(RequestPredicates.all(), request -> this.renderErrorResponse(request, errorAttributes.getError(request)));
+    public Mono<Void> handle(ServerWebExchange exchange, Throwable ex) {
+        exchange.getResponse().setStatusCode(HttpStatus.OK);
+        ResponseResult<String> responseResult =ResponseResult.error(ex.getMessage());
+        byte[] bytes = JSONUtil.toJsonPrettyStr(responseResult).getBytes(StandardCharsets.UTF_8);
+        DataBuffer wrap = exchange.getResponse().bufferFactory().wrap(bytes);
+        return exchange.getResponse().writeWith(Flux.just(wrap));
     }
 
-    private Mono<ServerResponse> renderErrorResponse(ServerRequest request, Throwable e) {
-        //输出异常堆栈信息
-        e.printStackTrace();
-        log.error("全局异常拦截:{}", e.getMessage());
-        //为了避免 网络供应商、dns解析商 拦截  此处全部返回200    后续上https之后这里可以正常返回
-        return ServerResponse.status(HttpStatus.OK)
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(BodyInserters.fromValue(ImmutableMap.builder()
-                        .put("code", -1)
-                        .put("msg", e.getMessage())
-                        .build()));
-    }
 
 }

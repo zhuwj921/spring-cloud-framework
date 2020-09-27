@@ -1,6 +1,9 @@
 package com.cloud.common.filter;
 
 import com.cloud.common.auth.TokenProvider;
+import com.cloud.common.auth.UserInfo;
+import com.cloud.common.auth.WebContext;
+import com.cloud.common.utils.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.Ordered;
@@ -21,6 +24,8 @@ public class WebContextFilter implements WebFilter, Ordered {
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         log.info("WebContextFilter start.");
         String accessToken = tokenProvider.getToken(exchange);
+        UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
+        WebContext.setUserInfo(userInfo);
         return chain.filter(exchange);
     }
 

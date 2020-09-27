@@ -39,7 +39,6 @@ public class AuthController {
         if (queryResult == null) {
             return ResponseResult.error("账号不存在!");
         }
-
         boolean isSuccess = PasswordUtil.verifyPassword(username, password, queryResult.getPassword());
         if (!isSuccess) {
             return ResponseResult.error("账号或密码错误!");
@@ -48,6 +47,7 @@ public class AuthController {
         //cache user info
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(queryResult, userInfo);
+        userInfo.setUserId(queryResult.getId());
         RedisUtil.set(accessToken, userInfo, GlobalConstant.redis_user_time);
         return ResponseResult.ok(accessToken);
     }
