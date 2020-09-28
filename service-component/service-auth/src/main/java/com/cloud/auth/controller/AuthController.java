@@ -29,7 +29,7 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("token")
-    public ResponseResult<String> token(@RequestBody User user) {
+    public ResponseResult token(@RequestBody User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {

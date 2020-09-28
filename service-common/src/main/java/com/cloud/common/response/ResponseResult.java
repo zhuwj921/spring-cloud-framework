@@ -2,6 +2,7 @@ package com.cloud.common.response;
 
 
 import com.cloud.common.enums.ResponseCodeEnum;
+import lombok.Builder;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -13,98 +14,49 @@ import java.io.Serializable;
  * @version：1.0.0
  */
 @Data
+@Builder
 public class ResponseResult<T> implements Serializable {
 
     private static final long serialVersionUID = 8992436576262574064L;
-
+    /**
+     * 响应吗
+     */
     private String code;
-
-    private String msg;
-
+    /**
+     * 请求路径
+     */
+    private String path;
+    /**
+     * 请求时间戳
+     */
+    private Long timestamp;
+    /**
+     * 请求id
+     */
+    private String requestId;
+    /**
+     * 消息描述
+     */
+    private String message;
+    /**
+     * 请求结果
+     */
     private T result;
 
-    private Long timestamp;
-
-    /**
-     * 请求成功  默认code为error掺入对应的返回结果
-     *
-     * @param <T>
-     * @return
-     */
-    public static <T> ResponseResult<T> error(String msg) {
-        return new ResponseResult<T>()
-                .putTimeStamp()
-                .code(ResponseCodeEnum.ERROR.getCode()).msg(msg);
-    }
-
-
-    /**
-     * 全部自定义消息 与错误码
-     *
-     * @param code
-     * @param message
-     * @param <T>
-     * @return
-     */
-    public static <T> ResponseResult<T> error(String code, String message, T result) {
-        return new ResponseResult<T>()
-                .result(result)
-                .putTimeStamp()
-                .code(code).msg(message);
-    }
-
-
-    /**
-     * 请求成功  默认code为ok掺入对应的返回结果
-     *
-     * @param result
-     * @param <T>
-     * @return
-     */
     public static <T> ResponseResult<T> ok(T result) {
-        return new ResponseResult<T>()
-                .result(result)
-                .putTimeStamp()
-                .code(ResponseCodeEnum.OK.getCode()).msg(ResponseCodeEnum.OK.getMsg());
+        String path = "";
+        String requestId = "";
+        return (ResponseResult<T>) ResponseResult.builder().code(ResponseCodeEnum.OK.getCode()).path(path)
+                .timestamp(System.currentTimeMillis()).requestId(requestId)
+                .message(ResponseCodeEnum.OK.getMsg()).result(result).build();
     }
 
-    /**
-     * 请求成功  默认code为ok掺入对应的返回结果
-     *
-     * @param result
-     * @param <T>
-     * @return
-     */
-    public static <T> ResponseResult<T> ok(T result, String msg) {
-        return new ResponseResult<T>()
-                .result(result)
-                .putTimeStamp()
-                .code(ResponseCodeEnum.OK.getCode()).msg(msg);
+    public static <T> ResponseResult<T> error(String message) {
+        String path = "";
+        String requestId = "";
+        return (ResponseResult<T>) ResponseResult.builder().code(ResponseCodeEnum.ERROR.getCode()).path(path)
+                .timestamp(System.currentTimeMillis()).requestId(requestId)
+                .message(message).result(null).build();
     }
 
-
-    public ResponseResult() {
-
-    }
-
-    private ResponseResult<T> putTimeStamp() {
-        this.timestamp = System.currentTimeMillis();
-        return this;
-    }
-
-
-    public ResponseResult<T> result(T result) {
-        this.result = result;
-        return this;
-    }
-
-    public ResponseResult<T> code(String code) {
-        this.code = code;
-        return this;
-    }
-
-    public ResponseResult<T> msg(String msg) {
-        this.msg = msg;
-        return this;
-    }
 }

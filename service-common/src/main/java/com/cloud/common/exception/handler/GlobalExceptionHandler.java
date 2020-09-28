@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * Description: TODO
+ * Description: webflux 异常属性
  *
  * @author zhuwj
  * @version V1.0
@@ -19,6 +19,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     private ResponseEntity<String> handleAccessException(Exception e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("十三水");
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("");
     }
 }

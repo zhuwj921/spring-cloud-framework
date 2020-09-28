@@ -1,8 +1,12 @@
 package com.cloud.common.auth;
 
+import org.springframework.web.server.ServerWebExchange;
+
 public class WebContext {
 
     private static ThreadLocal<UserInfo> threadLocal = new ThreadLocal<>();
+
+    private static ThreadLocal<ServerWebExchange> threadLocalWebExchange = new ThreadLocal<>();
 
 
     public static void setUserInfo(UserInfo userInfo) {
@@ -17,6 +21,19 @@ public class WebContext {
     public static void removeUserInfo() {
         threadLocal.remove();
     }
+
+    public static void setServerWebExchange(ServerWebExchange webExchange) {
+        threadLocalWebExchange.set(webExchange);
+    }
+
+    public static ServerWebExchange getServerWebExchange() {
+        return threadLocalWebExchange.get();
+    }
+
+    public static void removeServerWebExchange() {
+        threadLocalWebExchange.remove();
+    }
+
 
     /**
      * 获取用户名称
