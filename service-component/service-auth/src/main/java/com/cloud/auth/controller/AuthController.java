@@ -48,7 +48,7 @@ public class AuthController {
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(queryResult, userInfo);
         userInfo.setUserId(queryResult.getId());
-        RedisUtil.set(accessToken, userInfo, GlobalConstant.redis_user_time);
+        RedisUtil.set(accessToken, userInfo, GlobalConstant.REDIS_USER_TIME);
         return ResponseResult.ok(accessToken);
     }
 

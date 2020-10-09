@@ -26,6 +26,7 @@ public class WebContextFilter implements WebFilter, Ordered {
         String accessToken = tokenProvider.getToken(exchange);
         UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
         WebContext.setUserInfo(userInfo);
+        WebContext.setServerWebExchange(exchange);
         return chain.filter(exchange);
     }
 

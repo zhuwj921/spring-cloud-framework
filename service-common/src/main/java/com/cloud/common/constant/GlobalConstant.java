@@ -30,5 +30,5 @@ public interface GlobalConstant {
     /**
      * redis 中用户缓存时间
      */
-    long redis_user_time = 3600 * 2L;
+    long REDIS_USER_TIME = 3600 * 2L;
 }
