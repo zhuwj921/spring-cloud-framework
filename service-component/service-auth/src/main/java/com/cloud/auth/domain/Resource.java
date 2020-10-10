@@ -22,10 +22,10 @@ public class Resource extends BaseEntity {
     @Column(name = "resource_type")
     private Integer resourceType;
 
-    @Column(name = "name")
+    @Column(name = "resource_name")
     private String name;
 
-    @Column(name = "key")
+    @Column(name = "resource_key")
     private String key;
 
     @Column(name = "remark")
@@ -34,7 +34,7 @@ public class Resource extends BaseEntity {
     @Column(name = "url")
     private String url;
 
-    @Column(name = "pId")
+    @Column(name = "p_id")
     private Long pId;
 
 }

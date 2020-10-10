@@ -24,13 +24,15 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
 
     @Override
-    public void create(T t) {
+    public T create(T t) {
         baseRepository.saveAndFlush(t);
+        return t;
     }
 
     @Override
-    public void update(T t) {
+    public T update(T t) {
         baseRepository.saveAndFlush(t);
+        return t;
     }
 
     @Override

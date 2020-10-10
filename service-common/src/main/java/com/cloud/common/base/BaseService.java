@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface BaseService<T extends BaseEntity> {
 
-    void create(T t);
+    T create(T t);
 
-    void update(T t);
+    T update(T t);
 
     void deleteById(Long id);
 

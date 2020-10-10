@@ -19,10 +19,10 @@ import javax.persistence.Table;
 @Table(name = "auth_role")
 public class Role extends BaseEntity {
 
-    @Column(name = "key", nullable = false, unique = true)
+    @Column(name = "role_key")
     private String key;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "role_name")
     private String name;
 
     @Column(name = "remark")
