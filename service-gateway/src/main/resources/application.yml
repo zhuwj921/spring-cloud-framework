@@ -38,7 +38,7 @@ spring:
   jpa:
     hibernate:
       #create 重新生成全部表 update更新表
-      ddl-auto: update
+      ddl-auto: create
   redis:
     database: 0
     host: 103.39.210.10
