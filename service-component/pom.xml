@@ -13,6 +13,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>service-auth</module>
+        <module>service-mall</module>
     </modules>
 
     <dependencies>
