@@ -3,6 +3,7 @@ package com.cloud.mall.domain;
 import com.cloud.common.base.BaseEntity;
 import lombok.Data;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.math.BigDecimal;
@@ -24,22 +25,27 @@ public class Product extends BaseEntity {
     /**
      * 产品名称
      */
+    @Column(name = "product_name")
     private String productName;
     /**
      * 发布时间
      */
+    @Column(name = "publish_time")
     private LocalDateTime publishTime;
     /**
      * 价格
      */
+    @Column(name = "price")
     private BigDecimal price;
     /**
      * 数量
      */
-    private BigDecimal sumAmount;
+    @Column(name = "sum_amount")
+    private Integer sumAmount;
     /**
      * 剩余数量
      */
-    private BigDecimal residueAmount;
+    @Column(name = "residue_amount")
+    private Integer residueAmount;
 
 }

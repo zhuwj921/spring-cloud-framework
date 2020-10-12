@@ -29,5 +29,7 @@ public interface BaseService<T extends BaseEntity> {
 
     Page<T> page(Pageable pageable, Example<T> example);
 
+     T findById(Long id);
+
 
 }

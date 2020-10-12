@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Description: TODO
@@ -60,5 +61,10 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         return baseRepository.findAll(example, pageable);
     }
 
+    @Override
+    public T findById(Long id) {
+        Optional<T> optional = baseRepository.findById(id);
+        return optional.get();
+    }
 
 }
