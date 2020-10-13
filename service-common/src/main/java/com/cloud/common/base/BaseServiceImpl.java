@@ -64,7 +64,7 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     @Override
     public T findById(Long id) {
         Optional<T> optional = baseRepository.findById(id);
-        return optional.get();
+        return optional.isPresent() ? optional.get() : null;
     }
 
 }

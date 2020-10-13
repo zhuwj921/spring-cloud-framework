@@ -1,5 +1,6 @@
 package com.cloud.common.utils;
 
+import com.cloud.common.lock.RedisDistributedLock;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -23,12 +24,33 @@ public class RedisUtil {
 
     private final RedisTemplate<String, Object> redisTemplateBean;
 
+    private final RedisDistributedLock redisDistributedLockBean;
+
     private static RedisTemplate<String, Object> redisTemplate;
+
+    private static RedisDistributedLock redisDistributedLock;
 
     @PostConstruct
     public void init() {
         redisTemplate = redisTemplateBean;
+        redisDistributedLock = redisDistributedLockBean;
     }
+
+
+
+    /*============================lock=============================*/
+
+    public static boolean tryLock(String lockName, String requestId, long expiredInMilliseconds, long maxWaitTimeInMilliseconds) {
+        return redisDistributedLock.tryLock(lockName, requestId, expiredInMilliseconds, maxWaitTimeInMilliseconds);
+    }
+
+    public static boolean unLock(String lockName, String requestId) {
+        return redisDistributedLock.unLock(lockName, requestId);
+    }
+
+
+    /*============================lock=============================*/
+
 
     /**
      * 指定缓存失效时间
@@ -94,6 +116,7 @@ public class RedisUtil {
 
     /**
      * 获取字符串
+     *
      * @param key
      * @return
      */
@@ -110,7 +133,6 @@ public class RedisUtil {
     public static <T> T get(String key, Class<T> clazz) {
         return key == null ? null : (T) redisTemplate.opsForValue().get(key);
     }
-
 
 
     /**

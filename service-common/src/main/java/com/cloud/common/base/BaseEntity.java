@@ -1,5 +1,6 @@
 package com.cloud.common.base;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.cloud.common.auth.WebContext;
 import lombok.Data;
 
@@ -32,7 +33,7 @@ public class BaseEntity implements Serializable {
     /**
      * 创建时间
      */
-    @Column(name = "create_time", nullable = false)
+    @Column(name = "create_time", updatable = false, nullable = false)
     private LocalDateTime createTime;
     /**
      * 修改人
@@ -47,7 +48,7 @@ public class BaseEntity implements Serializable {
     /**
      * 删除标志
      */
-    @Column(name = "is_deleted", nullable = false, columnDefinition = "bit default b'0'")
+    @Column(name = "is_deleted", updatable = false, nullable = false, columnDefinition = "bit default b'0'")
     private Boolean deleted;
     /**
      * 版本号
@@ -67,6 +68,7 @@ public class BaseEntity implements Serializable {
     }
 
     public <T extends BaseEntity> void modify(T t) {
+        BeanUtil.copyProperties(t, this);
         LocalDateTime now = LocalDateTime.now();
         this.setId(t.getId());
         this.setModifiedBy(WebContext.getUserId());
