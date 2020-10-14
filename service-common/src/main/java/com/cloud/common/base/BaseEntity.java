@@ -68,12 +68,14 @@ public class BaseEntity implements Serializable {
     }
 
     public <T extends BaseEntity> void modify(T t) {
-        BeanUtil.copyProperties(t, this);
         LocalDateTime now = LocalDateTime.now();
         this.setId(t.getId());
         this.setModifiedBy(WebContext.getUserId());
         this.setModifiedTime(now);
         this.setVersion(t.getVersion() + 1);
+        BeanUtil.copyProperties(this, t);
+        BeanUtil.copyProperties(t, this);
+
     }
 
 }

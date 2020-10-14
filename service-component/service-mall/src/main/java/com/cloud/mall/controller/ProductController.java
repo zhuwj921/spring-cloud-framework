@@ -1,14 +1,12 @@
 package com.cloud.mall.controller;
 
+import cn.hutool.core.lang.Assert;
 import com.cloud.common.response.ResponseResult;
 import com.cloud.mall.domain.Product;
 import com.cloud.mall.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Description: 商品控制器
@@ -29,5 +27,14 @@ public class ProductController {
     public ResponseResult<String> create(@RequestBody Product product) {
         productService.create(product);
         return ResponseResult.ok("创建成功");
+    }
+
+    @PutMapping
+    public ResponseResult<String> update(@RequestBody Product product){
+        Product queryResult = productService.findById(product.getId());
+        Assert.notNull(queryResult,"data is not exist");
+        product.modify(queryResult);
+        productService.update(product);
+        return ResponseResult.ok("更新成功");
     }
 }
