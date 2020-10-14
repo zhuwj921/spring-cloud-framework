@@ -1,6 +1,5 @@
 package com.cloud.mall.controller;
 
-import cn.hutool.core.lang.Assert;
 import com.cloud.common.response.ResponseResult;
 import com.cloud.mall.domain.Product;
 import com.cloud.mall.service.ProductService;
@@ -30,10 +29,7 @@ public class ProductController {
     }
 
     @PutMapping
-    public ResponseResult<String> update(@RequestBody Product product){
-        Product queryResult = productService.findById(product.getId());
-        Assert.notNull(queryResult,"data is not exist");
-        product.modify(queryResult);
+    public ResponseResult<String> update(@RequestBody Product product) {
         productService.update(product);
         return ResponseResult.ok("更新成功");
     }

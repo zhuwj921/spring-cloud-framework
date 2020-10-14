@@ -1,5 +1,7 @@
 package com.cloud.common.base;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.lang.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
@@ -32,7 +34,12 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     @Override
     public T update(T t) {
-        baseRepository.save(t);
+        Optional<T> optional = baseRepository.findById(t.getId());
+        Assert.isTrue(optional.isPresent(), "data is not exist");
+        T queryResult = optional.get();
+        t.modify(queryResult);
+        BeanUtil.copyProperties(t, queryResult);
+        baseRepository.save(queryResult);
         return t;
     }
 

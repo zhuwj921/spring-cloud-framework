@@ -1,6 +1,5 @@
 package com.cloud.common.base;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.cloud.common.auth.WebContext;
 import lombok.Data;
 
@@ -73,8 +72,6 @@ public class BaseEntity implements Serializable {
         this.setModifiedBy(WebContext.getUserId());
         this.setModifiedTime(now);
         this.setVersion(t.getVersion() + 1);
-        BeanUtil.copyProperties(this, t);
-        BeanUtil.copyProperties(t, this);
 
     }
 
