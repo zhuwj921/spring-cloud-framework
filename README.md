@@ -17,7 +17,7 @@
 | 名称   | 端口  |描述                |
 | ------ | --- |--------------------|
 | service-common |  |模块公用功能和属性|
-| service-gateway | 8900 |网管服务|
+| service-gateway | 8900 |网关服务|
 | service-auth | 8910 |权限服务|
 | service-mall | 8920 |商城服务|
 
