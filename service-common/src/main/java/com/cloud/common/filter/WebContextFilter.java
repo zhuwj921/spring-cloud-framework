@@ -22,7 +22,7 @@ public class WebContextFilter implements WebFilter, Ordered {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        log.info("WebContextFilter start.");
+        log.debug("WebContextFilter start.");
         String accessToken = tokenProvider.getToken(exchange);
         UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
         WebContext.setUserInfo(userInfo);
