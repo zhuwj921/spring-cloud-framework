@@ -76,7 +76,6 @@ public class SeckillController {
             Product queryResult = productService.findById(product.getId());
             Product updateData = new Product();
             updateData.modify(queryResult);
-            updateData.setModifiedBy(1L);
             updateData.setResidueAmount(residueAmount);
             //refresh cache
             RedisUtil.set(KEY_INFO, updateData);
@@ -84,8 +83,6 @@ public class SeckillController {
             //创建代付款订单
             Order order = new Order();
             order.init();
-            order.setCreateBy(1L);
-            order.setModifiedBy(1L);
             order.setOrderNo(DateUtil.now() + System.currentTimeMillis());
             order.setProductId(product.getId());
             order.setAmount(1);
