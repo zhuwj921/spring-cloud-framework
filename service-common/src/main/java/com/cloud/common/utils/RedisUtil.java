@@ -131,7 +131,7 @@ public class RedisUtil {
      * @return 值
      */
     public static <T> T get(String key, Class<T> clazz) {
-        return key == null ? null : (T) redisTemplate.opsForValue().get(key);
+        return key == null ? null : clazz.cast(redisTemplate.opsForValue().get(key));
     }
 
 
