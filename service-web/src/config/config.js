@@ -3,7 +3,7 @@
  **/
 const config = {
   layout: 'vertical',
-  donation: false,
+  donation: true,
   templateFolder: 'project',
 }
 module.exports = config

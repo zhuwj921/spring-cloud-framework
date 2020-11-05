@@ -1,3 +1,7 @@
+/**
+ * @author chuzhixin 1204505056@qq.com
+ * @description vue.config.js全局配置
+ */
 const path = require('path')
 const {
   /* baseURL, */
@@ -135,6 +139,14 @@ module.exports = {
             minRatio: 0.8,
           },
         ])
+        .end()
+      config.module
+        .rule('images')
+        .use('image-webpack-loader')
+        .loader('image-webpack-loader')
+        .options({
+          bypassOnDebug: true,
+        })
         .end()
     })
 
