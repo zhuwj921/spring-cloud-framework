@@ -12,7 +12,6 @@
         <module>service-component</module>
         <module>service-common</module>
         <module>service-gateway</module>
-        <module>service-web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
