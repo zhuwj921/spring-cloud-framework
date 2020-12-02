@@ -11,7 +11,7 @@ import com.cloud.gateway.domain.RequestLog;
 import com.cloud.gateway.service.RequestLogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
@@ -26,10 +26,11 @@ import java.util.Set;
  * @author: zhuwj
  * @create: 2020-09-21 14:37
  **/
+@Order(-1)
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class AuthFilter implements WebFilter, Ordered {
+public class AuthFilter implements WebFilter {
 
     private final TokenProvider tokenProvider;
 
@@ -68,10 +69,7 @@ public class AuthFilter implements WebFilter, Ordered {
         return chain.filter(exchange);
     }
 
-    @Override
-    public int getOrder() {
-        return -1;
-    }
+
 
 
     private void log(String requestUrl, String username, long userId) {
