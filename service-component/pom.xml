@@ -14,6 +14,8 @@
     <modules>
         <module>service-auth</module>
         <module>service-mall</module>
+        <module>service-order</module>
+        <module>service-message</module>
     </modules>
 
     <dependencies>
