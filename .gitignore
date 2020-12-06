@@ -1,9 +1,22 @@
-### IntelliJ IDEA ###
-.idea
-*.iws
+# IDE Files #
 *.iml
-*.ipr
+.idea
+.idea/
+.project
+.settings
+target
+.DS_Store
 
+# temp ignore
+*.cache
+*.diff
+*.patch
+*.tmp
+
+# Maven ignore
+.flattened-pom.xml
+
+# webpack
 .DS_Store
 node_modules
 /dist

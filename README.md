@@ -1,7 +1,7 @@
 # spring-cloud-framework 
 > SpringCloud 微服务学习使用与实践，结合相关业务进行验证等。
 > 使用nacos作为服务注册中心，[nacos文档](https://nacos.io/zh-cn/index.html)
-
+> [阿里云maven](https://packages.aliyun.com/maven)
 ## 模块版本 
 
 | 名称   | 版本                  |

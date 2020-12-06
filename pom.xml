@@ -4,27 +4,42 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud.zhuwj</groupId>
-    <artifactId>spring-cloud-framework</artifactId>
-    <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>service-component</module>
-        <module>service-common</module>
-        <module>service-gateway</module>
-    </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.3.2.RELEASE</version>
         <relativePath/>
     </parent>
+
+    <groupId>com.cloud.zhuwj</groupId>
+    <artifactId>spring-cloud-framework</artifactId>
+    <packaging>pom</packaging>
+    <version>${revision}</version>
+    <modules>
+        <module>service-component</module>
+        <module>service-common</module>
+        <module>service-gateway</module>
+    </modules>
+
     <properties>
+        <!-- Project revision -->
+        <revision>2.0.1-SNAPSHOT</revision>
+
+        <!-- Project properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+
+        <!-- Dependency Versions -->
         <spring.cloud-version>Hoxton.SR8</spring.cloud-version>
         <spring.alibaba.cloud-version>2.2.3.RELEASE</spring.alibaba.cloud-version>
+        <hutool.version>5.4.3</hutool.version>
+        <lombok.version>1.18.12</lombok.version>
+
+        <!-- Maven Plugin Versions -->
+        <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+
     </properties>
 
     <dependencyManagement>
@@ -64,5 +79,44 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <updatePomFile>true</updatePomFile>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
     </build>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>rdc-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://packages.aliyun.com/maven/repository/2055981-snapshot-18kcBw</url>
+        </snapshotRepository>
+        <repository>
+            <id>rdc-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>https://packages.aliyun.com/maven/repository/2055981-release-D8yNFm/</url>
+        </repository>
+    </distributionManagement>
 </project>
