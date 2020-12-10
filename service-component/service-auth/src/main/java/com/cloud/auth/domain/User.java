@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 
 /**
@@ -20,12 +21,14 @@ public class User extends BaseEntity {
     /**
      * 用户账号
      */
+    @NotBlank(message = "用户名称不能为空")
     @Column(name = "username", nullable = false, unique = true)
     private String username;
 
     /**
      * 密码
      */
+    @NotBlank(message = "密码不能为空")
     @Column(name = "password", nullable = false)
     private String password;
 

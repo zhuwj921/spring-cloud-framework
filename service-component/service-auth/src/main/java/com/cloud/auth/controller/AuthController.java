@@ -15,6 +15,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 /**
  * @author zhuwj
  */
@@ -29,12 +31,9 @@ public class AuthController {
     private final UserService userService;
 
     @PostMapping("token")
-    public ResponseResult token(@RequestBody User user) {
+    public ResponseResult token(@RequestBody @Valid User user) {
         String username = user.getUsername();
         String password = user.getPassword();
-        if (StrUtil.isBlank(username) || StrUtil.isBlank(password)) {
-            return ResponseResult.error("账号或密码不能为空!");
-        }
         User queryResult = userService.findUserByUsername(username);
         if (queryResult == null) {
             return ResponseResult.error("账号不存在!");
