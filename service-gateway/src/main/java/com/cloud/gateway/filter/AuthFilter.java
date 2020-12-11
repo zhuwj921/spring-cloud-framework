@@ -1,7 +1,7 @@
 package com.cloud.gateway.filter;
 
 import cn.hutool.core.util.StrUtil;
-import com.cloud.common.auth.TokenProvider;
+import cn.hutool.http.HttpUtil;
 import com.cloud.common.auth.UserInfo;
 import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.exception.AuthException;
@@ -12,6 +12,8 @@ import com.cloud.gateway.service.RequestLogService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.server.ServerWebExchange;
@@ -19,6 +21,9 @@ import org.springframework.web.server.WebFilter;
 import org.springframework.web.server.WebFilterChain;
 import reactor.core.publisher.Mono;
 
+import java.net.URI;
+import java.nio.charset.Charset;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -31,8 +36,6 @@ import java.util.Set;
 @Component
 @RequiredArgsConstructor
 public class AuthFilter implements WebFilter {
-
-    private final TokenProvider tokenProvider;
 
     private final AuthProperties authProperties;
 
@@ -52,7 +55,7 @@ public class AuthFilter implements WebFilter {
             }
         }
         //权限认证校验
-        String accessToken = tokenProvider.getToken(exchange);
+        String accessToken = getToken(exchange);
         if (StrUtil.isBlank(accessToken)) {
             log.warn("AuthFilter accessToken is blank");
             log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
@@ -84,5 +87,32 @@ public class AuthFilter implements WebFilter {
         } catch (Exception e) {
             log.error("gateway log create error !!!", e);
         }
+    }
+
+    private String getToken(ServerWebExchange exchange) {
+        ServerHttpRequest request = exchange.getRequest();
+        HttpHeaders httpHeaders = request.getHeaders();
+        String bearerToken = httpHeaders.getFirst(GlobalConstant.HEADER);
+        if (StrUtil.isBlank(bearerToken)) {
+            URI uri = request.getURI();
+            String queryParams = uri.getQuery();
+            Map<String, String> mapQueryParams = HttpUtil.decodeParamMap(queryParams, Charset.defaultCharset());
+            bearerToken = mapQueryParams.get(GlobalConstant.TOKEN_NAME);
+        }
+        String accessToken = resolveToken(bearerToken);
+        return accessToken;
+    }
+
+    /**
+     * 获取去除前缀的token
+     *
+     * @param bearerToken
+     * @return
+     */
+    private String resolveToken(String bearerToken) {
+        if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith(GlobalConstant.TOKEN_PREFIX)) {
+            return StrUtil.removePrefix(bearerToken, GlobalConstant.TOKEN_PREFIX).trim();
+        }
+        return null;
     }
 }

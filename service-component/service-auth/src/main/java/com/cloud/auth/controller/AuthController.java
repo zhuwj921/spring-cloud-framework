@@ -1,7 +1,6 @@
 package com.cloud.auth.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.util.StrUtil;
 import com.cloud.auth.domain.User;
 import com.cloud.auth.service.UserService;
 import com.cloud.common.auth.TokenProvider;
@@ -26,8 +25,6 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final TokenProvider tokenProvider;
-
     private final UserService userService;
 
     @PostMapping("token")
@@ -42,7 +39,7 @@ public class AuthController {
         if (!isSuccess) {
             return ResponseResult.error("账号或密码错误!");
         }
-        String accessToken = tokenProvider.createToken();
+        String accessToken = TokenProvider.createToken();
         //cache user info
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(queryResult, userInfo);

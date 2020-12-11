@@ -6,32 +6,28 @@ import com.cloud.common.auth.WebContext;
 import com.cloud.common.utils.RedisUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.Ordered;
-import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
-import org.springframework.web.server.WebFilter;
-import org.springframework.web.server.WebFilterChain;
-import reactor.core.publisher.Mono;
+import org.springframework.core.annotation.Order;
 
+import javax.servlet.*;
+import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+
+/**
+ * @author zhuwj
+ */
+@Order(1)
 @Slf4j
-@Component
+@WebFilter
 @RequiredArgsConstructor
-public class WebContextFilter implements WebFilter, Ordered {
-
-    private final TokenProvider tokenProvider;
+public class WebContextFilter implements Filter {
 
     @Override
-    public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         log.debug("WebContextFilter start.");
-        String accessToken = tokenProvider.getToken(exchange);
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
+        String accessToken = TokenProvider.getToken(request);
         UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
         WebContext.setUserInfo(userInfo);
-        WebContext.setServerWebExchange(exchange);
-        return chain.filter(exchange);
-    }
-
-    @Override
-    public int getOrder() {
-        return 100;
     }
 }

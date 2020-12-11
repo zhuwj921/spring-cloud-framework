@@ -1,18 +1,13 @@
 package com.cloud.common.auth;
 
 import cn.hutool.core.codec.Base64;
+import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.http.HttpUtil;
 import com.cloud.common.constant.GlobalConstant;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.server.reactive.ServerHttpRequest;
-import org.springframework.stereotype.Component;
-import org.springframework.web.server.ServerWebExchange;
 
-import java.net.URI;
-import java.nio.charset.Charset;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -20,24 +15,22 @@ import java.util.Map;
  * @date: 2020/9/22 22:53
  * @description: token 创建 解析 获取
  */
-@Component
 public class TokenProvider {
 
     /**
      * 获取token
      *
-     * @param exchange
+     * @param request
      * @return
      */
-    public String getToken(ServerWebExchange exchange) {
-        ServerHttpRequest request = exchange.getRequest();
-        HttpHeaders httpHeaders = request.getHeaders();
-        String bearerToken = httpHeaders.getFirst(GlobalConstant.HEADER);
+    public static String getToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader(GlobalConstant.HEADER);
         if (StrUtil.isBlank(bearerToken)) {
-            URI uri = request.getURI();
-            String queryParams = uri.getQuery();
-            Map<String, String> mapQueryParams = HttpUtil.decodeParamMap(queryParams, Charset.defaultCharset());
-            bearerToken = mapQueryParams.get(GlobalConstant.TOKEN_NAME);
+            Map<String, String[]> queryParams = request.getParameterMap();
+            String[] bearerTokens = queryParams.get(GlobalConstant.TOKEN_NAME);
+            if (ArrayUtil.isNotEmpty(bearerTokens)) {
+                bearerToken = bearerTokens[0];
+            }
         }
         String accessToken = resolveToken(bearerToken);
         return accessToken;
@@ -48,7 +41,7 @@ public class TokenProvider {
      *
      * @return
      */
-    public String createToken() {
+    public static String createToken() {
         String md5 = SecureUtil.md5(IdUtil.randomUUID());
         return Base64.encode(md5);
     }
@@ -59,7 +52,7 @@ public class TokenProvider {
      * @param bearerToken
      * @return
      */
-    private String resolveToken(String bearerToken) {
+    private static String resolveToken(String bearerToken) {
         if (StrUtil.isNotBlank(bearerToken) && bearerToken.startsWith(GlobalConstant.TOKEN_PREFIX)) {
             return StrUtil.removePrefix(bearerToken, GlobalConstant.TOKEN_PREFIX).trim();
         }

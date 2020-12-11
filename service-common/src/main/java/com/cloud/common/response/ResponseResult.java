@@ -1,7 +1,6 @@
 package com.cloud.common.response;
 
 
-import com.cloud.common.auth.WebContext;
 import com.cloud.common.enums.ResponseCodeEnum;
 import lombok.Builder;
 import lombok.Data;
@@ -45,18 +44,16 @@ public class ResponseResult<T> implements Serializable {
     private T result;
 
     public static <T> ResponseResult<T> ok(T result) {
-        String path = WebContext.getPath();
-        String requestId = WebContext.requestId();
-        return (ResponseResult<T>) ResponseResult.builder().code(ResponseCodeEnum.OK.getCode()).path(path)
-                .timestamp(System.currentTimeMillis()).requestId(requestId)
+
+        return (ResponseResult<T>) ResponseResult.builder().code(ResponseCodeEnum.OK.getCode()).path(null)
+                .timestamp(System.currentTimeMillis()).requestId(null)
                 .message(ResponseCodeEnum.OK.getMsg()).result(result).build();
     }
 
     public static <T> ResponseResult<T> error(String message) {
-        String path = WebContext.getPath();
-        String requestId = WebContext.requestId();
-        return (ResponseResult<T>) ResponseResult.builder().code(ResponseCodeEnum.ERROR.getCode()).path(path)
-                .timestamp(System.currentTimeMillis()).requestId(requestId)
+
+        return (ResponseResult<T>) ResponseResult.builder().code(ResponseCodeEnum.ERROR.getCode()).path(null)
+                .timestamp(System.currentTimeMillis()).requestId(null)
                 .message(message).result(null).build();
     }
 
