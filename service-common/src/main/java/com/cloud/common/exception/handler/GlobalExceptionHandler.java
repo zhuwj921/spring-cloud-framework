@@ -1,8 +1,8 @@
 package com.cloud.common.exception.handler;
 
+import com.cloud.common.exception.AuthException;
+import com.cloud.common.response.ResponseResult;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -18,7 +18,14 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
-    private ResponseEntity<String> handleAccessException(Exception e) {
-        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("");
+    private ResponseResult<String> handleException(Exception e) {
+        return ResponseResult.error(e.getMessage());
     }
+
+    @ExceptionHandler(AuthException.class)
+    private ResponseResult<String> handleAuthException(Exception e) {
+        return ResponseResult.error(e.getMessage());
+    }
+
+
 }

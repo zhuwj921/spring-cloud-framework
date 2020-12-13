@@ -1,8 +1,9 @@
 package com.cloud.common.auth;
 
-import cn.hutool.core.lang.Assert;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.cloud.common.constant.GlobalConstant;
+import com.cloud.common.exception.AuthException;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -23,7 +24,9 @@ public class WebContext {
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attrs.getRequest();
         String userInfo = request.getHeader(GlobalConstant.HEADER_USER);
-        Assert.notBlank(userInfo,"user info is not exist");
+        if(StrUtil.isBlank(userInfo)){
+            throw new AuthException("user is not exist");
+        }
         return JSONUtil.toBean(userInfo,UserInfo.class);
     }
 
