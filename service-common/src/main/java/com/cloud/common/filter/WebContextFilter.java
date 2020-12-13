@@ -28,6 +28,6 @@ public class WebContextFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String accessToken = TokenProvider.getToken(request);
         UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
-        WebContext.setUserInfo(userInfo);
+        filterChain.doFilter(request, servletResponse);
     }
 }

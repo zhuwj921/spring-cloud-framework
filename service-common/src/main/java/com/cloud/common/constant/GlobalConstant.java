@@ -11,6 +11,10 @@ public interface GlobalConstant {
      */
     String HEADER = "Authorization";
     /**
+     * 自定义头部用户信息
+     */
+    String HEADER_USER = "Authorization-User";
+    /**
      * 请求token前缀
      */
     String TOKEN_PREFIX = "Bearer";
@@ -26,7 +30,7 @@ public interface GlobalConstant {
     /**
      * 匿名用户id
      */
-    long ANONYMOUS_USER_id = -1L;
+    long ANONYMOUS_USER_ID = -1L;
     /**
      * redis 中用户缓存时间
      */

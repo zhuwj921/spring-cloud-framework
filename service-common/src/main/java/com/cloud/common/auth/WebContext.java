@@ -1,5 +1,13 @@
 package com.cloud.common.auth;
 
+import cn.hutool.core.lang.Assert;
+import cn.hutool.json.JSONUtil;
+import com.cloud.common.constant.GlobalConstant;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * 上下文信息
  *
@@ -7,20 +15,16 @@ package com.cloud.common.auth;
  */
 public class WebContext {
 
-    private static ThreadLocal<UserInfo> threadLocal = new ThreadLocal<>();
-
-
-    public static void setUserInfo(UserInfo userInfo) {
-        threadLocal.set(userInfo);
-    }
-
-
+    /**
+     * 获取用户信息
+     * @return
+     */
     public static UserInfo getUserInfo() {
-        return threadLocal.get();
-    }
-
-    public static void removeUserInfo() {
-        threadLocal.remove();
+        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attrs.getRequest();
+        String userInfo = request.getHeader(GlobalConstant.HEADER_USER);
+        Assert.notBlank(userInfo,"user info is not exist");
+        return JSONUtil.toBean(userInfo,UserInfo.class);
     }
 
 
@@ -31,7 +35,7 @@ public class WebContext {
      */
     public static String getUsername() {
         UserInfo userInfo = getUserInfo();
-        return userInfo == null ? null : userInfo.getUsername();
+        return userInfo.getUsername();
     }
 
     /**
@@ -41,7 +45,7 @@ public class WebContext {
      */
     public static Long getUserId() {
         UserInfo userInfo = getUserInfo();
-        return userInfo == null ? null : userInfo.getUserId();
+        return userInfo.getUserId();
     }
 
 

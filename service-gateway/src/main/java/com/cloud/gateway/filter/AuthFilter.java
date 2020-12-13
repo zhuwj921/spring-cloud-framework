@@ -2,6 +2,7 @@ package com.cloud.gateway.filter;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
+import cn.hutool.json.JSONUtil;
 import com.cloud.common.auth.UserInfo;
 import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.exception.AuthException;
@@ -23,8 +24,10 @@ import reactor.core.publisher.Mono;
 
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Set;
+import java.util.function.Consumer;
 
 /**
  * @description: 权限过滤器 进行权限校验
@@ -50,7 +53,7 @@ public class AuthFilter implements WebFilter {
         //权限认证豁免验证
         for (String urlPatterns : ignoreUrlPatterns) {
             if (new AntPathMatcher().match(urlPatterns, requestUrl)) {
-                log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
+                log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_ID);
                 return chain.filter(exchange);
             }
         }
@@ -58,16 +61,21 @@ public class AuthFilter implements WebFilter {
         String accessToken = getToken(exchange);
         if (StrUtil.isBlank(accessToken)) {
             log.warn("AuthFilter accessToken is blank");
-            log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
+            log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_ID);
             throw new AuthException("accessToken not exist");
         }
         UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
         if (userInfo == null) {
             log.info("AuthFilter userInfo is null ");
-            log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_id);
+            log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_ID);
             throw new AuthException("userInfo not exist");
         }
-        log(requestUrl, userInfo.getUsername(), GlobalConstant.ANONYMOUS_USER_id);
+        log(requestUrl, userInfo.getUsername(), GlobalConstant.ANONYMOUS_USER_ID);
+        Consumer<HttpHeaders> httpHeaders = httpHeader -> {
+            httpHeader.set(GlobalConstant.HEADER_USER, JSONUtil.toJsonStr(userInfo));
+        };
+        ServerHttpRequest serverHttpRequest = exchange.getRequest().mutate().headers(httpHeaders).build();
+        exchange.mutate().request(serverHttpRequest).build();
         log.info("AuthFilter request end ");
         return chain.filter(exchange);
     }
@@ -77,11 +85,14 @@ public class AuthFilter implements WebFilter {
 
     private void log(String requestUrl, String username, long userId) {
         RequestLog requestLog = new RequestLog();
-        requestLog.init();
+        requestLog.setCreateTime(LocalDateTime.now());
+        requestLog.setModifiedTime(LocalDateTime.now());
         requestLog.setCreateBy(userId);
         requestLog.setModifiedBy(userId);
         requestLog.setRequestUrl(requestUrl);
         requestLog.setRequestUsername(username);
+        requestLog.setDeleted(Boolean.FALSE);
+        requestLog.setVersion(0);
         try {
             requestLogService.create(requestLog);
         } catch (Exception e) {

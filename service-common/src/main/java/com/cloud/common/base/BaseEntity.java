@@ -62,7 +62,7 @@ public class BaseEntity implements Serializable {
         this.createTime = now;
         this.modifiedBy = WebContext.getUserId();
         this.modifiedTime = now;
-        this.deleted = false;
+        this.deleted = Boolean.FALSE;
         this.version = 0;
     }
 

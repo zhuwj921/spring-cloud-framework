@@ -1,13 +1,15 @@
 package com.cloud.common.auth;
 
-import cn.hutool.core.codec.Base64;
+import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.IdUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.crypto.SecureUtil;
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.algorithms.Algorithm;
 import com.cloud.common.constant.GlobalConstant;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -17,6 +19,9 @@ import java.util.Map;
  */
 public class TokenProvider {
 
+    private static final int EXPIRES_AT = 120;//分钟
+    private static final String AUDIENCE = "web";
+    private static final String KEY = "JldM90LCIQNZ3cQXrER3Jqyq3bkXttLNNVaTsc1TaEPQ9p1gZM8Z0TtvZL88S0bb";
     /**
      * 获取token
      *
@@ -37,13 +42,19 @@ public class TokenProvider {
     }
 
     /**
-     * 创建token 自定义创建方式
+     * 创建token 使用jwt方式 可以
      *
      * @return
      */
-    public static String createToken() {
-        String md5 = SecureUtil.md5(IdUtil.randomUUID());
-        return Base64.encode(md5);
+    public static String createToken(String username)  {
+        Date date = DateUtil.offsetMinute(new Date(), EXPIRES_AT);
+        return JWT.create()
+                .withExpiresAt(date)
+                .withNotBefore(new Date())
+                .withSubject(username)
+                .withAudience(AUDIENCE)
+                .withJWTId(IdUtil.randomUUID())
+                .sign(Algorithm.HMAC256(KEY));
     }
 
     /**

@@ -39,7 +39,7 @@ public class AuthController {
         if (!isSuccess) {
             return ResponseResult.error("账号或密码错误!");
         }
-        String accessToken = TokenProvider.createToken();
+        String accessToken = TokenProvider.createToken(username);
         //cache user info
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(queryResult, userInfo);
