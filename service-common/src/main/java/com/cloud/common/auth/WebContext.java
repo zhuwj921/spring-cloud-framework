@@ -18,16 +18,15 @@ public class WebContext {
 
     /**
      * 获取用户信息
+     *
      * @return
      */
     public static UserInfo getUserInfo() {
-        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attrs.getRequest();
-        String userInfo = request.getHeader(GlobalConstant.HEADER_USER);
-        if(StrUtil.isBlank(userInfo)){
+        String userInfo = getHeaderInfoByKey(GlobalConstant.HEADER_USER);
+        if (StrUtil.isBlank(userInfo)) {
             throw new AuthException("user is not exist");
         }
-        return JSONUtil.toBean(userInfo,UserInfo.class);
+        return JSONUtil.toBean(userInfo, UserInfo.class);
     }
 
 
@@ -51,5 +50,27 @@ public class WebContext {
         return userInfo.getUserId();
     }
 
+    /**
+     * 获取请求id
+     *
+     * @return
+     */
+    public static String getRequestId() {
+        return getHeaderInfoByKey(GlobalConstant.REQUEST_ID);
+    }
 
+    /**
+     * 获取请求路径
+     *
+     * @return
+     */
+    public static String getRequestPath() {
+        return getHeaderInfoByKey(GlobalConstant.REQUEST_PATH);
+    }
+
+    private static String getHeaderInfoByKey(String key) {
+        ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        HttpServletRequest request = attrs.getRequest();
+        return request.getHeader(key);
+    }
 }

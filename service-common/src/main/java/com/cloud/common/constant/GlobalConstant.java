@@ -26,6 +26,14 @@ public interface GlobalConstant {
      * 匿名用户
      */
     String ANONYMOUS_USER = "anonymousUser";
+    /**
+     * 请求id
+     */
+    String REQUEST_ID = "request_id";
+    /**
+     * 请求路径
+     */
+    String REQUEST_PATH = "request_path";
 
     /**
      * 匿名用户id

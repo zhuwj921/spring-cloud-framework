@@ -73,14 +73,14 @@ public class AuthFilter implements WebFilter {
         log(requestUrl, userInfo.getUsername(), GlobalConstant.ANONYMOUS_USER_ID);
         Consumer<HttpHeaders> httpHeaders = httpHeader -> {
             httpHeader.set(GlobalConstant.HEADER_USER, JSONUtil.toJsonStr(userInfo));
+            httpHeader.set(GlobalConstant.REQUEST_ID, exchange.getRequest().getId());
+            httpHeader.set(GlobalConstant.REQUEST_PATH, exchange.getRequest().getPath().value());
         };
         ServerHttpRequest serverHttpRequest = exchange.getRequest().mutate().headers(httpHeaders).build();
         exchange.mutate().request(serverHttpRequest).build();
         log.info("AuthFilter request end ");
         return chain.filter(exchange);
     }
-
-
 
 
     private void log(String requestUrl, String username, long userId) {
