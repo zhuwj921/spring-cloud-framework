@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
-    password: root
+    password: 123456789
     driver-class: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -35,3 +35,10 @@ spring:
     database: 0
     host: 103.39.210.10
     password: cXLtoAfE85WkUi5R
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic
