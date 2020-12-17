@@ -47,5 +47,10 @@ spring:
 
 
 auth:
-  ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/test/**
+  ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/swagger-ui/**,"/swagger-ui.html",
+    "/service-auth/swagger-ui/*",
+    "/service-auth/swagger-resources/**",
+    "/service-auth/v2/api-docs",
+    "/service-auth/v3/api-docs",
+    "/service-auth/webjars/**"
 
