@@ -54,6 +54,12 @@ public class AuthFilter implements WebFilter {
         for (String urlPatterns : ignoreUrlPatterns) {
             if (new AntPathMatcher().match(urlPatterns, requestUrl)) {
                 log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_ID);
+                Consumer<HttpHeaders> httpHeaders = httpHeader -> {
+                    httpHeader.set(GlobalConstant.REQUEST_ID, exchange.getRequest().getId());
+                    httpHeader.set(GlobalConstant.REQUEST_PATH, exchange.getRequest().getPath().value());
+                };
+                ServerHttpRequest serverHttpRequest = exchange.getRequest().mutate().headers(httpHeaders).build();
+                exchange.mutate().request(serverHttpRequest).build();
                 return chain.filter(exchange);
             }
         }

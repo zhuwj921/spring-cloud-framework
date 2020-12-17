@@ -20,7 +20,7 @@ public class MessageFeignService {
 
     private final MessageServiceClient messageFeignClient;
 
-    public String getVersion(String msg) {
+    public String getVersion() {
         return ResponseResultValidateUtil.validate(messageFeignClient.getVersion());
     }
 

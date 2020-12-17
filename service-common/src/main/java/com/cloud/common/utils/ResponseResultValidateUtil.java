@@ -15,8 +15,8 @@ import com.cloud.common.response.ResponseResult;
 public class ResponseResultValidateUtil {
 
     public static <T> T validate(ResponseResult<T> responseResult) {
-        if (ResponseCodeEnum.OK.getCode().equals(responseResult.getCode())) {
-            throw new ResponseResultValidateException("ResponseResult error info : {}", responseResult.getMessage());
+        if (!ResponseCodeEnum.OK.getCode().equals(responseResult.getCode())) {
+            throw new ResponseResultValidateException(responseResult.getMessage());
         }
         return responseResult.getData();
     }

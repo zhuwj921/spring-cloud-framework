@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.4.RELEASE</version>
+        <version>2.3.7.RELEASE</version>
         <relativePath/>
     </parent>
 
@@ -31,7 +31,7 @@
         <java.version>1.8</java.version>
 
         <!-- Dependency Versions -->
-        <spring.cloud-version>Hoxton.SR8</spring.cloud-version>
+        <spring.cloud-version>Hoxton.SR9</spring.cloud-version>
         <spring.alibaba.cloud-version>2.2.3.RELEASE</spring.alibaba.cloud-version>
         <hutool.version>5.4.3</hutool.version>
         <lombok.version>1.18.12</lombok.version>

@@ -2,6 +2,7 @@ package com.cloud.auth.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.cloud.auth.domain.User;
+import com.cloud.auth.facade.fegin.MessageFeignService;
 import com.cloud.auth.service.UserService;
 import com.cloud.common.auth.TokenProvider;
 import com.cloud.common.auth.UserInfo;
@@ -26,6 +27,8 @@ import javax.validation.Valid;
 public class AuthController {
 
     private final UserService userService;
+
+    private final MessageFeignService messageFeignService;
 
     @PostMapping("token")
     public ResponseResult token(@RequestBody @Valid User user) {
@@ -53,5 +56,11 @@ public class AuthController {
     public ResponseResult<UserInfo> getUserInfo() {
         return ResponseResult.ok(WebContext.getUserInfo());
     }
+
+    @GetMapping("version")
+    public ResponseResult<String> getVersion() {
+        return ResponseResult.ok(messageFeignService.getVersion());
+    }
+
 
 }
