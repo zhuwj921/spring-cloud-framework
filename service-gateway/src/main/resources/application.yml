@@ -17,7 +17,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
-    password: root
+    password: 123456789
     driver-class: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -47,10 +47,5 @@ spring:
 
 
 auth:
-  ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/swagger-ui/**,"/swagger-ui.html",
-    "/service-auth/swagger-ui/*",
-    "/service-auth/swagger-resources/**",
-    "/service-auth/v2/api-docs",
-    "/service-auth/v3/api-docs",
-    "/service-auth/webjars/**"
+  ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/doc.html,/service-auth/swagger-ui.html,/service-auth/swagger-ui/*,/service-auth/swagger-resources/**,/service-auth/v2/api-docs,/service-auth/v3/api-docs,/service-auth/webjars/**
 

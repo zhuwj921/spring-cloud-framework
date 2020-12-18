@@ -37,6 +37,8 @@
         <lombok.version>1.18.12</lombok.version>
         <java-jwt.version>3.10.3</java-jwt.version>
         <springfox.version>3.0.0</springfox.version>
+        <knife4j.version>3.0.2</knife4j.version>
+
         <!-- Maven Plugin Versions -->
         <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
