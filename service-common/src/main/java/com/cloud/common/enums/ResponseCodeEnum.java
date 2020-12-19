@@ -14,8 +14,13 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum  ResponseCodeEnum {
-
+    /**
+     * 请求成功
+     */
     OK("00000", "OK"),
+    /**
+     * 请求失败
+     */
     ERROR("11111", "ERROR");
 
     private String code;

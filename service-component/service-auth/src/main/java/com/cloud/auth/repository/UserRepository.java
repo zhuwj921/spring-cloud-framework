@@ -9,6 +9,10 @@ import com.cloud.common.base.BaseRepository;
  * @description:
  */
 public interface UserRepository extends BaseRepository<User> {
-
+    /**
+     * 查询通过用户名称
+     * @param username
+     * @return
+     */
     User findUserByUsername(String username);
 }

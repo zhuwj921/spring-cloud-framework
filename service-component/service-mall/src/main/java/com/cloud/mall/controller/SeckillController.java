@@ -58,13 +58,13 @@ public class SeckillController {
         if (!lock) {
             return ResponseResult.error("抢购人数过多，请稍后再试!");
         }
-        String KEY_INFO = "product_info1_" + product.getId();
+        String keyInfo = "product_info1_" + product.getId();
         try {
             //获取商品信息 存放在redis中
-            Product redisProduct = RedisUtil.get(KEY_INFO, Product.class);
+            Product redisProduct = RedisUtil.get(keyInfo, Product.class);
             if (redisProduct == null) {
                 redisProduct = productService.findById(product.getId());
-                RedisUtil.set(KEY_INFO, redisProduct);
+                RedisUtil.set(keyInfo, redisProduct);
             }
             Integer residueAmount = redisProduct.getResidueAmount();
             if (residueAmount <= 0) {
@@ -78,7 +78,7 @@ public class SeckillController {
             updateData.modify(queryResult);
             updateData.setResidueAmount(residueAmount);
             //refresh cache
-            RedisUtil.set(KEY_INFO, updateData);
+            RedisUtil.set(keyInfo, updateData);
             productService.update(updateData);
             //创建代付款订单
             Order order = new Order();
