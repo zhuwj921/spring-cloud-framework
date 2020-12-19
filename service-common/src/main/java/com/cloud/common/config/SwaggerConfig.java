@@ -58,6 +58,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Spring Cloud Framework API")
+                .version("2.0")
                 .build();
     }
 }
