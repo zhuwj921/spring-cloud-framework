@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-tap-highlight-color: transparent
+}
+
+html {
+    min-width: 1190px;
+}
+
+body,
+html {
+    height: 100%;
+    background-color: #f4f4f4;
+    color: #666;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none
+}
+
+img {
+    border: 0;
+    vertical-align: middle;
+}
