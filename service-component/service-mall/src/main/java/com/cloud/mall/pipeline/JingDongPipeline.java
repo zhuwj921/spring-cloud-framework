@@ -29,6 +29,8 @@ public class JingDongPipeline implements PageModelPipeline<JingDongModel> {
     @Override
     public void process(JingDongModel model, Task task) {
         log.info(model.getTitle());
+        log.info(model.getPageConfig());
+
         Product product = new Product();
         LocalDateTime now = LocalDateTime.now();
         product.setCreateBy(GlobalConstant.ANONYMOUS_USER_ID);

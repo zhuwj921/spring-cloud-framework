@@ -18,4 +18,7 @@ import us.codecraft.webmagic.model.annotation.TargetUrl;
 public class JingDongModel {
     @ExtractBy(value = "/html/body/div[6]/div/div[2]/div[1]/text()")
     private String title;
+
+    @ExtractBy(value = "/html/head/script[4]")
+    private String pageConfig;
 }
