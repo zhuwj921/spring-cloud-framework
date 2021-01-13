@@ -1,6 +1,6 @@
 package com.cloud.common.utils;
 
-import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.BCrypt;
 
 /**
  * @author: zhuwj
@@ -17,7 +17,8 @@ public class PasswordUtil {
      * @return
      */
     public static String generatePassword(String username, String password) {
-        return SecureUtil.md5(username + password);
+        String strongerSalt = BCrypt.gensalt(12);
+        return BCrypt.hashpw(username + password, strongerSalt);
     }
 
     /**
@@ -29,10 +30,6 @@ public class PasswordUtil {
      * @return
      */
     public static boolean verifyPassword(String username, String password, String oldPassword) {
-        String newPassword = SecureUtil.md5(username + password);
-        if (oldPassword.equals(newPassword)) {
-            return true;
-        }
-        return false;
+        return BCrypt.checkpw(username + password, oldPassword);
     }
 }

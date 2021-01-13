@@ -10,8 +10,11 @@ import org.junit.jupiter.api.Test;
 public class PasswordUtilTest {
 
     @Test
-    public void test(){
-        System.out.println(PasswordUtil.generatePassword("sysadmin","123456789"));
+    public void test() {
+        String oldPassword = PasswordUtil.generatePassword("sysadmin", "123456789");
+        System.out.println(oldPassword);
+        System.out.println(PasswordUtil.verifyPassword("sysadmin", "123456789",oldPassword));
     }
+
 
 }
