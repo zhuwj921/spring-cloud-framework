@@ -6,8 +6,8 @@
 
 | 名称   | 版本                  |
 | ------ | -------------------- |
-| spring-boot        | 2.3.2.RELEASE         |
-| spring-cloud       | Hoxton.SR8          |
+| spring-boot        | 2.3.7.RELEASE         |
+| spring-cloud       | Hoxton.SR9          |
 | spring-cloud-alibaba       | 2.2.3.RELEASE        |
 | lombok | 1.18.12          |
 | hutool| 5.4.3|
