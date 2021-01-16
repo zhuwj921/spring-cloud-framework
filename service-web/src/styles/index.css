@@ -19,9 +19,13 @@ html {
 }
 
 a {
-    text-decoration: none
+    text-decoration: none;
+    cursor: pointer;
 }
-
+a:hover{
+    color: #E4393C;
+    text-decoration: underline;
+}
 img {
     border: 0;
     vertical-align: middle;

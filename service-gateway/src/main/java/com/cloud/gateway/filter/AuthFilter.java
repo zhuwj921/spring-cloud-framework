@@ -47,7 +47,7 @@ public class AuthFilter implements WebFilter {
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
-        log.info("AuthFilter request start");
+        log.debug("AuthFilter request start");
         Set<String> ignoreUrlPatterns = authProperties.getIgnoreUrlPatterns();
         String requestUrl = exchange.getRequest().getPath().value();
         //权限认证豁免验证
@@ -84,7 +84,7 @@ public class AuthFilter implements WebFilter {
         };
         ServerHttpRequest serverHttpRequest = exchange.getRequest().mutate().headers(httpHeaders).build();
         exchange.mutate().request(serverHttpRequest).build();
-        log.info("AuthFilter request end ");
+        log.debug("AuthFilter request end ");
         return chain.filter(exchange);
     }
 
