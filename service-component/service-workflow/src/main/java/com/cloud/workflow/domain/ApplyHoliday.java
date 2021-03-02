@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Data
 public class ApplyHoliday implements Serializable {
 
-    @ApiModelProperty("提交审批的处理人")
+    @ApiModelProperty("审批状态")
     private Integer applyStatus;
 
     @ApiModelProperty("审批理由")

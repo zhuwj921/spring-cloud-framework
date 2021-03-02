@@ -23,7 +23,7 @@
 
     <properties>
         <!-- Project revision -->
-        <revision>2.0.1-SNAPSHOT</revision>
+        <revision>2.0.2-SNAPSHOT</revision>
 
         <!-- Project properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,6 +38,7 @@
         <springfox.version>3.0.0</springfox.version>
         <knife4j.version>3.0.2</knife4j.version>
         <flowable.version>6.6.0</flowable.version>
+
         <!-- Maven Plugin Versions -->
         <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>

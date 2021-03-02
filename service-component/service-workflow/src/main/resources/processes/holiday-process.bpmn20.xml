@@ -28,10 +28,10 @@
         <sequenceFlow id="flow3" sourceRef="usertask2" targetRef="exclusivegateway1">
         </sequenceFlow>
         <sequenceFlow id="flow4" name="同意" sourceRef="exclusivegateway1" targetRef="endevent1">
-            <conditionExpression xsi:type="tFormalExpression">${applyStatus == 1}</conditionExpression>
+            <conditionExpression xsi:type="tFormalExpression">  <![CDATA[${applyHoliday.applyStatus == 1}]]></conditionExpression>
         </sequenceFlow>
         <sequenceFlow id="flow5" name="不同意" sourceRef="exclusivegateway1" targetRef="usertask1">
-            <conditionExpression xsi:type="tFormalExpression">${applyStatus == 2}</conditionExpression>
+            <conditionExpression xsi:type="tFormalExpression">  <![CDATA[${applyHoliday.applyStatus == 2}]]></conditionExpression>
         </sequenceFlow>
     </process>
     <bpmndi:BPMNDiagram id="BPMNDiagram_holidayProcess">

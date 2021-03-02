@@ -1,5 +1,6 @@
 package com.cloud.workflow.handler;
 
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Console;
 import com.cloud.workflow.domain.ApplyHoliday;
 import com.cloud.workflow.domain.HolidayApply;
@@ -27,15 +28,14 @@ class HolidayProcessHandlerTest {
     @Resource
     private HolidayProcessHandler holidayProcessHandler;
 
-    @Test
-    void createHoliday() {
+    public ProcessInstance createHoliday() {
         ProcessInstance processInstance = holidayProcessHandler.createHoliday("zhuweijian123");
         Console.log("ProcessInstance: {}", processInstance.getId());
+        return processInstance;
     }
 
-    @Test
-    void submitApply() {
-        Task task = holidayProcessHandler.getTask("9925a7fc-617d-11eb-9341-2cf05d3d3045");
+    public void submitApply(String processInstanceId) {
+        Task task = holidayProcessHandler.getTask(processInstanceId);
         HolidayApply holidayApply = new HolidayApply();
         holidayApply.setAssignee("zhuwj");
         holidayApply.setEndTime(LocalDateTime.now());
@@ -46,20 +46,35 @@ class HolidayProcessHandlerTest {
         holidayProcessHandler.submitApply(holidayApply);
     }
 
-    @Test
-    void findTaskByAssignee() {
-
+    public Task findTaskByAssignee() {
         List<Task> list = holidayProcessHandler.findTaskByAssignee("zhuwj");
         Console.log(list);
+        return CollUtil.isEmpty(list) ? null : list.get(0);
     }
 
     @Test
-    void applyHoliday() {
-        List<Task> list = holidayProcessHandler.findTaskByAssignee("zhuwj");
+    void applyHoliday(String taskId, int status) {
         ApplyHoliday applyHoliday = new ApplyHoliday();
-        applyHoliday.setApplyStatus(1);
+        applyHoliday.setApplyStatus(status);
         applyHoliday.setReason("测试");
-        applyHoliday.setTaskId(list.get(0).getId());
+        applyHoliday.setTaskId(taskId);
         holidayProcessHandler.handleApply(applyHoliday);
+    }
+
+    @Test
+    void holiday() {
+        Console.log("创建请假流程");
+        ProcessInstance processInstance = createHoliday();
+        findTaskByAssignee();
+        Console.log("提交请假申请");
+        submitApply(processInstance.getId());
+        Task task = findTaskByAssignee();
+        Console.log("处理请假申请-不同意");
+        applyHoliday(task.getId(), 2);
+        findTaskByAssignee();
+        Console.log("重新提交请假申请");
+        Console.log("处理请假申请-同意");
+        applyHoliday(task.getId(), 1);
+        findTaskByAssignee();
     }
 }
