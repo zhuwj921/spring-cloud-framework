@@ -195,7 +195,7 @@
         },
     })
 </script>
-<style lang="less">
+<style lang="less" scoped>
     .mall-container {
         display: flex;
         display: -webkit-flex; /* Safari */

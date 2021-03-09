@@ -4,32 +4,35 @@
             网站学习 欢迎登录
         </div>
         <div class="login-warp">
-            <div class="login-form">
-                <div class="login-tab">
-                    账号登录
-                </div>
-                <div class="login-box">
-                    <el-form :model="loginForm" :rules="loginRules" ref="loginRuleForm">
-                        <el-form-item prop="username">
-                            <el-input v-model="loginForm.username" placeholder="邮箱/用户名/登录手机">
-                                <template #prepend><i class="el-icon-s-custom"></i></template>
-                            </el-input>
-                        </el-form-item>
-                        <el-form-item prop="password">
-                            <el-input v-model="loginForm.password" placeholder="密码">
-                                <template #prepend><i class="el-icon-lock"></i></template>
-                            </el-input>
-                        </el-form-item>
+            <div class="login-banner">
+                <div class="login-form">
+                    <div class="login-tab">
+                        账号登录
+                    </div>
+                    <div class="login-box">
+                        <el-form :model="loginForm" :rules="loginRules" ref="loginRuleForm">
+                            <el-form-item prop="username">
+                                <el-input v-model="loginForm.username" placeholder="邮箱/用户名/登录手机">
+                                    <template #prepend><i class="el-icon-s-custom"></i></template>
+                                </el-input>
+                            </el-form-item>
+                            <el-form-item prop="password">
+                                <el-input v-model="loginForm.password" placeholder="密码">
+                                    <template #prepend><i class="el-icon-lock"></i></template>
+                                </el-input>
+                            </el-form-item>
 
-                    </el-form>
-                    <div class="login-forget">
-                        <a>忘记密码</a>
+                        </el-form>
+                        <div class="login-forget">
+                            <a>忘记密码</a>
+                        </div>
+                    </div>
+                    <div @click="handleLogin" class="login-button">
+                        <el-button type="danger">登 录</el-button>
                     </div>
                 </div>
-                <div @click="handleLogin" class="login-button">
-                    <el-button type="danger">登 录</el-button>
-                </div>
             </div>
+
 
         </div>
         <div class="login-links">
@@ -89,7 +92,7 @@
         },
     }
 </script>
-<style lang="less">
+<style lang="less" scoped>
     .login-container {
         display: flex;
         height: 100vh;
@@ -101,7 +104,7 @@
         .login-header {
             height: 110px;
             width: 100vw;
-            padding: 30px 30px 30px 100px;
+            padding: 30px 30px 30px 200px;
             font-size: 24px;
             color: #2f3430;
         }
@@ -110,72 +113,81 @@
             margin-top: 10px;
             height: 400px;
             width: 100vw;
-            background: #e93854 url("../../assets/login/bg.jpg") no-repeat;
-            background-size: 100% 100%;
+            background-color: #90ccf0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-            .login-form {
-                float: right;
-                margin-right: 20px;
-                margin-top: 10px;
-                margin-bottom: 10px;
-                height: 360px;
-                width: 350px;
-                background: #fff;
-                display: flex;
-                justify-content: center;
-                flex-wrap: wrap;
-                border-radius: 5px;
+            .login-banner {
+                width: 1000px;
+                background: #e93854 url("../../assets/login/bg.jpg") no-repeat;
+                background-size: 100% 100%;
 
-                .login-tab {
+                .login-form {
+                    float: right;
+                    margin-right: 20px;
+                    margin-top: 10px;
+                    margin-bottom: 10px;
+                    height: 360px;
                     width: 350px;
-                    height: 55px;
+                    background: #fff;
                     display: flex;
                     justify-content: center;
-                    align-items: center;
-                    border-bottom: 1px solid #f4f4f4;
-                    text-decoration: none;
-                    outline: rgb(109, 109, 109) none 0;
-                    font-size: 18px;
-                    font-family: "microsoft yahei", serif;
-                }
+                    flex-wrap: wrap;
+                    border-radius: 5px;
 
-                .login-box {
-                    width: 350px;
-                    height: 180px;
-                    padding: 15px;
-
-                    .login-forget {
+                    .login-tab {
+                        width: 350px;
+                        height: 55px;
                         display: flex;
-                        width: 100%;
-                        flex-direction: row-reverse;
+                        justify-content: center;
+                        align-items: center;
+                        border-bottom: 1px solid #f4f4f4;
+                        text-decoration: none;
+                        outline: rgb(109, 109, 109) none 0;
+                        font-size: 18px;
+                        font-family: "microsoft yahei", serif;
+                    }
 
-                        a {
-                            color: #606266;
-                            font-size: 16px;
-                        }
+                    .login-box {
+                        width: 350px;
+                        height: 180px;
+                        padding: 15px;
 
-                        a:hover {
-                            color: #E4393C !important;
-                            text-decoration: underline !important;
+                        .login-forget {
+                            display: flex;
+                            width: 100%;
+                            flex-direction: row-reverse;
+
+                            a {
+                                color: #606266;
+                                font-size: 16px;
+                            }
+
+                            a:hover {
+                                color: #E4393C !important;
+                                text-decoration: underline !important;
+                            }
                         }
                     }
-                }
 
-                .login-button {
-                    height: 35px;
-                    margin: 15px;
+                    .login-button {
+                        height: 35px;
+                        margin: 15px;
 
-                    button {
-                        border: 1px solid #e85356;
-                        display: block;
-                        width: 302px;
-                        background: #e4393c;
-                        color: #fff;
-                        font-size: 20px;
-                        font-family: 'Microsoft YaHei', serif;
+                        button {
+                            border: 1px solid #e85356;
+                            display: block;
+                            width: 302px;
+                            background: #e4393c;
+                            color: #fff;
+                            font-size: 20px;
+                            font-family: 'Microsoft YaHei', serif;
+                        }
                     }
                 }
             }
+
         }
 
         .login-links {
