@@ -17,6 +17,7 @@
                             <el-form label-width="100px" :model="holidayApply">
                                 <el-form-item label="请假时间">
                                     <el-date-picker
+                                            v-on:change="handleSelectTime"
                                             v-model="holidaySelectTime"
                                             type="datetimerange"
                                             range-separator="至"
@@ -25,13 +26,16 @@
                                     </el-date-picker>
                                 </el-form-item>
                                 <el-form-item >
-                                    <el-input placeholder="共（小时）" disabled  v-model="holidayApply.hours"></el-input>
+                                    <el-input placeholder="共（小时）"   v-model="holidayApply.hours"></el-input>
                                 </el-form-item>
                                 <el-form-item label="请假理由">
                                     <el-input placeholder="请假理由" v-model="holidayApply.reason"></el-input>
                                 </el-form-item>
                                 <el-form-item label="审批人">
                                     <el-input placeholder="审批人" v-model="holidayApply.assignee"></el-input>
+                                </el-form-item>
+                                <el-form-item>
+                                    <el-button type="primary" @click="handleLeave">提交申请</el-button>
                                 </el-form-item>
                             </el-form>
                         </el-col>
@@ -60,14 +64,21 @@
                     hours: null,
                     assignee: null
                 },
-                holidaySelectTime:''
+                holidaySelectTime:'',
             };
         },
 
         methods: {
-            next() {
-                if (this.active++ > 2) this.active = 0;
+            handleSelectTime(holidaySelectTime){
+                console.log(holidaySelectTime)
+                let startTime = holidaySelectTime[0];
+                let endTime = holidaySelectTime[1];
             },
+            handleLeave(){
+                console.log(this.holidaySelectTime[0])
+                console.log(this.holidayApply)
+            }
+
 
         }
     }

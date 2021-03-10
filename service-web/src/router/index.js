@@ -17,6 +17,10 @@ export const constantRoutes = [
         path: '/workflow',
         component: () => import('@/views/workflow')
     },
+    {
+        path: '/taskList',
+        component: () => import('@/views/workflow/taskList')
+    },
 
 ]
 
