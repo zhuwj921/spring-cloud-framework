@@ -31,7 +31,7 @@ public class AuthController {
     private final MessageFeignService messageFeignService;
 
     @PostMapping("token")
-    public ResponseResult token(@RequestBody @Valid User user) {
+    public ResponseResult<String> token(@RequestBody @Valid User user) {
         String username = user.getUsername();
         String password = user.getPassword();
         User queryResult = userService.findUserByUsername(username);
