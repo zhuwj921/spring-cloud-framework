@@ -1,7 +1,7 @@
 import axios from 'axios'
 import {ElMessage} from 'element-plus'
 
-import {getToken, setToken, removeToken} from './token'
+import {getToken} from './token'
 
 const service = axios.create({
     baseURL: process.env.VUE_APP_API,
@@ -9,7 +9,7 @@ const service = axios.create({
 })
 service.interceptors.request.use(config => {
     if (process.env.NODE_ENV === "development") {
-        config.headers['Authorization'] = "Bearer  " + '831eec5b-71e8-4376-880a-bee4685bc462'
+        config.headers['Authorization'] = "Bearer  " + getToken();
     } else {
         config.headers['Authorization'] = "Bearer  " + getToken();
     }

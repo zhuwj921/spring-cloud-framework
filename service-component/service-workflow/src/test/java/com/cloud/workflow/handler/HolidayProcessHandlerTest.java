@@ -29,7 +29,7 @@ class HolidayProcessHandlerTest {
     private HolidayProcessHandler holidayProcessHandler;
 
     public ProcessInstance createHoliday() {
-        ProcessInstance processInstance = holidayProcessHandler.createHoliday("zhuweijian123");
+        ProcessInstance processInstance = holidayProcessHandler.createHoliday("sysadmin");
         Console.log("ProcessInstance: {}", processInstance.getId());
         return processInstance;
     }
@@ -37,7 +37,7 @@ class HolidayProcessHandlerTest {
     public void submitApply(String processInstanceId) {
         Task task = holidayProcessHandler.getTask(processInstanceId);
         HolidayApply holidayApply = new HolidayApply();
-        holidayApply.setAssignee("zhuwj");
+        holidayApply.setAssignee("sysadmin");
         holidayApply.setEndTime(LocalDateTime.now());
         holidayApply.setStartTime(LocalDateTime.now());
         holidayApply.setHours(0);
@@ -47,7 +47,7 @@ class HolidayProcessHandlerTest {
     }
 
     public Task findTaskByAssignee() {
-        List<Task> list = holidayProcessHandler.findTaskByAssignee("zhuwj");
+        List<Task> list = holidayProcessHandler.findTaskByAssignee("sysadmin");
         Console.log(list);
         return CollUtil.isEmpty(list) ? null : list.get(0);
     }

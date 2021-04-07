@@ -2,9 +2,7 @@ package com.cloud.mall.service.impl;
 
 import com.cloud.common.base.BaseServiceImpl;
 import com.cloud.mall.domain.Order;
-import com.cloud.mall.domain.Product;
 import com.cloud.mall.service.OrderService;
-import com.cloud.mall.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

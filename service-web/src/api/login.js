@@ -1,4 +1,5 @@
 import request from '@/utils/request'
+
 const BASE_PREFIX = '/api/service-auth'
 
 //登录接口

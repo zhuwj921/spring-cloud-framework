@@ -49,7 +49,7 @@
 </template>
 <script>
     import {login} from '@/api/login'
-    import {getToken, setToken, removeToken} from '@/utils/token'
+    import {setToken} from '@/utils/token'
 
     export default {
         name: 'Login',
@@ -77,12 +77,15 @@
         },
         methods: {
             handleLogin() {
-                console.log(this.loginForm);
                 this.$refs["loginRuleForm"].validate((valid) => {
                     if (valid) {
-                        const data = login(this.loginForm)
-                        setToken(data);
-                        this.$router.push('/mall')
+                        login(this.loginForm).then(response => {
+                            setToken(response);
+                            this.$router.push('/mall')
+                        }).catch(error => {
+                            console.log(error);
+                        })
+
                     } else {
                         console.log('error submit!!');
                         return false;
