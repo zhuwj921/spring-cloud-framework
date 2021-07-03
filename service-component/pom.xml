@@ -20,8 +20,6 @@
         <module>service-workflow</module>
     </modules>
 
-
-
     <dependencies>
         <dependency>
             <groupId>com.cloud.zhuwj</groupId>
