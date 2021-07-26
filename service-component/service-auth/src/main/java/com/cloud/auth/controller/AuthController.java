@@ -11,6 +11,8 @@ import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.response.ResponseResult;
 import com.cloud.common.utils.PasswordUtil;
 import com.cloud.common.utils.RedisUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +22,7 @@ import javax.validation.Valid;
 /**
  * @author zhuwj
  */
+@Api(tags = "权限服务接口")
 @Slf4j
 @RequestMapping("/auth")
 @RestController
@@ -30,6 +33,7 @@ public class AuthController {
 
     private final MessageFeignService messageFeignService;
 
+    @ApiOperation(value = "获取访问token")
     @PostMapping("token")
     public ResponseResult<String> token(@RequestBody @Valid User user) {
         String username = user.getUsername();
@@ -51,12 +55,13 @@ public class AuthController {
         return ResponseResult.ok(accessToken);
     }
 
-
+    @ApiOperation(value = "获取用户信息")
     @GetMapping("userInfo")
     public ResponseResult<UserInfo> getUserInfo() {
         return ResponseResult.ok(WebContext.getUserInfo());
     }
 
+    @ApiOperation(value = "获取版本信息")
     @GetMapping("version")
     public ResponseResult<String> getVersion() {
         return ResponseResult.ok(messageFeignService.getVersion());
