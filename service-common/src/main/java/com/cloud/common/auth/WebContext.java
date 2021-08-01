@@ -68,6 +68,12 @@ public class WebContext {
         return getHeaderInfoByKey(GlobalConstant.REQUEST_PATH);
     }
 
+    /**
+     * 获取头部信息信息通过key值
+     *
+     * @param key
+     * @return
+     */
     private static String getHeaderInfoByKey(String key) {
         ServletRequestAttributes attrs = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attrs.getRequest();

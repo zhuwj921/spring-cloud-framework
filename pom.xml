@@ -110,16 +110,17 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>rdc-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://packages.aliyun.com/maven/repository/2055981-snapshot-18kcBw</url>
-        </snapshotRepository>
-        <repository>
-            <id>rdc-releases</id>
-            <name>Nexus Release Repository</name>
-            <url>https://packages.aliyun.com/maven/repository/2055981-release-D8yNFm/</url>
-        </repository>
-    </distributionManagement>
+    <!-- jar上传设置 -->
+    <!--    <distributionManagement>-->
+    <!--        <snapshotRepository>-->
+    <!--            <id>rdc-snapshots</id>-->
+    <!--            <name>Sonatype Nexus Snapshots</name>-->
+    <!--            <url>https://packages.aliyun.com/maven/repository/2055981-snapshot-18kcBw</url>-->
+    <!--        </snapshotRepository>-->
+    <!--        <repository>-->
+    <!--            <id>rdc-releases</id>-->
+    <!--            <name>Nexus Release Repository</name>-->
+    <!--            <url>https://packages.aliyun.com/maven/repository/2055981-release-D8yNFm/</url>-->
+    <!--        </repository>-->
+    <!--    </distributionManagement>-->
 </project>

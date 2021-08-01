@@ -22,7 +22,7 @@ public class TokenProvider {
     /**
      * 创建token 使用jwt方式
      *
-     * @return
+     * @return token
      */
     public static String createToken(String username)  {
         Date date = DateUtil.offsetMinute(new Date(), EXPIRES_AT);
