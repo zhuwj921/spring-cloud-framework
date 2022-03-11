@@ -19,7 +19,6 @@ public class WebContext {
     /**
      * 获取用户信息
      *
-     * @return
      */
     public static UserInfo getUserInfo() {
         String userInfo = getHeaderInfoByKey(GlobalConstant.HEADER_USER);
@@ -33,7 +32,6 @@ public class WebContext {
     /**
      * 获取用户名称
      *
-     * @return
      */
     public static String getUsername() {
         UserInfo userInfo = getUserInfo();
