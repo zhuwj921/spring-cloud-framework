@@ -34,6 +34,10 @@ public interface GlobalConstant {
      * 请求路径
      */
     String REQUEST_PATH = "request_path";
+    /**
+     * mapper解析路径
+     */
+    String MAPPER_SCAN = "com.cloud";
 
     /**
      * 匿名用户id

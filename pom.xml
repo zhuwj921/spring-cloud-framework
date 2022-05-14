@@ -33,11 +33,7 @@
         <!-- Dependency Versions -->
         <spring.cloud-version>Hoxton.SR9</spring.cloud-version>
         <spring.alibaba.cloud-version>2.2.3.RELEASE</spring.alibaba.cloud-version>
-        <hutool.version>5.7.5</hutool.version>
-        <java-jwt.version>3.10.3</java-jwt.version>
-        <springfox.version>3.0.0</springfox.version>
-        <knife4j.version>3.0.2</knife4j.version>
-        <flowable.version>6.6.0</flowable.version>
+
 
         <!-- Maven Plugin Versions -->
         <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>

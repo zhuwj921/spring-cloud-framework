@@ -12,6 +12,14 @@
 
     <artifactId>service-common</artifactId>
 
+    <properties>
+        <hutool.version>5.7.5</hutool.version>
+        <java-jwt.version>3.10.3</java-jwt.version>
+        <springfox.version>3.0.0</springfox.version>
+        <knife4j.version>3.0.2</knife4j.version>
+        <mybatis-plus-boot.version>3.5.1</mybatis-plus-boot.version>
+        <mybatis-plus-generator.version>3.5.2</mybatis-plus-generator.version>
+    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -36,10 +44,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -70,6 +74,20 @@
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
             <version>${java-jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>${mybatis-plus-boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus-generator.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-freemarker</artifactId>
         </dependency>
         <!-- swagger -->
         <dependency>

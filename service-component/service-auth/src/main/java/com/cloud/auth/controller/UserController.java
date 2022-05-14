@@ -1,12 +1,11 @@
 package com.cloud.auth.controller;
 
-import com.cloud.auth.domain.User;
-import com.cloud.auth.service.UserService;
+import com.cloud.auth.entity.User;
+import com.cloud.auth.service.IUserService;
 import com.cloud.common.base.PageEntity;
 import com.cloud.common.response.ResponseResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -23,33 +22,29 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
 
-    private final UserService userService;
+    private final IUserService userService;
 
     @PostMapping
     public ResponseResult<String> create(@RequestBody User user) {
-        userService.create(user);
+        userService.save(user);
         return ResponseResult.ok("创建成功");
     }
 
     @PutMapping
     public ResponseResult<String> update(@RequestBody User user) {
-        userService.update(user);
+        userService.updateById(user);
         return ResponseResult.ok("更新成功");
     }
 
     /**
      * 页数从0开始
+     *
      * @param pageEntity
      * @return
      */
     @PostMapping("page")
-    public ResponseResult<Page<User>> page(@RequestBody PageEntity<User> pageEntity) {
-        Sort sort = Sort.by("id").descending();
-        Pageable pageable = PageRequest.of(pageEntity.getPage() - 1, pageEntity.getSize(),sort);
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("username", ExampleMatcher.GenericPropertyMatchers.contains());
-        Example<User> example = Example.of(pageEntity.getQueryData(), matcher);
-        Page<User> page = userService.page(pageable, example);
-        return ResponseResult.ok(page);
+    public ResponseResult<String> page(@RequestBody PageEntity<User> pageEntity) {
+
+        return ResponseResult.ok("");
     }
 }

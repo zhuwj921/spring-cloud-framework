@@ -5,7 +5,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
@@ -40,14 +39,6 @@ public interface BaseService<T extends BaseEntity> {
      * @param t
      */
     void delete(T t);
-
-    /**
-     * 查询全部
-     * @param specification
-     * @param sort
-     * @return
-     */
-    List<T> findAll(Specification<T> specification, Sort sort);
 
     /**
      * 查询全部

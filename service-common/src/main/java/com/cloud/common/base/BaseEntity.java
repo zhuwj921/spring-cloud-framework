@@ -1,9 +1,11 @@
 package com.cloud.common.base;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.baomidou.mybatisplus.annotation.Version;
 import com.cloud.common.auth.WebContext;
 import lombok.Data;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -16,43 +18,37 @@ import java.time.LocalDateTime;
  */
 
 @Data
-@MappedSuperclass
 public class BaseEntity implements Serializable {
     /**
      * 主键id
      */
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @TableId
     private Long id;
     /**
      * 创建人
      */
-    @Column(name = "create_by", updatable = false, nullable = false)
     private Long createBy;
     /**
      * 创建时间
      */
-    @Column(name = "create_time", updatable = false, nullable = false)
     private LocalDateTime createTime;
     /**
      * 修改人
      */
-    @Column(name = "modified_by", nullable = false)
     private Long modifiedBy;
     /**
      * 修改时间
      */
-    @Column(name = "modified_time", nullable = false)
     private LocalDateTime modifiedTime;
     /**
      * 删除标志
      */
-    @Column(name = "is_deleted", updatable = false, nullable = false, columnDefinition = "bit default b'0'")
+    @TableLogic
     private Boolean deleted;
     /**
      * 版本号
      */
-    @Column(name = "version", nullable = false, columnDefinition = "int default 0")
+    @Version
     private Integer version;
 
 

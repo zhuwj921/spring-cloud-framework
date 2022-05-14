@@ -17,7 +17,6 @@
         <module>service-mall</module>
         <module>service-order</module>
         <module>service-message</module>
-        <module>service-workflow</module>
     </modules>
 
     <dependencies>

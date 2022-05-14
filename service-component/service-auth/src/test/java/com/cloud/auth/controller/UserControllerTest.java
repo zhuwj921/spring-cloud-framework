@@ -1,6 +1,6 @@
 package com.cloud.auth.controller;
 
-import com.cloud.auth.domain.User;
+import com.cloud.auth.entity.User;
 import com.cloud.common.utils.PasswordUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;

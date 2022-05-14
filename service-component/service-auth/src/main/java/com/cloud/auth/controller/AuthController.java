@@ -1,9 +1,9 @@
 package com.cloud.auth.controller;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.cloud.auth.domain.User;
+import com.cloud.auth.entity.User;
 import com.cloud.auth.facade.fegin.MessageFeignService;
-import com.cloud.auth.service.UserService;
+import com.cloud.auth.service.IUserService;
 import com.cloud.common.auth.TokenProvider;
 import com.cloud.common.auth.UserInfo;
 import com.cloud.common.auth.WebContext;
@@ -29,7 +29,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final UserService userService;
+    private final IUserService userService;
 
     private final MessageFeignService messageFeignService;
 
@@ -38,7 +38,7 @@ public class AuthController {
     public ResponseResult<String> token(@RequestBody @Valid User user) {
         String username = user.getUsername();
         String password = user.getPassword();
-        User queryResult = userService.findUserByUsername(username);
+        User queryResult = userService.lambdaQuery().eq(User::getUsername, username).one();
         if (queryResult == null) {
             return ResponseResult.error("账号不存在!");
         }

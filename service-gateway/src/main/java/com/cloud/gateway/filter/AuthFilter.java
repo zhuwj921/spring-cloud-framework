@@ -8,8 +8,7 @@ import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.exception.AuthException;
 import com.cloud.common.utils.RedisUtil;
 import com.cloud.gateway.config.AuthProperties;
-import com.cloud.gateway.domain.RequestLog;
-import com.cloud.gateway.service.RequestLogService;
+import com.cloud.gateway.entity.RequestLog;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
@@ -42,7 +41,6 @@ public class AuthFilter implements WebFilter {
 
     private final AuthProperties authProperties;
 
-    private final RequestLogService requestLogService;
 
 
     @Override
@@ -100,7 +98,7 @@ public class AuthFilter implements WebFilter {
         requestLog.setDeleted(Boolean.FALSE);
         requestLog.setVersion(0);
         try {
-            requestLogService.create(requestLog);
+          //  requestLogService.create(requestLog);
         } catch (Exception e) {
             log.error("gateway log create error !!!", e);
         }
