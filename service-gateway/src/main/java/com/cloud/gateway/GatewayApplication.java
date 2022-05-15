@@ -1,6 +1,7 @@
 package com.cloud.gateway;
 
 import com.cloud.common.constant.GlobalConstant;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,7 +10,8 @@ import org.springframework.context.annotation.ComponentScan;
  * @author: zhuwj
  * @create: 2020-09-21 14:37
  **/
-@ComponentScan(GlobalConstant.MAPPER_SCAN)
+@ComponentScan(GlobalConstant.COMPONENT_SCAN)
+@MapperScan(GlobalConstant.MAPPER_SCAN)
 @SpringCloudApplication
 public class GatewayApplication {
     public static void main(String[] args) {

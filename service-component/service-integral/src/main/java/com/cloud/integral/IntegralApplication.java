@@ -1,4 +1,4 @@
-package com.cloud.message;
+package com.cloud.integral;
 
 import com.cloud.common.constant.GlobalConstant;
 import org.mybatis.spring.annotation.MapperScan;
@@ -10,14 +10,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
  * @author zhuwj
+ * @description: 积分服务启动类
  */
 @EnableFeignClients
 @EnableTransactionManagement
 @ComponentScan(GlobalConstant.COMPONENT_SCAN)
 @MapperScan(GlobalConstant.MAPPER_SCAN)
 @SpringCloudApplication
-public class MessageApplication {
+public class IntegralApplication {
     public static void main(String[] args) {
-        SpringApplication.run(MessageApplication.class, args);
+        SpringApplication.run(IntegralApplication.class, args);
     }
 }

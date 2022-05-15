@@ -35,14 +35,19 @@ public interface GlobalConstant {
      */
     String REQUEST_PATH = "request_path";
     /**
+     * 组件解析路径
+     */
+    String COMPONENT_SCAN = "com.cloud";
+    /**
      * mapper解析路径
      */
     String MAPPER_SCAN = "com.cloud.*.mapper";
 
+
     /**
      * 匿名用户id
      */
-    long ANONYMOUS_USER_ID = -1L;
+    long ANONYMOUS_USER_ID = 0L;
     /**
      * redis 中用户缓存时间
      */

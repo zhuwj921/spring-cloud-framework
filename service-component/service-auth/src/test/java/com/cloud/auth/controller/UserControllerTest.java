@@ -1,6 +1,7 @@
 package com.cloud.auth.controller;
 
 import com.cloud.auth.entity.User;
+import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.utils.PasswordUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,20 +21,14 @@ public class UserControllerTest {
     @Test
     public void create() {
         User user = new User();
-        user.setId(1l);
-        user.setCreateBy(1l);
-        user.setCreateTime(LocalDateTime.now());
-        user.setModifiedBy(1l);
-        user.setModifiedTime(LocalDateTime.now());
+        user.init(GlobalConstant.ANONYMOUS_USER_ID);
         user.setGender(0);
         user.setEmail("774623096@qq.com");
         user.setNickName("sysadmin");
         user.setPhone("123456789");
-        user.setDeleted(false);
-        user.setVersion(0);
         user.setLastLoginTime(LocalDateTime.now());
         user.setUsername("sysadmin");
-        user.setPassword(PasswordUtil.generatePassword(user.getUsername(),"123456789"));
+        user.setPassword(PasswordUtil.generatePassword(user.getUsername(), "123456789"));
         userController.create(user);
     }
 

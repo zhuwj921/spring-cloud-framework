@@ -1,0 +1,43 @@
+server:
+  port: 8930
+spring:
+  application:
+    name: service-integral
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+  main:
+    allow-bean-definition-overriding: true # 意思是后来发现的bean会覆盖之前相同名称的bean
+  redis:
+    redisson:
+      file: classpath:redisson.yml
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+
+#Sharding Sphere 不支持数据库健康检查，关闭actuate 的数据库健康检查即可。
+management:
+  health:
+    db:
+      enabled: false
+sharding:
+  jdbc:
+    datasource:
+      names: ds0
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
+        username: root
+        password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
+    config:
+      props:
+        sql.show: true
+      sharding:
+        tables:
+          integral_record:
+            actualDataNodes: ds0.integral_record$->{0..9}
+            tableStrategy:
+              inline:
+                shardingColumn: create_by
+                algorithm-expression: integral_record$->{create_by % 9 }

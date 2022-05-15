@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 /**
- * Description: 响应code枚举
+ * Description: 积分类型
  *
  * @author zhuwj
  * @version V1.0
@@ -13,19 +13,19 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public enum  ResponseCodeEnum {
+public enum IntegralTypeEnum {
     /**
-     * 请求成功
+     * 增加
      */
-    OK("00000", "OK"),
+    GIVE(1, "增加"),
     /**
-     * 请求失败
+     * 消费
      */
-    ERROR("11111", "ERROR");
+    CONSUMER(2, "消费");
 
-    private final String code;
+    private final Integer code;
 
-    private final String msg;
+    private final String label;
 
 
 }

@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
-    password: root
+    password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
     driver-class: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -28,9 +28,8 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
   redis:
-    database: 0
-    host: 103.39.210.10
-    password: cXLtoAfE85WkUi5R
+    redisson:
+      file: classpath:redisson.yml
 feign:
   client:
     config:
@@ -38,3 +37,6 @@ feign:
         connectTimeout: 5000
         readTimeout: 5000
         loggerLevel: basic
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml

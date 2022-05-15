@@ -36,9 +36,8 @@ spring:
       connection-timeout: 30000
       connection-test-query: SELECT 1
   redis:
-    # redisson
     redisson:
-      file: classpath:redisson.yaml
+      file: classpath:redisson.yml
 
 
 auth:

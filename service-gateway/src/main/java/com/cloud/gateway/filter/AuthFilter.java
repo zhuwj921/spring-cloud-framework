@@ -6,7 +6,6 @@ import cn.hutool.json.JSONUtil;
 import com.cloud.common.auth.UserInfo;
 import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.exception.AuthException;
-import com.cloud.common.utils.RedisUtil;
 import com.cloud.gateway.config.AuthProperties;
 import com.cloud.gateway.entity.RequestLog;
 import lombok.RequiredArgsConstructor;
@@ -42,7 +41,6 @@ public class AuthFilter implements WebFilter {
     private final AuthProperties authProperties;
 
 
-
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, WebFilterChain chain) {
         log.debug("AuthFilter request start");
@@ -68,7 +66,8 @@ public class AuthFilter implements WebFilter {
             log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_ID);
             throw new AuthException("accessToken not exist");
         }
-        UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
+        //UserInfo userInfo = RedisUtil.get(accessToken, UserInfo.class);
+        UserInfo userInfo = null;
         if (userInfo == null) {
             log.info("AuthFilter userInfo is null ");
             log(requestUrl, GlobalConstant.ANONYMOUS_USER, GlobalConstant.ANONYMOUS_USER_ID);
@@ -98,7 +97,7 @@ public class AuthFilter implements WebFilter {
         requestLog.setDeleted(Boolean.FALSE);
         requestLog.setVersion(0);
         try {
-          //  requestLogService.create(requestLog);
+            //  requestLogService.create(requestLog);
         } catch (Exception e) {
             log.error("gateway log create error !!!", e);
         }

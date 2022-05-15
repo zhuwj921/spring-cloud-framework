@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.integral.mapper.UserCountMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.cloud.integral.entity.UserCount">
+        <result column="id" property="id" />
+        <result column="create_by" property="createBy" />
+        <result column="create_time" property="createTime" />
+        <result column="is_deleted" property="deleted" />
+        <result column="modified_by" property="modifiedBy" />
+        <result column="modified_time" property="modifiedTime" />
+        <result column="version" property="version" />
+        <result column="username" property="username" />
+        <result column="sum_integral" property="sumIntegral" />
+        <result column="consume_integral" property="consumeIntegral" />
+        <result column="give_integral" property="giveIntegral" />
+        <result column="rank" property="rank" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        create_by,
+        create_time,
+        is_deleted,
+        modified_by,
+        modified_time,
+        version,
+        username, sum_integral, consume_integral, give_integral, rank
+    </sql>
+
+</mapper>

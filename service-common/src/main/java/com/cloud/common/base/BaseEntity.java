@@ -1,8 +1,6 @@
 package com.cloud.common.base;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.baomidou.mybatisplus.annotation.Version;
+import com.baomidou.mybatisplus.annotation.*;
 import com.cloud.common.auth.WebContext;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -27,7 +25,7 @@ public class BaseEntity implements Serializable {
     /**
      * 主键id
      */
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Long id;
     /**
      * 创建人
@@ -55,6 +53,7 @@ public class BaseEntity implements Serializable {
      * 删除标志
      */
     @TableLogic
+    @TableField("is_deleted")
     private Boolean deleted;
     /**
      * 版本号
@@ -64,10 +63,14 @@ public class BaseEntity implements Serializable {
 
 
     public void init() {
+        init(WebContext.getUserId());
+    }
+
+    public void init(Long userId) {
         LocalDateTime now = LocalDateTime.now();
-        this.createBy = WebContext.getUserId();
+        this.createBy = userId;
         this.createTime = now;
-        this.modifiedBy = WebContext.getUserId();
+        this.modifiedBy = userId;
         this.modifiedTime = now;
         this.deleted = Boolean.FALSE;
         this.version = 0;

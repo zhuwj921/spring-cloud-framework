@@ -1,6 +1,7 @@
 package com.cloud.auth;
 
 import com.cloud.common.constant.GlobalConstant;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -12,7 +13,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 @EnableFeignClients
 @EnableTransactionManagement
-@ComponentScan(GlobalConstant.MAPPER_SCAN)
+@ComponentScan(GlobalConstant.COMPONENT_SCAN)
+@MapperScan(GlobalConstant.MAPPER_SCAN)
 @SpringCloudApplication
 public class AuthApplication {
     public static void main(String[] args) {

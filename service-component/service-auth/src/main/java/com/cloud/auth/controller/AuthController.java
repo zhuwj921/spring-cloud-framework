@@ -7,10 +7,8 @@ import com.cloud.auth.service.IUserService;
 import com.cloud.common.auth.TokenProvider;
 import com.cloud.common.auth.UserInfo;
 import com.cloud.common.auth.WebContext;
-import com.cloud.common.constant.GlobalConstant;
 import com.cloud.common.response.ResponseResult;
 import com.cloud.common.utils.PasswordUtil;
-import com.cloud.common.utils.RedisUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -51,7 +49,7 @@ public class AuthController {
         UserInfo userInfo = new UserInfo();
         BeanUtil.copyProperties(queryResult, userInfo);
         userInfo.setUserId(queryResult.getId());
-        RedisUtil.set(accessToken, userInfo, GlobalConstant.REDIS_USER_TIME);
+        //RedisUtil.set(accessToken, userInfo, GlobalConstant.REDIS_USER_TIME);
         return ResponseResult.ok(accessToken);
     }
 

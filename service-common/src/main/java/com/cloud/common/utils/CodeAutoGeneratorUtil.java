@@ -21,13 +21,14 @@ public class CodeAutoGeneratorUtil {
     public static final String SERVICE = "service-";
     public static final String GATEWAY = "gateway";
     public static final String AUTH = "auth";
+    public static final String INTEGRAL = "integral";
 
     public static final String SERVICE_COMPONENT = "service-component/";
 
 
     public static void main(String[] argus) {
-        String module = AUTH;
-        String tableName = "auth_role_resource_relation";
+        String module = INTEGRAL;
+        String tableName = "integral_record";
         //是否存在下一级
         String next = SERVICE_COMPONENT;
         generator(module, tableName, next);
@@ -42,7 +43,6 @@ public class CodeAutoGeneratorUtil {
                 .globalConfig(builder -> {
                     builder.author("zhuwj") // 设置作者
                             .enableSwagger() // 开启 swagger 模式
-                            .fileOverride()
                             .disableOpenDir()
                             .outputDir(outputDir); // 指定输出目录
                 })
@@ -53,7 +53,7 @@ public class CodeAutoGeneratorUtil {
                 })
                 .strategyConfig(builder -> {
                     builder.addInclude(tableName) // 设置需要生成的表名
-                            .addTablePrefix(parentName)// 设置过滤表前缀
+                          //  .addTablePrefix(parentName)// 设置过滤表前缀
                             .entityBuilder()
                             .superClass("com.cloud.common.base.BaseEntity")
                             .versionColumnName("version")
