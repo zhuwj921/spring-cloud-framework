@@ -17,7 +17,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
-    password: root
+    password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
     driver-class: com.mysql.cj.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
@@ -35,17 +35,14 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-  jpa:
-    hibernate:
-      #create 重新生成全部表 update更新表
-      ddl-auto: update
   redis:
-    database: 0
-    host: 103.39.210.10
-    password: cXLtoAfE85WkUi5R
-
+    # redisson
+    redisson:
+      file: classpath:redisson.yaml
 
 
 auth:
   ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/doc.html,/service-auth/swagger-ui.html,/service-auth/swagger-ui/*,/service-auth/swagger-resources/**,/service-auth/v2/api-docs,/service-auth/v3/api-docs,/service-auth/webjars/**
 
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml

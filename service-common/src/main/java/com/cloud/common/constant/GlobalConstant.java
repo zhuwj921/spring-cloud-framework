@@ -37,7 +37,7 @@ public interface GlobalConstant {
     /**
      * mapper解析路径
      */
-    String MAPPER_SCAN = "com.cloud";
+    String MAPPER_SCAN = "com.cloud.*.mapper";
 
     /**
      * 匿名用户id

@@ -27,7 +27,7 @@ public class CodeAutoGeneratorUtil {
 
     public static void main(String[] argus) {
         String module = AUTH;
-        String tableName = "auth_role";
+        String tableName = "auth_role_resource_relation";
         //是否存在下一级
         String next = SERVICE_COMPONENT;
         generator(module, tableName, next);
