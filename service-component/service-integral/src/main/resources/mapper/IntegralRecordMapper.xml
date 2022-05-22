@@ -4,23 +4,24 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.cloud.integral.entity.IntegralRecord">
-        <result column="id" property="id" />
-        <result column="create_by" property="createBy" />
-        <result column="create_time" property="createTime" />
-        <result column="is_deleted" property="deleted" />
-        <result column="modified_by" property="modifiedBy" />
-        <result column="modified_time" property="modifiedTime" />
-        <result column="version" property="version" />
-        <result column="integral_no" property="integralNo" />
-        <result column="source" property="source" />
-        <result column="integral_type" property="integralType" />
-        <result column="num" property="num" />
-        <result column="lose_efficacy_time" property="loseEfficacyTime" />
+        <result column="id" property="id"/>
+        <result column="create_by" property="createBy"/>
+        <result column="create_time" property="createTime"/>
+        <result column="is_deleted" property="deleted"/>
+        <result column="modified_by" property="modifiedBy"/>
+        <result column="modified_time" property="modifiedTime"/>
+        <result column="version" property="version"/>
+        <result column="integral_no" property="integralNo"/>
+        <result column="source" property="source"/>
+        <result column="integral_type" property="integralType"/>
+        <result column="num" property="num"/>
+        <result column="lose_efficacy_time" property="loseEfficacyTime"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id,
+        id
+        ,
         create_by,
         create_time,
         is_deleted,
@@ -30,4 +31,23 @@
         integral_no, source, integral_type, num, lose_efficacy_time
     </sql>
 
+
+    <update id="createTable">
+        CREATE TABLE ${tableName}
+        (
+            `id`                 bigint                                                 NOT NULL COMMENT '主键id',
+            `create_by`          bigint                                                 NOT NULL COMMENT '创建人',
+            `create_time`        datetime(6) NOT NULL COMMENT '创建时间',
+            `is_deleted`         bit(1)                                                 NOT NULL DEFAULT b'0' COMMENT '删除标志',
+            `modified_by`        bigint                                                 NOT NULL COMMENT '更新人',
+            `modified_time`      datetime(6) NOT NULL COMMENT '更新时间',
+            `version`            int                                                    NOT NULL DEFAULT 0 COMMENT '版本',
+            `integral_no`        varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '积分编号',
+            `source`             int                                                    NOT NULL COMMENT '积分来源',
+            `integral_type`      int                                                    NOT NULL COMMENT '积分类型：增加，消费',
+            `num`                int UNSIGNED NOT NULL DEFAULT 0 COMMENT '积分数量',
+            `lose_efficacy_time` datetime                                               NOT NULL COMMENT '积分失效时间',
+            PRIMARY KEY (`id`) USING BTREE
+        ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic COMMENT '积分记录表';
+    </update>
 </mapper>

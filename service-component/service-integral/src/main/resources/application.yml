@@ -23,11 +23,29 @@ management:
 sharding:
   jdbc:
     datasource:
-      names: ds0
-      ds0:
+      names: ds1,ds2,ds3,ds4
+      ds1:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        jdbc-url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/service_integral_1?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
+        username: root
+        password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
+      ds2:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/service_integral_2?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
+        username: root
+        password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
+      ds3:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/service_integral_3?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
+        username: root
+        password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
+      ds4:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://127.0.0.1:3306/service_integral_4?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
         username: root
         password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
     config:
@@ -36,8 +54,12 @@ sharding:
       sharding:
         tables:
           integral_record:
-            actualDataNodes: ds0.integral_record$->{0..9}
+            actualDataNodes: ds$->{1..4}.integral_record$->{1..256}
             tableStrategy:
-              inline:
+              standard:
+                shardingColumn: id
+                precise-algorithm-class-name: com.cloud.integral.config.IntegralTableStrategy
+            databaseStrategy:
+              standard:
                 shardingColumn: create_by
-                algorithm-expression: integral_record$->{create_by % 9 }
+                precise-algorithm-class-name: com.cloud.integral.config.IntegralDatabaseStrategy
