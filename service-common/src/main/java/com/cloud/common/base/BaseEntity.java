@@ -22,6 +22,9 @@ import java.time.LocalDateTime;
 
 @Data
 public class BaseEntity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * 主键id
      */

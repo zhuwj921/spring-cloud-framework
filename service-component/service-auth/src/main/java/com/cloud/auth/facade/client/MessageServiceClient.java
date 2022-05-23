@@ -1,4 +1,4 @@
-package com.cloud.auth.facade.fegin.client;
+package com.cloud.auth.facade.client;
 
 import com.cloud.common.response.ResponseResult;
 import org.springframework.cloud.openfeign.FeignClient;

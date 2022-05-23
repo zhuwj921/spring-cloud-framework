@@ -2,7 +2,7 @@ package com.cloud.auth.controller;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.cloud.auth.entity.User;
-import com.cloud.auth.facade.fegin.MessageFeignService;
+import com.cloud.auth.facade.MessageFeignService;
 import com.cloud.auth.service.IUserService;
 import com.cloud.common.auth.TokenProvider;
 import com.cloud.common.auth.UserInfo;

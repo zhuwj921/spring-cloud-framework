@@ -1,6 +1,6 @@
-package com.cloud.auth.facade.fegin;
+package com.cloud.auth.facade;
 
-import com.cloud.auth.facade.fegin.client.MessageServiceClient;
+import com.cloud.auth.facade.client.MessageServiceClient;
 import com.cloud.common.utils.ResponseResultValidateUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

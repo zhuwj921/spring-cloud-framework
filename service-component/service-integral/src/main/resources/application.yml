@@ -54,10 +54,9 @@ sharding:
       sharding:
         tables:
           integral_record:
-            actualDataNodes: ds$->{1..4}.integral_record$->{1..256}
             tableStrategy:
               standard:
-                shardingColumn: id
+                shardingColumn: create_by
                 precise-algorithm-class-name: com.cloud.integral.config.IntegralTableStrategy
             databaseStrategy:
               standard:

@@ -25,7 +25,7 @@ public class IIntegralRecordServiceTest {
         List<IntegralRecord> list = new ArrayList<>();
         for (int i = 0; i < 1; i++) {
             IntegralRecord record = new IntegralRecord();
-            record.init(1l);
+            record.init(1528729738571960322L);
             record.setIntegralNo(IdUtil.objectId());
             record.setSource(IntegralSourceEnum.USER_REGISTER.getCode());
             record.setIntegralType(IntegralTypeEnum.CONSUMER.getCode());

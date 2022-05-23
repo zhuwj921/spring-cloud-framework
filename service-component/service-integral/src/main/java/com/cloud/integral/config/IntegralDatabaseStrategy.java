@@ -1,5 +1,8 @@
 package com.cloud.integral.config;
 
+import cn.hutool.core.convert.Convert;
+import cn.hutool.core.util.HashUtil;
+import cn.hutool.core.util.StrUtil;
 import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
 import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +23,10 @@ public class IntegralDatabaseStrategy implements PreciseShardingAlgorithm<Long> 
         String columnName = preciseShardingValue.getColumnName();
         Comparable value = preciseShardingValue.getValue();
         log.info("logicTableName:{},columnName:{},value:{}", logicTableName, columnName, value);
-        return "ds1";
+        int hashValue = HashUtil.fnvHash(Convert.toStr(value));
+        int suffix = hashValue % IntegralRecordConfig.DATABASE_NODES;
+        String database = StrUtil.format("{}{}", IntegralRecordConfig.DATABASE_PREFIX_NAME, suffix);
+        log.info("IntegralDatabaseStrategy database: {}", database);
+        return database;
     }
 }
