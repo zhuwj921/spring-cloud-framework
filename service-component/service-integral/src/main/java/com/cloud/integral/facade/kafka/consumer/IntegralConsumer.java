@@ -1,11 +1,13 @@
 package com.cloud.integral.facade.kafka.consumer;
 
-import cn.hutool.core.lang.Console;
+import cn.hutool.json.JSONUtil;
 import com.cloud.common.constant.KafkaConstant;
+import com.cloud.common.model.dto.IntegralDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Component;
 
 /**
@@ -20,9 +22,17 @@ public class IntegralConsumer {
 
 
     @KafkaListener(topics = KafkaConstant.INTEGRAL_TOPIC)
-    public void onMessage(ConsumerRecord<?, ?> record) {
-        Console.log("开始消费");
-        Console.log(record);
-        Console.log(record.value());
+    public void onMessage(ConsumerRecord<String, String> record, Acknowledgment ack) {
+        try {
+            log.info("IntegralConsumer onMessage topic: {} , partition: {} ", record.topic(), record.partition());
+            String value = record.value();
+            log.info("IntegralConsumer : {} ", value);
+            IntegralDTO integral = JSONUtil.toBean(value, IntegralDTO.class);
+            log.info("integral : {} ", integral.toString());
+            ack.acknowledge();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+        }
     }
 }

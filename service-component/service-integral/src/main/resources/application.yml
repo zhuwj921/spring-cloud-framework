@@ -11,7 +11,23 @@ spring:
   redis:
     redisson:
       file: classpath:redisson.yml
-
+  kafka:
+    client-id: service-integral
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3
+      acks: all
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    streams:
+      replication-factor: 3
+    consumer:
+      enable-auto-commit: false
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      group-id: defaultConsumerGroup
+      auto-offset-reset: earliest
+      auto-commit-interval: 1000
+    listener:
+      ack-mode: MANUAL_IMMEDIATE
 mybatis-plus:
   mapper-locations: classpath:mapper/*Mapper.xml
 
