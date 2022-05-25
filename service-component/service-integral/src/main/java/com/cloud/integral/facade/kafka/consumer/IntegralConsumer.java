@@ -31,7 +31,8 @@ public class IntegralConsumer {
             log.info("integral : {} ", integral.toString());
             ack.acknowledge();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("IntegralConsumer integral_topic error ", e);
+
         } finally {
         }
     }
