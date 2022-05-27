@@ -23,7 +23,7 @@
 
     <properties>
         <!-- Project revision -->
-        <revision>2.0.2-SNAPSHOT</revision>
+        <revision>3.0.0-SNAPSHOT</revision>
 
         <!-- Project properties -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

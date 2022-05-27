@@ -18,7 +18,6 @@ import java.util.Collection;
 public class IntegralDatabaseStrategy implements PreciseShardingAlgorithm<Long> {
     @Override
     public String doSharding(Collection<String> collection, PreciseShardingValue<Long> preciseShardingValue) {
-        //可以获取三个值，也就是course逻辑表名，columnName id,value 获取的值
         String logicTableName = preciseShardingValue.getLogicTableName();
         String columnName = preciseShardingValue.getColumnName();
         Comparable value = preciseShardingValue.getValue();
