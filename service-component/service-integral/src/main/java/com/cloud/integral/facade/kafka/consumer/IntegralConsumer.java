@@ -32,8 +32,8 @@ public class IntegralConsumer {
             ack.acknowledge();
         } catch (Exception e) {
             log.error("IntegralConsumer integral_topic error ", e);
-
         } finally {
+
         }
     }
 }
