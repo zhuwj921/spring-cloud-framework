@@ -1,15 +1,14 @@
 package com.cloud.integral.config;
 
 import cn.hutool.core.convert.Convert;
-import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.HashUtil;
 import cn.hutool.core.util.StrUtil;
 import io.shardingsphere.api.algorithm.sharding.PreciseShardingValue;
 import io.shardingsphere.api.algorithm.sharding.standard.PreciseShardingAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Date;
 
 /**
  * @author zhuwj
@@ -23,7 +22,7 @@ public class IntegralTableStrategy implements PreciseShardingAlgorithm<Long> {
         String logicTableName = preciseShardingValue.getLogicTableName();
         String columnName = preciseShardingValue.getColumnName();
         Comparable value = preciseShardingValue.getValue();
-        int year = DateUtil.year(new Date());
+        int year = LocalDateTime.now().getYear();
         log.info("logicTableName:{},columnName:{},value:{}", logicTableName, columnName, value);
         int hashValue = HashUtil.fnvHash(Convert.toStr(value));
         int suffix = hashValue % IntegralRecordConfig.TABLE_NODES;

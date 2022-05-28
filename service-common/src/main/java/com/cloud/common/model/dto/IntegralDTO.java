@@ -23,9 +23,13 @@ import java.time.LocalDateTime;
 public class IntegralDTO implements Serializable {
     private static final long serialVersionUID = 510364419281184694L;
     /**
+     * 积分编号
+     */
+    private String integralNo;
+    /**
      * 积分数量
      */
-    private Integer integralNum;
+    private Integer num;
     /**
      * 积分来源类型
      */
@@ -41,7 +45,7 @@ public class IntegralDTO implements Serializable {
     /**
      * 积分获取时间
      */
-    @JsonFormat(shape =JsonFormat.Shape.STRING,pattern ="yyyy-MM-dd HH:mm:ss",timezone ="GMT+8")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     private LocalDateTime integralTime;

@@ -11,11 +11,11 @@ public interface IntegralRecordConfig {
      */
     String TABLE_PREFIX_NAME = "integral_record";
     /**
-     * 表切片数量
+     * 表切片数量(0-255)
      */
     int TABLE_NODES = 256;
     /**
-     * 数据库切片数量
+     * 数据库切片数量(0-3)
      */
     int DATABASE_NODES = 4;
     /**

@@ -17,15 +17,17 @@ public enum IntegralSourceEnum {
     /**
      * 请求成功
      */
-    USER_REGISTER(1, "用户注册"),
+    USER_REGISTER(1, "用户注册", 200),
     /**
      * 每日签到
      */
-    EVERYDAY_SIGN(2, "每日签到");
+    EVERYDAY_SIGN(2, "每日签到", 10);
 
     private final Integer code;
 
     private final String label;
+
+    private final Integer integralNum;
 
 
 }
