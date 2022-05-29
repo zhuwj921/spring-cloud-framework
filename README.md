@@ -1,26 +1,33 @@
 # spring-cloud-framework 
-> SpringCloud 微服务学习使用与实践，结合相关业务进行验证等。
+> - SpringCloud 微服务学习使用与实践，结合相关业务进行验证等。
 > 使用nacos作为服务注册中心，[nacos文档](https://nacos.io/zh-cn/index.html)
 > [阿里云maven](https://packages.aliyun.com/maven)
+> - zookeeper
+> - Kafka
+> - Redis
+> - Mysql
 ## 模块版本 
 
-| 名称   | 版本                  |
-| ------ | -------------------- |
-| spring-boot        | 2.3.7.RELEASE         |
-| spring-cloud       | Hoxton.SR9          |
-| spring-cloud-alibaba       | 2.2.3.RELEASE        |
-| lombok | 1.18.12          |
-| hutool| 5.7.5|
-
+| 名称                   | 版本             |
+|----------------------|----------------|
+| spring-boot          | 2.3.7.RELEASE  |
+| spring-cloud         | Hoxton.SR9     |
+| spring-cloud-alibaba | 2.2.3.RELEASE  |
+| lombok               | 1.18.12        |
+| hutool               | 5.8.1          |
+| Kafka                | 2.5.10.RELEASE |
+| sharding-jdbc        | 3.1.0          |
 ## 服务列表
 
-| 名称   | 端口  |描述                |
-| ------ | --- |--------------------|
-| service-common |  |模块公用功能和属性|
-| service-gateway | 8900 |网关服务|
-| service-auth | 8910 |权限服务|
-| service-mall | 8920 |商城服务|
-
+| 名称               | 端口   | 描述        |
+|------------------|------|-----------|
+| service-common   |      | 模块公用功能和属性 |
+| service-gateway  | 8900 | 网关服务      |
+| service-auth     | 8910 | 权限服务      |
+| service-mall     | 8920 | 商城服务      |
+| service-message  | 8930 | 消息服务      |
+| service-order    | 8940 | 订单服务      |
+| service-integral | 8950 | 积分服务      |
 
 
 ## 公共模块(services-common)
@@ -49,6 +56,23 @@
 - 自定义模板
 
 
-## 权限(service-auth)
+## 权限服务(service-auth)
 
 > 权限相关信息功能 
+
+## 商城服务(service-mall)
+
+> 商城相关功能 
+
+## 消息服务(service-message)
+
+> 消息相关功能
+
+## 订单服务(service-order)
+
+> 订单相关功能
+
+
+## 积分服务(service-integral)
+
+> 积分相关功能 

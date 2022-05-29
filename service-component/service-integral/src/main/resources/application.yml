@@ -1,5 +1,5 @@
 server:
-  port: 8930
+  port: 8950
 spring:
   application:
     name: service-integral
