@@ -1,6 +1,6 @@
 package com.cloud.integral.mapper;
 
-import com.cloud.integral.entity.UserCount;
+import com.cloud.integral.entity.IntegralUserCount;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * </p>
  *
  * @author zhuwj
- * @since 2022-05-15
+ * @since 2022-05-29
  */
-public interface UserCountMapper extends BaseMapper<UserCount> {
+public interface IntegralUserCountMapper extends BaseMapper<IntegralUserCount> {
 
 }

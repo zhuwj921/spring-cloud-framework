@@ -10,17 +10,17 @@ import lombok.Setter;
 
 /**
  * <p>
- *
+ * 
  * </p>
  *
  * @author zhuwj
- * @since 2022-05-15
+ * @since 2022-05-29
  */
 @Getter
 @Setter
 @TableName("integral_user_count")
-@ApiModel(value = "UserCount对象", description = "用户积分表")
-public class UserCount extends BaseEntity {
+@ApiModel(value = "IntegralUserCount对象", description = "积分统计对象")
+public class IntegralUserCount extends BaseEntity {
 
     @ApiModelProperty("用户名称")
     @TableField("username")
@@ -39,8 +39,8 @@ public class UserCount extends BaseEntity {
     private Integer giveIntegral;
 
     @ApiModelProperty("积分排名")
-    @TableField("rank")
-    private Integer rank;
+    @TableField("integral_rank")
+    private Integer integralRank;
 
 
 }

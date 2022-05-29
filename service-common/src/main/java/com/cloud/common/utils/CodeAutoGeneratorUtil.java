@@ -28,7 +28,7 @@ public class CodeAutoGeneratorUtil {
 
     public static void main(String[] argus) {
         String module = INTEGRAL;
-        String tableName = "integral_error_record";
+        String tableName = "integral_user_count";
         //是否存在下一级
         String next = SERVICE_COMPONENT;
         generator(module, tableName, next);

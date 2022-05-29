@@ -3,9 +3,7 @@ package com.cloud.integral.facade.kafka.consumer;
 import cn.hutool.json.JSONUtil;
 import com.cloud.common.constant.KafkaConstant;
 import com.cloud.common.model.dto.IntegralDTO;
-import com.cloud.integral.entity.IntegralRecord;
-import com.cloud.integral.facade.kafka.conveter.IntegralConverter;
-import com.cloud.integral.service.IIntegralRecordService;
+import com.cloud.integral.service.IIntegralUserCountService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -23,8 +21,7 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 public class IntegralConsumer {
 
-    private final IIntegralRecordService integralRecordService;
-
+    private final IIntegralUserCountService integralUserCountService;
 
 
     @KafkaListener(topics = KafkaConstant.INTEGRAL_TOPIC)
@@ -35,12 +32,12 @@ public class IntegralConsumer {
             log.info("IntegralConsumer : {} ", value);
             IntegralDTO integral = JSONUtil.toBean(value, IntegralDTO.class);
             log.info("integral : {} ", integral.toString());
-            //积分处理操作
-            IntegralRecord integralRecord = IntegralConverter.toIntegralRecord(integral);
-            integralRecordService.save(integralRecord);
+            integralUserCountService.integralCountAndRecordChange(integral);
             ack.acknowledge();
         } catch (Exception e) {
             log.error("IntegralConsumer integral_topic error ", e);
         }
     }
+
+
 }

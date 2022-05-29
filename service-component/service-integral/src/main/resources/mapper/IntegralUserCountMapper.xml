@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.cloud.integral.mapper.UserCountMapper">
+<mapper namespace="com.cloud.integral.mapper.IntegralUserCountMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.cloud.integral.entity.UserCount">
+    <resultMap id="BaseResultMap" type="com.cloud.integral.entity.IntegralUserCount">
         <result column="id" property="id" />
         <result column="create_by" property="createBy" />
         <result column="create_time" property="createTime" />
@@ -15,7 +15,7 @@
         <result column="sum_integral" property="sumIntegral" />
         <result column="consume_integral" property="consumeIntegral" />
         <result column="give_integral" property="giveIntegral" />
-        <result column="rank" property="rank" />
+        <result column="integral_rank" property="integralRank" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
@@ -27,7 +27,7 @@
         modified_by,
         modified_time,
         version,
-        username, sum_integral, consume_integral, give_integral, rank
+        username, sum_integral, consume_integral, give_integral, `integralRank`
     </sql>
 
 </mapper>
