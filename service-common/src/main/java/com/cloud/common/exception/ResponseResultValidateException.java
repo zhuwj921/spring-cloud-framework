@@ -16,8 +16,6 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @Getter
 public class ResponseResultValidateException extends RuntimeException {
 
-    private Integer status = UNAUTHORIZED.value();
-
     public ResponseResultValidateException(CharSequence template, Object... params) {
         super(StrUtil.format(template, params));
     }

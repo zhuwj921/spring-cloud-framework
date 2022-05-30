@@ -16,7 +16,7 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 @Getter
 public class AuthException extends RuntimeException {
 
-    private Integer status = UNAUTHORIZED.value();
+    private final Integer status = UNAUTHORIZED.value();
 
     public AuthException(CharSequence template, Object... params) {
         super(StrUtil.format(template, params));
