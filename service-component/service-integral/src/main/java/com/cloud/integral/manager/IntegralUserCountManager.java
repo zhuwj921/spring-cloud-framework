@@ -3,20 +3,23 @@ package com.cloud.integral.manager;
 import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cloud.common.enums.IntegralTypeEnum;
+import com.cloud.common.exception.BusinessException;
 import com.cloud.common.exception.RedissonException;
 import com.cloud.common.model.dto.IntegralDTO;
 import com.cloud.integral.entity.IntegralRecord;
 import com.cloud.integral.entity.IntegralUserCount;
 import com.cloud.integral.facade.kafka.conveter.IntegralConverter;
-import com.cloud.integral.mapper.IntegralErrorRecordMapper;
 import com.cloud.integral.mapper.IntegralRecordMapper;
 import com.cloud.integral.mapper.IntegralUserCountMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RLock;
 import org.redisson.api.RScoredSortedSet;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author zhuwj
@@ -29,12 +32,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class IntegralUserCountManager {
 
     private static final String TOTAL_SCORES = "Total_Scores_Rank";
+    public static final String INTEGRAL_USER_COUNT_UPDATE_LOCK = "integralUserCount_update_lock";
+    public static final int WAIT_TIME = 300;
+    public static final int LEASE_TIME = 3000;
 
     private final IntegralRecordMapper integralRecordMapper;
 
     private final IntegralUserCountMapper integralUserCountMapper;
-
-    private final IntegralErrorRecordMapper integralErrorRecordMapper;
 
     private final RedissonClient redissonClient;
 
@@ -87,39 +91,54 @@ public class IntegralUserCountManager {
      * @return 总计分数
      */
     private int integralCountChange(IntegralDTO integral) {
-        IntegralUserCount integralUserCountQueryData = new IntegralUserCount();
-        integralUserCountQueryData.setCreateBy(integral.getUserId());
-        QueryWrapper<IntegralUserCount> integralUserCountQueryWrapper = new QueryWrapper<>();
-        integralUserCountQueryWrapper.setEntity(integralUserCountQueryData);
-        IntegralUserCount integralUserCountQueryResult = integralUserCountMapper.selectOne(integralUserCountQueryWrapper);
-        //积分创建
-        if (integralUserCountQueryResult == null) {
-            integralUserCountQueryResult = new IntegralUserCount();
-            integralUserCountQueryResult.init(integral.getUserId());
-            integralUserCountQueryResult.setUsername("zhuwj");
-            integralUserCountQueryResult.setSumIntegral(integral.getNum());
-            if (IntegralTypeEnum.GIVE == integral.getIntegralTypeEnum()) {
-                integralUserCountQueryResult.setGiveIntegral(integral.getNum());
-            } else {
-                integralUserCountQueryResult.setConsumeIntegral(integral.getNum());
+        RLock rLock = redissonClient.getLock(INTEGRAL_USER_COUNT_UPDATE_LOCK + integral.getUserId());
+        int sumIntegral = 0;
+        try {
+            //尝试加锁,最大等待时间300毫秒，上锁3000毫秒自动解锁
+            if (rLock.tryLock(WAIT_TIME, LEASE_TIME, TimeUnit.MILLISECONDS)) {
+                IntegralUserCount integralUserCountQueryData = new IntegralUserCount();
+                integralUserCountQueryData.setCreateBy(integral.getUserId());
+                QueryWrapper<IntegralUserCount> integralUserCountQueryWrapper = new QueryWrapper<>();
+                integralUserCountQueryWrapper.setEntity(integralUserCountQueryData);
+                IntegralUserCount integralUserCountQueryResult = integralUserCountMapper.selectOne(integralUserCountQueryWrapper);
+                //积分创建
+                if (integralUserCountQueryResult == null) {
+                    integralUserCountQueryResult = new IntegralUserCount();
+                    integralUserCountQueryResult.init(integral.getUserId());
+                    integralUserCountQueryResult.setUsername("zhuwj");
+                    integralUserCountQueryResult.setSumIntegral(integral.getNum());
+                    if (IntegralTypeEnum.GIVE == integral.getIntegralTypeEnum()) {
+                        integralUserCountQueryResult.setGiveIntegral(integral.getNum());
+                    } else {
+                        integralUserCountQueryResult.setConsumeIntegral(integral.getNum());
+                    }
+                    integralUserCountQueryResult.setIntegralRank(0);
+                    integralUserCountMapper.insert(integralUserCountQueryResult);
+                    return integral.getNum();
+                }
+
+
+                IntegralUserCount integralUserCountUpdateData = new IntegralUserCount();
+                integralUserCountUpdateData.modify(integralUserCountQueryResult);
+                sumIntegral = integralUserCountQueryResult.getSumIntegral();
+                if (IntegralTypeEnum.GIVE == integral.getIntegralTypeEnum()) {
+                    integralUserCountUpdateData.setGiveIntegral(integral.getNum() + integralUserCountQueryResult.getGiveIntegral());
+                    sumIntegral = sumIntegral + integral.getNum();
+                } else {
+                    integralUserCountUpdateData.setConsumeIntegral(integral.getNum() + integralUserCountQueryResult.getConsumeIntegral());
+                    sumIntegral = sumIntegral - integral.getNum();
+                }
+                integralUserCountUpdateData.setSumIntegral(sumIntegral);
+                integralUserCountUpdateData.setIntegralRank(0);
+                integralUserCountMapper.updateById(integralUserCountUpdateData);
             }
-            integralUserCountQueryResult.setIntegralRank(0);
-            integralUserCountMapper.insert(integralUserCountQueryResult);
-            return integral.getNum();
+        } catch (Exception e) {
+            log.error("integralUserCount update error", e);
+            throw new BusinessException("integralUserCount update error {}", e.getMessage());
+        } finally {
+            //释放锁
+            rLock.unlock();
         }
-        IntegralUserCount integralUserCountUpdateData = new IntegralUserCount();
-        integralUserCountUpdateData.modify(integralUserCountQueryResult);
-        int sumIntegral = integralUserCountQueryResult.getSumIntegral();
-        if (IntegralTypeEnum.GIVE == integral.getIntegralTypeEnum()) {
-            integralUserCountUpdateData.setGiveIntegral(integral.getNum() + integralUserCountQueryResult.getGiveIntegral());
-            sumIntegral = sumIntegral + integral.getNum();
-        } else {
-            integralUserCountUpdateData.setConsumeIntegral(integral.getNum() + integralUserCountQueryResult.getConsumeIntegral());
-            sumIntegral = sumIntegral - integral.getNum();
-        }
-        integralUserCountUpdateData.setSumIntegral(sumIntegral);
-        integralUserCountUpdateData.setIntegralRank(0);
-        integralUserCountMapper.updateById(integralUserCountUpdateData);
         return sumIntegral;
     }
 
