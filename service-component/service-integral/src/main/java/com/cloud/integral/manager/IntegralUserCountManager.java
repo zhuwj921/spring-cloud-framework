@@ -1,7 +1,9 @@
 package com.cloud.integral.manager;
 
+import cn.hutool.core.convert.Convert;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.cloud.common.enums.IntegralTypeEnum;
+import com.cloud.common.exception.RedissonException;
 import com.cloud.common.model.dto.IntegralDTO;
 import com.cloud.integral.entity.IntegralRecord;
 import com.cloud.integral.entity.IntegralUserCount;
@@ -11,6 +13,8 @@ import com.cloud.integral.mapper.IntegralRecordMapper;
 import com.cloud.integral.mapper.IntegralUserCountMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.redisson.api.RScoredSortedSet;
+import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,12 +28,15 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class IntegralUserCountManager {
 
+    private static final String TOTAL_SCORES = "Total_Scores_Rank";
+
     private final IntegralRecordMapper integralRecordMapper;
 
     private final IntegralUserCountMapper integralUserCountMapper;
 
     private final IntegralErrorRecordMapper integralErrorRecordMapper;
 
+    private final RedissonClient redissonClient;
 
     /**
      * 积分统计和积分记录操作
@@ -56,6 +63,21 @@ public class IntegralUserCountManager {
         //积分统计数据添加
         int totalIntegral = integralCountChange(integral);
         return totalIntegral;
+    }
+
+    /**
+     * @param userId
+     * @param totalIntegral
+     */
+    public void totalIntegralRankChange(Long userId, Integer totalIntegral) {
+        try {
+            log.info("totalIntegralRankChange userId :{} , totalIntegral: {}", userId, totalIntegral);
+            RScoredSortedSet<Object> rScoredSortedSet = redissonClient.getScoredSortedSet(TOTAL_SCORES);
+            rScoredSortedSet.add(Convert.toDouble(totalIntegral), userId);
+        } catch (Exception e) {
+            log.error("totalIntegralRankChange error ", e);
+            throw new RedissonException(e.getMessage());
+        }
     }
 
     /**
