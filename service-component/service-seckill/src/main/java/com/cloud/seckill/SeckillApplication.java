@@ -1,4 +1,4 @@
-package order;
+package com.cloud.seckill;
 
 import com.cloud.common.constant.GlobalConstant;
 import org.mybatis.spring.annotation.MapperScan;
@@ -8,15 +8,15 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 仓储服务
  * @author zhuwj
+ * @description: 秒杀服务
  */
 @EnableTransactionManagement
 @ComponentScan(GlobalConstant.COMPONENT_SCAN)
 @MapperScan(GlobalConstant.MAPPER_SCAN)
 @SpringCloudApplication
-public class WareApplication {
+public class SeckillApplication {
     public static void main(String[] args) {
-        SpringApplication.run(WareApplication.class, args);
+        SpringApplication.run(SeckillApplication.class, args);
     }
 }

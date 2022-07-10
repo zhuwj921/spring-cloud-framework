@@ -10,24 +10,9 @@
         <version>${revision}</version>
     </parent>
 
-    <artifactId>service-mall</artifactId>
+    <artifactId>service-product</artifactId>
+    <description>商品服务</description>
 
-    <properties>
-        <webmagic.version>0.7.4</webmagic.version>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-core</artifactId>
-            <version>${webmagic.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>us.codecraft</groupId>
-            <artifactId>webmagic-extension</artifactId>
-            <version>${webmagic.version}</version>
-        </dependency>
-    </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>

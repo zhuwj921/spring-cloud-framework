@@ -2,36 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>com.cloud.zhuwj</groupId>
-        <artifactId>spring-cloud-framework</artifactId>
+        <artifactId>service-component</artifactId>
         <version>${revision}</version>
     </parent>
+    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service-component</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>service-auth</module>
-        <module>service-product</module>
-        <module>service-order</module>
-        <module>service-message</module>
-        <module>service-integral</module>
-        <module>service-ware</module>
-        <module>service-pay</module>
-        <module>service-seckill</module>
-    </modules>
-
-    <dependencies>
-        <dependency>
-            <groupId>com.cloud.zhuwj</groupId>
-            <artifactId>service-common</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
+    <artifactId>service-seckill</artifactId>
+    <description>秒杀服务</description>
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-deploy-plugin</artifactId>

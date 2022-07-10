@@ -11,7 +11,7 @@
     </parent>
 
     <artifactId>service-message</artifactId>
-
+    <description>消息服务</description>
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
