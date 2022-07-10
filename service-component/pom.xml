@@ -18,6 +18,7 @@
         <module>service-order</module>
         <module>service-message</module>
         <module>service-integral</module>
+        <module>service-ware</module>
     </modules>
 
     <dependencies>
