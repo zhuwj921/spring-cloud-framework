@@ -28,7 +28,7 @@
 | service-message  | 8930 | 消息服务      |
 | service-order    | 8940 | 订单服务      |
 | service-integral | 8950 | 积分服务      |
-
+| service-integral | 8960 | 仓储服务      |
 
 ## 公共模块(services-common)
 
