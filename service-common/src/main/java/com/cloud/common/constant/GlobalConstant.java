@@ -42,8 +42,10 @@ public interface GlobalConstant {
      * mapper解析路径
      */
     String MAPPER_SCAN = "com.cloud.*.mapper";
-
-
+    /**
+     * feign解析路径
+     */
+    String FEIGN_SCAN = "com.cloud.*.facade.feign";
     /**
      * 匿名用户id
      */

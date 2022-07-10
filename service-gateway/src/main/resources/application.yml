@@ -3,42 +3,11 @@ server:
 spring:
   application:
     name: service-gateway
-  cloud:
-    nacos:
-      server-addr: 127.0.0.1:8848
-      discovery:
-        #是否关闭服务注册
-        enabled: true
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
-  datasource:
-    url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
-    username: root
-    password: 81ce7571cf55f1aa41d6d9d5d7f25b09415fee188a720f13b0ef686f183b2f17
-    driver-class: com.mysql.cj.jdbc.Driver
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      minimum-idle: 5
-      # 空闲连接存活最大时间，默认600000（10分钟）
-      idle-timeout: 180000
-      # 连接池最大连接数，默认是10
-      maximum-pool-size: 10
-      # 此属性控制从池返回的连接的默认自动提交行为,默认值：true
-      auto-commit: true
-      # 连接池名称
-      pool-name: MyHikariCP
-      # 此属性控制池中连接的最长生命周期，值0表示无限生命周期，默认1800000即30分钟
-      max-lifetime: 1800000
-      # 数据库连接超时时间,默认30秒，即30000
-      connection-timeout: 30000
-      connection-test-query: SELECT 1
   redis:
     redisson:
       file: classpath:redisson.yml
-
+  profiles:
+    active: dev
 
 auth:
   ignore-url-patterns: /service-auth/auth/token,/service-auth/auth/refreshtoken,/service-auth/doc.html,/service-auth/swagger-ui.html,/service-auth/swagger-ui/*,/service-auth/swagger-resources/**,/service-auth/v2/api-docs,/service-auth/v3/api-docs,/service-auth/webjars/**

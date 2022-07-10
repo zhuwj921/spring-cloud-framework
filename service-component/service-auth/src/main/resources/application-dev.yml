@@ -1,8 +1,4 @@
-server:
-  port: 8940
 spring:
-  application:
-    name: service-order
   cloud:
     nacos:
       server-addr: 127.0.0.1:8848
@@ -27,8 +23,18 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-
   redis:
-    database: 0
-    host: 103.39.210.10
-    password: cXLtoAfE85WkUi5R
+    redisson:
+      file: classpath:redisson/redisson-dev.yml
+  kafka:
+    client-id: service-auth
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      retries: 3
+      acks: all
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    streams:
+      replication-factor: 3
+    consumer:
+      enable-auto-commit: false
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer

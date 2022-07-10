@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author zhuwj
  * @description: 积分服务启动类
  */
-@EnableFeignClients
+@EnableFeignClients(basePackages = GlobalConstant.FEIGN_SCAN)
 @EnableTransactionManagement
 @ComponentScan(GlobalConstant.COMPONENT_SCAN)
 @MapperScan(GlobalConstant.MAPPER_SCAN)

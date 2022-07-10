@@ -1,11 +1,4 @@
-server:
-  port: 8940
 spring:
-  application:
-    name: service-order
-  cloud:
-    nacos:
-      server-addr: 127.0.0.1:8848
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
@@ -27,8 +20,3 @@ spring:
       # 数据库连接超时时间,默认30秒，即30000
       connection-timeout: 30000
       connection-test-query: SELECT 1
-
-  redis:
-    database: 0
-    host: 103.39.210.10
-    password: cXLtoAfE85WkUi5R
