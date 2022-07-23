@@ -88,3 +88,7 @@
 ## 秒杀服务(service-seckill)
 
 > 秒杀相关功能 
+> 
+## 搜索服务(service-search)
+
+> 搜索相关功能 
