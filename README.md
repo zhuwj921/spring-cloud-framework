@@ -32,8 +32,9 @@
 | service-order    | 8940 | 订单服务      |
 | service-integral | 8950 | 积分服务      |
 | service-ware     | 8960 | 仓储服务      |
-| service-ware     | 8970 | 支付服务      |
-| service-ware     | 8980 | 秒杀服务      |
+| service-pay      | 8970 | 支付服务      |
+| service-seckill  | 8980 | 秒杀服务      |
+| service-search   | 8990 | 检索服务      |
 ## 公共模块(services-common)
 
 > 各个模块需要共同使用的一些功能或属性等

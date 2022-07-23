@@ -1,0 +1,21 @@
+server:
+  port: 8990
+spring:
+  application:
+    name: service-search
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
+  redis:
+    redisson:
+      file: classpath:redisson.yml
+  elasticsearch:
+    rest:
+      uris: 127.0.0.1:9200
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 5000
+        readTimeout: 5000
+        loggerLevel: basic

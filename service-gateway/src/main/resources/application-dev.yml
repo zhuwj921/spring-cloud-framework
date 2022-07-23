@@ -1,4 +1,7 @@
 spring:
+  cloud:
+    nacos:
+      server-addr: 127.0.0.1:8848
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_cloud_framework?autoReconnect=true&autoReconnectForPools=true&useUnicode=true&characterEncoding=UTF-8&useSSL=true&serverTimezone=GMT
     username: root
